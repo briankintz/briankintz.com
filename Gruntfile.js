@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     watch: {
       sass: {
-        files: "src/scss/*.scss",
+        files: 'src/scss/*.scss',
         tasks: ['sass', 'postcss']
       }
     },
@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         ]
       },
       dist: {
-        src: "res/css/styles.css"
+        src: 'res/css/styles.css'
       }
     },
     sass: {
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
           precision: 8
         },
         files: {
-          "res/css/styles.css" : "src/scss/styles.scss"
+          'res/css/styles.css' : 'src/scss/styles.scss'
         }
       }
     },
@@ -32,15 +32,15 @@ module.exports = function(grunt) {
       default_options: {
         bsFiles: {
           src: [
-            "res/css/*.css",
-            "*.html"
+            '*.html',
+            'res/css/*.css',
           ]
         }
       },
       options: {
         watchTask: true,
         server: {
-          baseDir: "./"
+          baseDir: './'
         }
       }
     }
