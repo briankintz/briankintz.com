@@ -48,8 +48,24 @@ hr {
 }
 
 .col-content {
-  margin-top: -10px;
   z-index: -1;
+
+  & > div:first-child {
+    &:before {
+      margin-top: -$affixed-header-height;
+      height: $affixed-header-height;
+    }
+
+    h3 { margin-top: 8px; }
+  }
+
+  & > div:before {
+    display: block;
+    content: " ";
+    margin-top: -($affixed-header-height - 11);
+    height: $affixed-header-height - 11;
+    visibility: hidden;
+  }
 }
 
 /*

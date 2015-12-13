@@ -1,4 +1,10 @@
-.row-affix {
+$affixed-header-height: 114px;
+
+.row-header {
+    height: $affixed-header-height;
+}
+
+#affix-target-header {
   margin-bottom: 20px;
 
   background-color: #fff;
@@ -7,18 +13,14 @@
   hr { margin: 0 auto; }
 }
 
-.row-affix.affix {
+#affix-target-header.affix {
   top: 0px;
   width: 970px;
   @include size-min(lg) { width: 1170px; }
 }
 
-.nav-affix.affix {
-  top: 114px;
+#affix-target-nav.affix {
+  top: $affixed-header-height;
   width: 213px;
-  @include size-min(lg) { width: 263px; }
-}
-
-.col-content.affix-sibling {
-  margin-top: 104px;
+  @include size-min(lg) { width: 262px; }
 }
