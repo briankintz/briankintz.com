@@ -24,6 +24,11 @@ html, body {
   font-family: "Rock Salt", $font-family-sans-serif;
 }
 
+h2.logo {
+  font-size: 18pt;
+  @include size-min(lg) { font-size: $font-size-h2; }
+}
+
 hr {
   display: block;
   height: 0;
