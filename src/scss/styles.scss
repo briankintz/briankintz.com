@@ -32,6 +32,16 @@ hr {
   border-top: 1px solid $brand-primary;
 }
 
+.nav li.active a {
+  margin-left: -5px;
+  border-left: 5px solid $brand-orange;
+}
+
+.nav li:not(.active) a:hover {
+  margin-left: -5px;
+  border-left: 5px solid lighten($brand-orange, 15%);
+}
+
 /*
  *
  * Animation Helpers
