@@ -51,7 +51,8 @@ hr {
 }
 
 .col-content {
-  z-index: -1;
+  a { text-decoration: underline; }
+  hr { width: 100%; }
 
   & > div:first-child {
     &:before {
