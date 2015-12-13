@@ -19,7 +19,8 @@
   .cover-text {
     position: relative;
     @include size-min(sm) { top: 5%; }
-    @include size-min(md) { top: 30%; }
+    @include size-min(md) { top: 25%; }
+    @include size-min(lg) { top: 30%; }
 
     color: $brand-primary;
     text-align: center;
