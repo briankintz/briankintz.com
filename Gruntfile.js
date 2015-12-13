@@ -5,6 +5,22 @@ module.exports = function(grunt) {
       sass: {
         files: 'src/scss/*.scss',
         tasks: ['sass', 'postcss']
+      },
+      js: {
+        files: 'src/js/*.js',
+        tasks: ['copy:js']
+      }
+    },
+    copy: {
+      js: {
+        expand: true,
+        cwd: 'src',
+        src: 'js/*.js',
+        dest: 'res'
+      },
+      vendor: {
+        src: 'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+        dest: 'res/js/bootstrap.min.js'
       }
     },
     postcss: {
@@ -34,6 +50,7 @@ module.exports = function(grunt) {
           src: [
             '*.html',
             'res/css/*.css',
+            'res/js/*.js'
           ]
         }
       },
@@ -47,6 +64,7 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy')
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-browser-sync');
