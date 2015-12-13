@@ -84,8 +84,7 @@ hr {
  */
 @for $i from 1 through 10 {
   .animation-delay-#{$i}s {
-    -webkit-animation-delay: #{$i}s;
-            animation-delay: #{$i}s;
+    animation-delay: #{$i}s;
   }
 }
 
@@ -96,9 +95,7 @@ hr {
 @media screen and (max-width: 767px) {
   .row-offcanvas {
     position: relative;
-    -webkit-transition: all .25s ease-out;
-         -o-transition: all .25s ease-out;
-            transition: all .25s ease-out;
+      transition: all .25s ease-out;
   }
 
   .row-offcanvas-right {

@@ -4,11 +4,25 @@ module.exports = function(grunt) {
     watch: {
       sass: {
         files: "src/scss/*.scss",
-        tasks: ['sass']
-      }  
+        tasks: ['sass', 'postcss']
+      }
+    },
+    postcss: {
+      options: {
+        processors: [
+          require('autoprefixer')({browsers: 'last 2 versions'}),
+          //require('cssnano')
+        ]
+      },
+      dist: {
+        src: "res/css/*.css"
+      }
     },
     sass: {
       dev: {
+        options: {
+          precision: 8
+        },
         files: {
           "res/css/styles.css" : "src/scss/styles.scss"
         }
@@ -32,9 +46,10 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-postcss');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-browser-sync');
-  
+
   grunt.registerTask('default', ['browserSync', 'watch']);
 };
