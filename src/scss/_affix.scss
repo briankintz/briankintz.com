@@ -16,6 +16,12 @@ $affixed-header-height: 125px;
   hr { margin: 0 auto; }
 }
 
+#affix-target-nav {
+  position: relative;
+
+  z-index: 2;
+}
+
 #affix-target-header.affix {
   position: fixed;
   top: 0px;
@@ -24,9 +30,8 @@ $affixed-header-height: 125px;
 }
 
 #affix-target-nav.affix {
+  position: fixed;
   top: $affixed-header-height;
   width: 213px;
   @include size-min(lg) { width: 263px; }
-
-  z-index: 2;
 }
