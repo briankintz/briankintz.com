@@ -85,6 +85,15 @@ hr {
   }
 }
 
+.row-footer {
+  padding-bottom: 35px;
+  font-size: .8em;
+
+  hr { margin: 40px auto; }
+
+  .fa { color: $brand-orange; }
+}
+
 /*
  *
  * Animation Helpers
