@@ -53,6 +53,15 @@ hr {
 .col-content {
   a { text-decoration: underline; }
   hr { width: 100%; }
+  h3 { margin-top: 75px; }
+
+  & > div:before {
+    display: block;
+    content: " ";
+    margin-top: -($affixed-header-height - 65);
+    height: $affixed-header-height - 65;
+    visibility: hidden;
+  }
 
   & > div:first-child {
     &:before {
@@ -61,14 +70,6 @@ hr {
     }
 
     h3 { margin-top: 8px; }
-  }
-
-  & > div:before {
-    display: block;
-    content: " ";
-    margin-top: -($affixed-header-height - 11);
-    height: $affixed-header-height - 11;
-    visibility: hidden;
   }
 }
 

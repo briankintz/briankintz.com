@@ -24,7 +24,7 @@ $affixed-header-height: 125px;
 #affix-target-nav.affix {
   top: $affixed-header-height;
   width: 213px;
-  @include size-min(lg) { width: 262px; }
+  @include size-min(lg) { width: 263px; }
 
   z-index: 2;
 }
