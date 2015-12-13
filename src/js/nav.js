@@ -1,10 +1,8 @@
 /* global $ */
 
-var affixStart = $('.row-affix').offset().top;
-
 $('.row-affix, .nav-affix').affix({
     offset: {
-        top: affixStart
+        top: function() { return $('.container-cover').height(); }
     }
 });
 
