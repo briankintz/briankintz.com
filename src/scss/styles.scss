@@ -31,12 +31,8 @@ h2.logo {
 }
 
 hr {
-  display: block;
-  height: 0;
   width: 98%;
-  margin: 0 auto 20px;
-
-  border-top: 1px solid $brand-primary;
+  border-top-color: $brand-primary;
 }
 
 .nav li.active a {
