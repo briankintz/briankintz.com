@@ -10,6 +10,7 @@ $screen-xl-min: 1400px;
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "mixins";
 @import "cover";
+@import "affix";
 
 html, body {
   height: 100%;
@@ -46,32 +47,9 @@ hr {
   border-left: 5px solid lighten($brand-orange, 15%);
 }
 
-.row-affix {
-  margin-bottom: 20px;
-
-  background-color: #fff;
-  box-shadow: 0 30px 20px -10px #fff;
-
-  hr { margin: 0 auto; }
-}
-
-.row-affix.affix {
-  top: 0px;
-  width: 970px;
-  @include size-min(lg) { width: 1170px; }
-}
-
-.nav-affix.affix {
-  top: 114px;
-  width: 213px;
-  @include size-min(lg) { width: 263px; }
-}
-
 .col-content {
   margin-top: -10px;
   z-index: -1;
-
-  &.affix-sibling { margin-top: 104px; }
 }
 
 /*
