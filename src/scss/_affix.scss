@@ -1,9 +1,46 @@
 $affixed-header-height: 125px;
 
+/*
+ * Core Header Styles
+ * --------------------------------------
+ */
 .row-header {
     height: $affixed-header-height;
+
+    .social {
+      height: $affixed-header-height * .7;
+      line-height: $affixed-header-height * .9;
+      vertical-align: bottom;
+
+      a {
+        margin-right: 20px;
+        padding: 3px 5px;
+
+        &:hover, &:active {
+          border-bottom: 2px solid $brand-orange;
+        }
+      }
+    }
 }
 
+/*
+ * Core Nav Styles
+ * --------------------------------------
+ */
+.nav li.active a {
+  margin-left: -5px;
+  border-left: 5px solid $brand-orange;
+}
+
+.nav li:not(.active) a:hover {
+  margin-left: -5px;
+  border-left: 5px solid lighten($brand-orange, 15%);
+}
+
+/*
+ * Affix Styles
+ * --------------------------------------
+ */
 #affix-target-header {
   position: relative;
   margin-bottom: 20px;

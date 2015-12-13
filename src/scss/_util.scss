@@ -1,3 +1,8 @@
+/*
+ *
+ * @media mixin
+ * -------------------------------------
+ */
 $breakpoints: (
   xs: $screen-xs-min,
   sm: $screen-sm-min,
@@ -9,5 +14,16 @@ $breakpoints: (
 @mixin size-min($breakpoint) {
   @media (min-width: map-get($breakpoints, $breakpoint)) {
     @content;
+  }
+}
+
+/*
+ *
+ * Animation Helpers
+ * -------------------------------------
+ */
+@for $i from 1 through 10 {
+  .animation-delay-#{$i}s {
+    animation-delay: #{$i}s;
   }
 }
