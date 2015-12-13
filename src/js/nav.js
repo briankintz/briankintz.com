@@ -2,7 +2,7 @@
 
 $('.row-affix, .nav-affix').affix({
     offset: {
-        top: function() { return $('.container-cover').height(); }
+        top: function() { return $('.container-cover').outerHeight(); }
     }
 });
 
