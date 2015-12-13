@@ -2,6 +2,9 @@ $brand-primary: #212F3D;
 $brand-green: #B4FF00;
 $brand-orange: #FF6D00;
 
+$font-size-base: 16.7px;
+$line-height-base: 1.377245509; // 23/16.7
+
 $font-family-sans-serif: "PT Sans", Helvetica, Arial, sans-serif;
 $font-family-monospace: "PT Mono", Menlo, Monaco, Consolas, "Courier New", monospace;
 
@@ -22,20 +25,20 @@ body { position: relative; }
 
 .logo {
   padding: 15px 0;
-  text-align: center;
   font-family: "Rock Salt", $font-family-sans-serif;
 }
 
 h2.logo {
-  margin-left: -10px;
-  font-size: 18pt;
-  @include size-min(lg) { font-size: $font-size-h2; }
+  font-size: 1.6em;
+  @include size-min(lg) { font-size: 2em; }
 }
 
 hr {
   width: 98%;
   border-top-color: $brand-primary;
 }
+
+.strong-title { padding-right: 10px; }
 
 .nav li.active a {
   margin-left: -5px;
