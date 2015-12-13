@@ -2,6 +2,9 @@ $brand-primary: #212F3D;
 $brand-green: #B4FF00;
 $brand-orange: #FF6D00;
 
+$font-family-sans-serif: "PT Sans", Helvetica, Arial, sans-serif;
+$font-family-monospace: "PT Mono", Menlo, Monaco, Consolas, "Courier New", monospace;
+
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 $screen-xl-min: 1400px;
@@ -9,6 +12,10 @@ $screen-xl-min: 1400px;
 html, body {
   height: 100%;
   overflow-x: hidden;
+}
+
+.logo {
+  font-family: "Rock Salt", $font-family-sans-serif;
 }
 
 .container-cover {
@@ -40,11 +47,6 @@ html, body {
     font-size: 8pt;
     @media (min-width: $screen-sm-min) { font-size: 11pt; }
     @media (min-width: $screen-xl-min) { font-size: 12pt; }
-
-    .cover-title {
-      font-family: "Rock Salt", sans-serif;
-      font-size: 3em;
-    }
 
     hr {
       width: 90%;
