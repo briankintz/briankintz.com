@@ -1,7 +1,6 @@
 .container-cover {
   height: 100%;
-
-  @include size-min(md) { padding-top: 5%; }
+  padding-top: 5%;
 
   .row { height: 100%; }
 
@@ -19,7 +18,7 @@
 
   .cover-text {
     position: relative;
-    top: 10%;
+    @include size-min(sm) { top: 5%; }
     @include size-min(md) { top: 30%; }
 
     color: $brand-primary;
