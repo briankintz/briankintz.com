@@ -5,6 +5,7 @@ $affixed-header-height: 125px;
 }
 
 #affix-target-header {
+  position: relative;
   margin-bottom: 20px;
 
   z-index: 1;
@@ -16,6 +17,7 @@ $affixed-header-height: 125px;
 }
 
 #affix-target-header.affix {
+  position: fixed;
   top: 0px;
   width: 970px;
   @include size-min(lg) { width: 1170px; }
