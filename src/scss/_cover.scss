@@ -1,0 +1,41 @@
+.container-cover {
+  height: 100%;
+
+  @include size-min(md) { padding-top: 5%; }
+
+  .row { height: 100%; }
+
+  .cover-image {
+    height: 60%;
+    @include size-min(md) { height: 80%; }
+
+    background: url(../img/bk_camera.jpg) no-repeat center center;
+    background-size: cover;
+
+    box-shadow:
+      inset -30px 0 60px 40px rgba(255,255,255,1),
+      inset 5px 0 40px 42px rgba(255,255,255,1);
+  }
+
+  .cover-text {
+    position: relative;
+    top: 10%;
+    @include size-min(md) { top: 30%; }
+
+    color: $brand-primary;
+    text-align: center;
+    font-size: 8pt;
+    @include size-min(sm) { font-size: 11pt; }
+    @include size-min(xl) { font-size: 12pt; }
+
+    hr {
+      width: 90%;
+      @include size-min(lg) { width: 80%; }
+    }
+
+    .cover-scrolldown {
+      margin-top: 10%;
+      font-size: 12pt;
+    }
+  }
+}
