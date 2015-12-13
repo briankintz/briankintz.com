@@ -25,6 +25,7 @@ html, body {
 }
 
 h2.logo {
+  margin-left: -10px;
   font-size: 18pt;
   @include size-min(lg) { font-size: $font-size-h2; }
 }
