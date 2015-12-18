@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="res/css/styles.css">
     <link rel="stylesheet" href="res/css/animate.min.css">
   </head>
-  <body data-spy="scroll" data-target="#sidebar-nav">
+  <body>
     <div class="container-fluid container-cover">
       <div class="row">
         <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0 col-lg-7 cover-image"></div>
@@ -39,18 +39,18 @@
     </div>
 
 
-    <div class="container">
+    <div class="container container-content">
       <div class="row row-header hidden-xs hidden-sm">
         <div id="affix-target-header">
-          <div class="col-xs-6">
+          <div class="col-md-6">
             <h2 class="logo">Brian Kintz</h2>
           </div>
 
-          <div class="col-xs-6 text-right social">
-            <a href="https://stackoverflow.com/users/362922/brian-kintz"><span class="fa fa-stack-overflow"></span></a>
-            <a href="https://github.com/elmugrat"><span class="fa fa-github"></span></a>
-            <a href="https://www.linkedin.com/in/bkintz"><span class="fa fa-linkedin"></span></a>
-            <a href="https://www.facebook.com/bkintz"><span class="fa fa-facebook"></span></a>
+          <div class="col-md-6 text-right social">
+            <a href="https://stackoverflow.com/users/362922/brian-kintz" target="_blank"><span class="fa fa-stack-overflow"></span></a>
+            <a href="https://github.com/elmugrat" target="_blank"><span class="fa fa-github"></span></a>
+            <a href="https://www.linkedin.com/in/bkintz" target="_blank"><span class="fa fa-linkedin"></span></a>
+            <a href="https://www.facebook.com/bkintz" target="_blank"><span class="fa fa-facebook"></span></a>
             <a href="mailto:btkintz@gmail.com"><span class="fa fa-envelope-o"></span></a>
           </div>
 
@@ -58,77 +58,65 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-3 hidden-xs hidden-sm" id="sidebar-nav">
-          <ul class="nav nav-pills nav-stacked" id="affix-target-nav">
-            <li><a href="#about">About</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#play">Play</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+      <div class="row row-content" id="about">
+        <div class="col-xs-12 col-md-7 col-md-offset-5">
+          <h3>Hi There.</h3>
+          <p>I'm a software developer currently living and working in Germany. I grew up by the beaches of the northeastern United States, studied at the University of Rhode Island and the Technische Universität Braunschweig and graduated summa cum laude from the International Engineering Program with degrees in Computer Engineering and German Language and Literature.</p>
+          <p>After graduation, I accepted a job offer as a software developer at an automotive engineering company and moved back to Germany, where I live today.</p>
+
+          <p><strong class="strong-title">Name:</strong>Brian Kintz</p>
+          <p><strong class="strong-title">Age:</strong>26</p>
+          <p><strong class="strong-title">Languages (Human):</strong>English (native), German (fluent), Spanish (basic understanding)</p>
+          <p><strong class="strong-title">Languages (Computer):</strong>C#, C/C++, Java, Perl, PHP, HTML, CSS/Sass, JavaScript, SQL</p>
+          <p><strong class="strong-title">Sports:</strong>Skiing, Sailing, Swimming, Rock Climbing</p>
+          <p><strong class="strong-title">Dogs or Cats?:</strong>Woof.</p>
+          <p><strong class="strong-title">Mac or Windows?:</strong>Mac for daily use, Windows for games, Linux for development</p>
+          <p><strong class="strong-title">Favorite Text Editor:</strong>vim</p>
+          <p><strong class="strong-title">Coffee or Tea?:</strong>Yes!</p>
         </div>
+      </div>
 
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-9 col-md-offset-0 col-content">
-          <div id="about">
-            <h3>Hi There.</h3>
-            <p>I'm a professional software developer currently living and working in Germany. I grew up by the beaches of the northeastern United States, studied at the University of Rhode Island and the Technische Universität Braunschweig and graduated summa cum laude from the International Engineering Program with degrees in Computer Engineering and German Language and Literature.</p>
-            <p>During college I wore many different work hats: Emergency Medical Technician, bicycle mechanic, computer lab operator, tutor, lifeguard, system/network administrator, TA and more. I kept myself busy and by the end of my sophomore year I had more practical work and internship experience than most students acquire during their entire college career.</p>
-            <p>After graduation, I accepted a job offer as a software developer at an automotive engineering company and moved back to Germany, where I live today.</p>
-            <hr>
-            <p>A little bit about me:</p>
-            <p><strong class="strong-title">Name:</strong>Brian Kintz</p>
-            <p><strong class="strong-title">Age:</strong>26</p>
-            <p><strong class="strong-title">Languages (Human):</strong>English (native), German (fluent), Spanish (basic understanding)</p>
-            <p><strong class="strong-title">Languages (Computer):</strong>C#, C/C++, Java, Perl, PHP, HTML, CSS/Sass, JavaScript, SQL</p>
-            <p><strong class="strong-title">Dogs or Cats?:</strong>Woof.</p>
-            <p><strong class="strong-title">Mac or Windows?:</strong>Mac for daily use, Windows for games, Linux for development</p>
-            <p><strong class="strong-title">Favorite Text Editor:</strong>vim</p>
-            <p><strong class="strong-title">Coffee or Tea?:</strong>Yes!</p>
-          </div>
+      <div class="row row-content" id="work">
+        <div class="col-xs-12 col-md-7 col-md-offset-5">
+          <h3>Do what you love.</h3>
+          <p><strong>Currently,</strong> I develop software tools in C/C++ and C# for calibrating and testing the On-Board Diagnostics systems in Engine Control Units of modern passenger cars for <a href="https://www.iav.com">IAV GmbH</a> in Gifhorn, Germany. These tools see daily use by the calibration and design engineers at IAV, Volkswagen, Audi and Porsche.</p>
+          <p><strong>Previously,</strong> I have:</p>
+          <p>
+            <ul>
+              <li>Performed system administration tasks and designed control software for submarine payloads as an intern at <a href="http://www.gdeb.com">General Dynamics: Electric Boat</a> in Groton, CT.</li>
+              <li>Managed the technical aspects of the 100+ seat <a href="http://egr.uri.edu/ecc/">Engineering Computer Center</a> at the University of Rhode Island. My responsibilities included network/domain administration, server-side software development, planning expansions/upgrades, and performing workstation maintenance such as machine group imaging and resolving hardware problems</li>
+              <li>Served as an EMS Lieutenant and shift supervisor at <a href="http://web.uri.edu/ems/">University of Rhode Island Emergency Medical Services</a>. Here I was responsible for supervising all EMS operations on the Kingston Campus including concerts and sporting events, training new members and interfacing with local police, EMS and fire agencies.</li>
+            </ul>
+          </p>
+          <p><strong>In the future,</strong> I would like to expand my expertise in modern web technologies, build on my knowledge of embedded software development and shed light on the shadowy areas of scalability, big data and parallel processing.</p>
+          <hr>
+          <h4>Skills</h4>
+          <p><strong class="strong-title">High Level:</strong>C#, C/C++, Java, Perl, PHP, HTML, CSS/Sass, JavaScript, SQL</p>
+          <p><strong class="strong-title">Low Level/Hardware:</strong>Assembly, FPGA/VHDL, PIC, Digital + Linear Circuit Design</p>
+          <p><strong class="strong-title">Server:</strong>*nix Administration, LAMP Stack, Oracle, Apache Tomcat, LDAP, SAMBA, DNS/Networking</p>
+          <p><strong class="strong-title">Toolchain:</strong>Visual Studio, Ant, Grunt, Sass, Git, SVN, CMake</p>
+        </div>
+      </div>
 
-          <div id="work">
-            <h3>Do what you love.</h3>
-            <p><strong>Currently,</strong> I develop software tools in C/C++ and C# for calibrating and testing the On-Board Diagnostics systems in Engine Control Units of modern passenger cars for <a href="https://www.iav.com">IAV GmbH</a> in Gifhorn, Germany. These tools see daily use by the calibration and design engineers at IAV, Volkswagen, Audi and Porsche.</p>
-            <p><strong>Previously,</strong> I have:</p>
-            <p>
-              <ul>
-                <li>Performed system administration tasks and designed control software for submarine payloads as an intern at <a href="http://www.gdeb.com">General Dynamics: Electric Boat</a> in Groton, CT.</li>
-                <li>Managed the technical aspects of the 100+ seat <a href="http://egr.uri.edu/ecc/">Engineering Computer Center</a> at the University of Rhode Island. My responsibilities included network/domain administration, server-side software development, planning expansions/upgrades, and performing workstation maintenance such as machine group imaging and resolving hardware problems</li>
-                <li>Served as an EMS Lieutenant and shift supervisor at <a href="http://web.uri.edu/ems/">University of Rhode Island Emergency Medical Services</a>. Here I was responsible for supervising all EMS operations on the Kingston Campus including concerts and sporting events, training new members and interfacing with local police, EMS and fire agencies.</li>
-              </ul>
-            </p>
-            <p><strong>In the future,</strong> I would like to expand my expertise in modern web technologies, build on my knowledge of embedded software development and shed light on the shadowy areas of scalability, big data and parallel processing.</p>
-            <hr>
-            <p><strong class="strong-title">High Level:</strong>C#, C/C++, Java, Perl, PHP, HTML, CSS/Sass, JavaScript, SQL</p>
-            <p><strong class="strong-title">Low Level/Hardware:</strong>Assembly, FPGA/VHDL, PIC, Digital+Linear Circuit Design</p>
-            <p><strong class="strong-title">Server:</strong>*nix Administration, LAMP Stack, Oracle, Apache Tomcat, LDAP, SAMBA, DNS/Networking</p>
-            <p><strong class="strong-title">Toolchain:</strong>Visual Studio, Ant, Grunt, Sass, Git, SVN, CMake</p>
-          </div>
-
-          <div id="play">
-            <h3>Love what you do.</h3>
-            <p>When I'm not working, I keep myself busy with small tech/programming projects. I like to tinker with stuff I've never used before and see what it's capable of and how I can make use of it.</p>
-            <p>My life isn't all about code and computers though. I also love to get outside and work out the desk-job stiffness by trail running, rock climbing, swimming, sailing, biking, and skiing. I've raced sailboats, I swam competitively, worked/volunteered for years as an EMT, I'm a ski instructor, I was a Mathlete and Chess Club champion (and no I'm not ashamed to admit it!), I've mastered a foreign language, and I've learned that there's so much more to the world than the small town I grew up in.</p>
-            <p>I work hard for everything that I find worthwhile, but I firmly believe that you have to play hard to be mentally and physically able to work hard, and I refuse to let my job define my life. On that note, stop reading this and go do something that makes you happy!</p>
-          </div>
-
-          <div id="contact">
-            <h3>Contact</h3>
-            <p>Coming soon...maybe</p>
-          </div>
+      <div class="row row-content" id="play">
+        <div class="col-xs-12 col-md-7 col-md-offset-5">
+          <h3>Love what you do.</h3>
+          <p>When I'm not working, I keep myself busy with small tech/programming projects. I like to tinker with stuff I've never used before and see what it's capable of and how I can make use of it.</p>
+          <p>Some of the more interesting projects include a <a href="https://github.com/elmugrat/smart_mirror">Smart Mirror</a> and an <a href="https://github.com/elmugrat/led_cube">LED Cube</a>.</p>
+          <p>My life isn't all about code and computers though. I also love to get outside and work out the desk-job stiffness by trail running, rock climbing, swimming, sailing, biking, and skiing. I've raced sailboats, I swam competitively, worked/volunteered for years as an EMT, I'm a ski instructor, and I've mastered a foreign language.</p>
         </div>
       </div>
 
       <div class="row row-footer">
         <div class="col-xs-12 text-center">
           <hr>
-          <p>Handmade with lots of <span class="fa fa-heart"></span> by Brian Kintz - Copyright 2016</p>
+          <p>Handmade with lots of <span class="fa fa-heart animated pulse infinite"></span> by Brian Kintz - Copyright 2016</p>
         </div>
       </div>
     </div>
 
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="res/js/bootstrap.min.js"></script>
-    <script src="res/js/nav.js"></script>
+    <script src="res/js/main.js"></script>
   </body>
 </html>

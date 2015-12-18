@@ -9,10 +9,14 @@ $font-family-monospace: "PT Mono", Menlo, Monaco, Consolas, "Courier New", monos
 
 $screen-xl-min: 1400px;
 
+$affixed-header-height: 125px;
+$footer-height: 125px;
+
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "util";
 @import "cover";
 @import "affix";
+@import "content";
 
 html, body { height: 100%; }
 body { position: relative; }
@@ -41,41 +45,14 @@ hr {
 }
 
 /*
- * Content Styles
- * --------------------------------------
- */
-.col-content {
-  a { text-decoration: underline; }
-  hr { width: 100%; }
-  h3 { margin-top: 75px; }
-
-  & > div:before {
-    display: block;
-    content: " ";
-    margin-top: -($affixed-header-height - 65);
-    height: $affixed-header-height - 65;
-    visibility: hidden;
-  }
-
-  & > div:first-child {
-    &:before {
-      margin-top: -$affixed-header-height;
-      height: $affixed-header-height;
-    }
-
-    h3 { margin-top: 8px; }
-  }
-}
-
-/*
  * Footer Styles
  * --------------------------------------
  */
 .row-footer {
-  padding-bottom: 35px;
+  height: $footer-height;
   font-size: .8em;
 
-  hr { margin: 40px auto; }
+  hr { margin: 35px auto; }
 
   .fa { color: $brand-orange; }
 }
