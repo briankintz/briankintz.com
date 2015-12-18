@@ -27,7 +27,12 @@ body { position: relative; }
  */
 .logo, h1, h2, h3, h4, h5, h6, strong, b { color: $brand-primary; }
 
-.strong-title { padding-right: 10px; }
+.strong-title {
+  display: block;
+  @include size-min(lg) { display: inline-block; }
+
+  padding-right: 10px;
+}
 
 .logo {
   padding: 15px 0;
