@@ -36,3 +36,10 @@
 
   hr { margin: 0 auto; }
 }
+
+#affix-target-header.affix {
+  position: fixed;
+  top: 0px;
+  width: 970px;
+  @include size-min(lg) { width: 1170px; }
+}
