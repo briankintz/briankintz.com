@@ -12,7 +12,7 @@ $screen-xl-min: 1400px;
 $affixed-header-height: 125px;
 $footer-height: 125px;
 
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "vendor/bootstrap/bootstrap-custom";
 @import "vendor/animate/animate-custom";
 @import "util";
 @import "cover";
