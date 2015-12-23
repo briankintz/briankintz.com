@@ -13,6 +13,7 @@ $affixed-header-height: 125px;
 $footer-height: 125px;
 
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "vendor/animate/animate-custom";
 @import "util";
 @import "cover";
 @import "affix";
