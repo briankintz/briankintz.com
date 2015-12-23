@@ -15,7 +15,7 @@ deploy:
     - npm install
     - grunt build
     - mkdir site
-    - cp -r index.html res/ site/
+    - cp -r index.html 404.html res/ site/
     - scp -r site/* root@$DEPLOY_TARGET:/var/www/briankintz.com/
   stage: deploy
   only:
