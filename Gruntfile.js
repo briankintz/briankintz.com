@@ -1,6 +1,47 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    sass: {
+      all: {
+        options: {
+          sourceMap: false,
+          includePaths: [ 'node_modules/bootstrap-sass/assets/stylesheets' ]
+        },
+
+        src: 'src/scss/styles.scss',
+        dest: 'src/css/styles.css'
+      }
+    },
+
+    postcss: {
+      autoprefix: {
+        options: {
+          processors: [ require('autoprefixer')({ browsers: 'last 2 versions' }) ]
+        },
+        src: 'src/css/styles.css'
+      },
+
+      minify: {
+        options: {
+          processors: [ require('cssnano') ]
+        },
+        src: 'src/css/styles.css',
+        dest: 'res/css/styles.min.css'
+      }
+    },
+
+    uglify: {
+      all: {
+        files: {
+          'res/js/main.min.js': [
+            'node_modules/bootstrap-sass/assets/javascripts/bootstrap/affix.js',
+            'src/js/main.js'
+          ]
+        }
+      }
+    },
+
     watch: {
       sass: {
         files: 'src/scss/*.scss',
@@ -8,66 +49,33 @@ module.exports = function(grunt) {
       },
       js: {
         files: 'src/js/*.js',
-        tasks: ['copy:js']
+        tasks: ['uglify']
       }
     },
-    copy: {
-      js: {
-        expand: true,
-        cwd: 'src',
-        src: 'js/*.js',
-        dest: 'res'
-      },
-      vendor: {
-        src: 'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
-        dest: 'res/js/bootstrap.min.js'
-      }
-    },
-    postcss: {
-      options: {
-        processors: [
-          require('autoprefixer')({browsers: 'last 2 versions'}),
-          require('cssnano')
-        ]
-      },
-      dist: {
-        src: 'res/css/styles.css'
-      }
-    },
-    sass: {
-      dev: {
-        options: {
-          precision: 8
-        },
-        files: {
-          'res/css/styles.css' : 'src/scss/styles.scss'
-        }
-      }
-    },
+
     browserSync: {
-      default_options: {
-        bsFiles: {
-          src: [
-            '*.html',
-            'res/css/*.css',
-            'res/js/*.js'
-          ]
-        }
-      },
       options: {
         watchTask: true,
         server: {
           baseDir: './'
         }
-      }
+      },
+      src: [
+        '*.html',
+        'res/css/*.css',
+        'res/js/*.js'
+      ]
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-copy')
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-postcss');
-  grunt.loadNpmTasks('grunt-contrib-sass');
+
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browser-sync');
 
   grunt.registerTask('default', ['browserSync', 'watch']);
+  grunt.registerTask('build', ['sass', 'postcss', 'uglify'])
 };
