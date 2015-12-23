@@ -1,26 +1,19 @@
 before_script:
   - whoami
-  - sudo apt-get update -qq && sudo apt-get install -y nodejs npm
-  - sudo npm install -g npm@latest
-  - sudo npm install -g grunt-cli
-  - npm install
 
 stages:
-  - build
   - deploy
 
 variables:
   DEPLOY_TARGET: "new.briankintz.com"
 
-build_job:
+deploy:
   script:
+    - sudo apt-get update -qq && sudo apt-get install -y nodejs npm
+    - sudo npm install -g npm@latest
+    - sudo npm install -g grunt-cli
+    - npm install
     - grunt build
-  stage: build
-  only:
-    - master
-
-deploy_job:
-  script:
     - mkdir site
     - cp -r index.html res/ site/
     - scp -r site/* root@$DEPLOY_TARGET:/var/www/briankintz.com/
