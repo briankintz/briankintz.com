@@ -14,7 +14,8 @@ build_job:
   script:
     - grunt build
   stage: build
-  only: master
+  only:
+    - master
 
 deploy_job:
   script:
@@ -22,7 +23,8 @@ deploy_job:
     - cp -r index.html res/ site/
     - scp -r site/* root@$DEPLOY_TARGET:/var/www/briankintz.com/
   stage: deploy
-  only: master
+  only:
+    - master
   artifacts:
     paths:
       - site/
