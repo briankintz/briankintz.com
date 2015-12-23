@@ -5,12 +5,11 @@ stages:
   - deploy
 
 variables:
-  DEPLOY_TARGET: "new.briankintz.com"
+  DEPLOY_TARGET: "briankintz.com"
 
 deploy:
   script:
     - sudo apt-get update -qq && sudo apt-get install -y nodejs
-    - sudo npm install -g npm@latest
     - sudo npm install -g grunt-cli
     - npm install
     - grunt build
