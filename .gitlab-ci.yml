@@ -1,0 +1,28 @@
+before_script:
+  - apt-get update -qq && apt-get -y nodejs npm
+  - npm install -g grunt-cli
+  - npm install
+
+stages:
+  - build
+  - deploy
+
+variables:
+  DEPLOY_TARGET: "new.briankintz.com"
+
+build_job:
+  script:
+    - grunt build
+  stage: build
+  only: master
+
+deploy_job:
+  script:
+    - mkdir site
+    - cp -r index.html res/ site/
+    - scp -r site/* root@$DEPLOY_TARGET:/var/www/briankintz.com/
+  stage: deploy
+  only: master
+  artifacts:
+    paths:
+      - site/
