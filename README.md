@@ -1,6 +1,6 @@
+Description
+=
 Source Code for [briankintz.com](http://briankintz.com)
-
----
 
 Grunt Tasks
 =
