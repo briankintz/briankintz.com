@@ -1,0 +1,1 @@
+Cover font made from combination of ANURATI and BLANKA fonts from Emmeran Richard (https://www.behance.net/emmeranrichard)
