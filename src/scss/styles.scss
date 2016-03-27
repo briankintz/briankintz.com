@@ -72,5 +72,8 @@ hr {
 
   hr { margin: 35px auto; }
 
-  .fa { color: $brand-orange; }
+  .fa {
+    padding: 0px 3px;
+    color: $brand-orange;
+  }
 }
