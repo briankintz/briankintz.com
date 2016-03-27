@@ -1,41 +1,53 @@
-.container-cover {
+.cover {
+  position: relative;
   height: 100%;
-  padding-top: 5%;
+  text-align: center;
 
-  .row { height: 100%; }
+  .cover-image-outer {
+    height: 90%;
+    background: $brand-primary;
+    box-shadow: 0 0 10px 0 $brand-primary;
 
-  .cover-image {
-    height: 60%;
-    @include size-min(md) { height: 80%; }
+    .cover-image-inner {
+      height: 100%;
 
-    background: url(../img/bk_camera.jpg) no-repeat center center;
-    background-size: cover;
+      background: url(../img/cover/cover_768x960.jpg) no-repeat center center;
+      @include size-min(md) { background: url(../img/cover/cover_1400x1050.jpg) no-repeat center center; }
+      @include size-min(xl) { background: url(../img/cover/cover_1920x1080.jpg) no-repeat center center; }
 
-    box-shadow:
-      inset -30px 0 60px 40px rgba(255,255,255,1),
-      inset 5px 0 40px 42px rgba(255,255,255,1);
-  }
-
-  .cover-text {
-    position: relative;
-    @include size-min(sm) { top: 5%; }
-    @include size-min(md) { top: 25%; }
-    @include size-min(lg) { top: 30%; }
-
-    color: $brand-primary;
-    text-align: center;
-    font-size: 8pt;
-    @include size-min(sm) { font-size: 11pt; }
-    @include size-min(xl) { font-size: 12pt; }
-
-    hr {
-      width: 90%;
-      @include size-min(lg) { width: 80%; }
+      background-size: cover;
+      opacity: 0.3;
     }
 
-    .cover-scrolldown {
-      margin-top: 10%;
-      font-size: 12pt;
+    &:after {
+      content: 'BRIAN KINTZ';
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      right: 0;
+
+      font-family: "cover_min";
+      color: #fff;
+
+      font-size: 24px; letter-spacing: 15px;
+      @include size-min(sm) { font-size: 32px; letter-spacing: 20px; top: 7%; }
+      @include size-min(md) { font-size: 32px; letter-spacing: 25px; top: 35%; left: 50%; }
+      @include size-min(lg) { font-size: 38px; }
+      @include size-min(xl) { font-size: 52px; }
+    }
+  }
+
+  .cover-scroll-hint {
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    width: 22px;
+    margin-left: -11px;
+    color: lighten($brand-primary, 20%);
+
+    &, & > .animated {
+      animation-delay: 2s;
+      animation-duration: 2s;
     }
   }
 }

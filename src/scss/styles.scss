@@ -12,6 +12,18 @@ $screen-xl-min: 1400px;
 $affixed-header-height: 125px;
 $footer-height: 125px;
 
+@font-face {
+    font-family: 'cover_min';
+    src: url('../fonts/cover/cover_min-webfont.eot');
+    src: url('../fonts/cover/cover_min-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/cover/cover_min-webfont.woff2') format('woff2'),
+         url('../fonts/cover/cover_min-webfont.woff') format('woff'),
+         url('../fonts/cover/cover_min-webfont.ttf') format('truetype'),
+         url('../fonts/cover/cover_min-webfont.svg#cover_min') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @import "vendor/bootstrap/bootstrap-custom";
 @import "vendor/animate/animate-custom";
 @import "util";
@@ -26,7 +38,7 @@ body { position: relative; }
  * Typography
  * --------------------------------------
  */
-.logo, h1, h2, h3, h4, h5, h6, strong, b { color: $brand-primary; }
+//.logo, h1, h2, h3, h4, h5, h6, strong, b { color: $brand-primary; }
 
 .strong-title {
   display: block;
@@ -47,7 +59,7 @@ h2.logo {
 
 hr {
   width: 98%;
-  border-top-color: $brand-primary;
+  //border-top-color: $brand-primary;
 }
 
 /*
