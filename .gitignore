@@ -2,5 +2,5 @@
 .sass-cache
 node_modules
 res/css
-res/js
+res/js/*.js
 src/css/styles.css
