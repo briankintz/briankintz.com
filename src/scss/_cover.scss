@@ -1,53 +1,55 @@
-.cover {
-  position: relative;
+/*
+ * Cover Styles
+ * --------------------------------------
+ */
+.screen-cover {
   height: 100%;
-  text-align: center;
+  position: relative;
 
-  .cover-image-outer {
-    height: 90%;
-    background: $brand-primary;
-    box-shadow: 0 0 10px 0 $brand-primary;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 
-    .cover-image-inner {
-      height: 100%;
+    background: url(../img/cover/cover_768x960.jpg) no-repeat center center;
+    @include size-min(md) { background: url(../img/cover/cover_1600x1200.jpg) no-repeat center center; }
+    @include size-min(xl) { background: url(../img/cover/cover_1920x1200.jpg) no-repeat center center; }
+    @include size-min(xxl) { background: url(../img/cover/cover_2880x1800.jpg) no-repeat center center; }
 
-      background: url(../img/cover/cover_768x960.jpg) no-repeat center center;
-      @include size-min(md) { background: url(../img/cover/cover_1400x1050.jpg) no-repeat center center; }
-      @include size-min(xl) { background: url(../img/cover/cover_1920x1080.jpg) no-repeat center center; }
-
-      background-size: cover;
-      opacity: 0.3;
-    }
-
-    &:after {
-      content: 'BRIAN KINTZ';
-      position: absolute;
-      top: 10%;
-      left: 5%;
-      right: 0;
-
-      font-family: "cover_min";
-      color: #fff;
-
-      font-size: 24px; letter-spacing: 15px;
-      @include size-min(sm) { font-size: 32px; letter-spacing: 20px; top: 7%; }
-      @include size-min(md) { font-size: 32px; letter-spacing: 25px; top: 35%; left: 50%; }
-      @include size-min(lg) { font-size: 38px; }
-      @include size-min(xl) { font-size: 52px; }
-    }
+    background-size: cover;
+    opacity: 0.3;
   }
 
-  .cover-scroll-hint {
+  &:after {
+    content: 'BRIAN KINTZ';
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    right: 0;
+
+    font-family: "anuratiblankak";
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+
+    font-size: 24px; letter-spacing: 15px;
+    @include size-min(sm) { font-size: 32px; letter-spacing: 20px; top: 7%; }
+    @include size-min(md) { font-size: 32px; letter-spacing: 25px; top: 40%; left: 50%; }
+    @include size-min(lg) { font-size: 38px; }
+    @include size-min(xl) { font-size: 52px; }
+  }
+
+  span {
     position: absolute;
     bottom: 2%;
     left: 50%;
     width: 22px;
     margin-left: -11px;
-    color: lighten($brand-primary, 20%);
+    color: #ddd;
 
-    &, & > .animated {
-      animation-delay: 2s;
-      animation-duration: 2s;
-    }
+    animation-duration: 2s;
   }
 }
