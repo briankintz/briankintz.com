@@ -35,7 +35,6 @@ module.exports = function(grunt) {
       all: {
         files: {
           'res/js/main.min.js': [
-            'node_modules/bootstrap-sass/assets/javascripts/bootstrap/affix.js',
             'src/js/main.js'
           ]
         }
