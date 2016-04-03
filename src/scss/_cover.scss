@@ -20,7 +20,7 @@
     @include size-min(xxl) { background: url(../img/cover/cover_2880x1800.jpg) no-repeat center center; }
 
     background-size: cover;
-    opacity: 0.3;
+    opacity: 0.4;
   }
 
   &:after {
@@ -33,7 +33,7 @@
     font-family: "anuratiblankak";
     color: #fff;
     text-align: center;
-    text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+    text-shadow: 2px 2px 5px rgba($brand-dark,.6);
 
     font-size: 24px; letter-spacing: 15px;
     @include size-min(sm) { font-size: 32px; letter-spacing: 20px; top: 7%; }

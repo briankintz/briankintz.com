@@ -17,6 +17,7 @@
 }
 
 $brand-primary: #1D3249;
+$brand-dark: #102134;
 $brand-orange: #FF6D00;
 
 $color-inverse: #f2f3f4;
@@ -37,7 +38,7 @@ $footer-height: 125px;
 
 html, body {
   height: 100%;
-  background: $brand-primary;
+  background: $brand-dark;
 }
 
 .screen {
