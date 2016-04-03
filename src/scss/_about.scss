@@ -9,14 +9,38 @@
   background: $brand-primary;
   color: $color-inverse;
 
-  a, a:active, a:hover, a:visited {
+  a, a:visited {
+      color: $color-inverse;
+  }
+
+  .a-social,
+  .a-social:visited {
+    display: inline-block;
     padding: 0 15px;
     text-decoration: none;
-    color: $color-inverse;
     opacity: .7;
   }
 
-  a:hover {
+  .a-social:active,
+  .a-social:hover {
     opacity: 1;
+  }
+
+  p {
+    padding-left: 4px;
+
+    a::after {
+      display: inline-block;
+      padding-left: 2px;
+
+      content: "\f08e";
+      font-family: 'FontAwesome';
+      font-size: 60%;
+      vertical-align: text-top;
+
+      &:active, &:hover {
+        text-decoration: none;
+      }
+    }
   }
 }
