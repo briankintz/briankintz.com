@@ -8,7 +8,8 @@ $breakpoints: (
   sm: $screen-sm-min,
   md: $screen-md-min,
   lg: $screen-lg-min,
-  xl: $screen-xl-min
+  xl: $screen-xl-min,
+  xxl: 1920
 );
 
 @mixin size-min($breakpoint) {

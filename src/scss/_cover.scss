@@ -1,41 +1,55 @@
-.container-cover {
+/*
+ * Cover Styles
+ * --------------------------------------
+ */
+.screen-cover {
   height: 100%;
-  padding-top: 5%;
+  position: relative;
 
-  .row { height: 100%; }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 
-  .cover-image {
-    height: 60%;
-    @include size-min(md) { height: 80%; }
+    background: url(../img/cover/cover_768x960.jpg) no-repeat center center;
+    @include size-min(md) { background: url(../img/cover/cover_1600x1200.jpg) no-repeat center center; }
+    @include size-min(xl) { background: url(../img/cover/cover_1920x1200.jpg) no-repeat center center; }
+    @include size-min(xxl) { background: url(../img/cover/cover_2880x1800.jpg) no-repeat center center; }
 
-    background: url(../img/bk_camera.jpg) no-repeat center center;
     background-size: cover;
-
-    box-shadow:
-      inset -30px 0 60px 40px rgba(255,255,255,1),
-      inset 5px 0 40px 42px rgba(255,255,255,1);
+    opacity: 0.3;
   }
 
-  .cover-text {
-    position: relative;
-    @include size-min(sm) { top: 5%; }
-    @include size-min(md) { top: 25%; }
-    @include size-min(lg) { top: 30%; }
+  &:after {
+    content: 'BRIAN KINTZ';
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    right: 0;
 
-    color: $brand-primary;
+    font-family: "anuratiblankak";
+    color: #fff;
     text-align: center;
-    font-size: 8pt;
-    @include size-min(sm) { font-size: 11pt; }
-    @include size-min(xl) { font-size: 12pt; }
+    text-shadow: 2px 2px 5px rgba(0,0,0,.5);
 
-    hr {
-      width: 90%;
-      @include size-min(lg) { width: 80%; }
-    }
+    font-size: 24px; letter-spacing: 15px;
+    @include size-min(sm) { font-size: 32px; letter-spacing: 20px; top: 7%; }
+    @include size-min(md) { font-size: 32px; letter-spacing: 25px; top: 40%; left: 50%; }
+    @include size-min(lg) { font-size: 38px; }
+    @include size-min(xl) { font-size: 52px; }
+  }
 
-    .cover-scrolldown {
-      margin-top: 10%;
-      font-size: 12pt;
-    }
+  span {
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    width: 22px;
+    margin-left: -11px;
+    color: #ddd;
+
+    animation-duration: 2s;
   }
 }
