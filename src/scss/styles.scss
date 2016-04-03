@@ -1,79 +1,50 @@
-$brand-primary: #212F3D;
-$brand-orange: #FF6D00;
-
-$font-size-base: 16.7px;
-$line-height-base: 1.377245509; // 23/16.7
-
-$font-family-sans-serif: "PT Sans", Helvetica, Arial, sans-serif;
-$font-family-monospace: "PT Mono", Menlo, Monaco, Consolas, "Courier New", monospace;
-
-$screen-xl-min: 1400px;
-
-$affixed-header-height: 125px;
-$footer-height: 125px;
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 @font-face {
-    font-family: 'cover_min';
-    src: url('../fonts/cover/cover_min-webfont.eot');
-    src: url('../fonts/cover/cover_min-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/cover/cover_min-webfont.woff2') format('woff2'),
-         url('../fonts/cover/cover_min-webfont.woff') format('woff'),
-         url('../fonts/cover/cover_min-webfont.ttf') format('truetype'),
-         url('../fonts/cover/cover_min-webfont.svg#cover_min') format('svg');
+    font-family: 'anuratiblankak';
+    src: url('../fonts/anurati-blankak-regular.woff2') format('woff2'),
+         url('../fonts/anurati-blankak-regular.woff') format('woff'),
+         url('../fonts/anurati-blankak-regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Jaapokki';
+    src: url('../fonts/Jaapokki-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$brand-primary: #1D3249;
+$brand-orange: #FF6D00;
+
+$color-inverse: #f2f3f4;
+
+$font-size-base: 16px;
+$line-height-base: 1.375; // 23/16
+
+$font-family-sans-serif: "Roboto", Helvetica, Arial, sans-serif;
+$headings-font-family: "Jaapokki";
+
+$screen-xl-min: 1400px;
+
+$footer-height: 125px;
+
 @import "vendor/bootstrap/bootstrap-custom";
 @import "vendor/animate/animate-custom";
 @import "util";
+
+html, body {
+  height: 100%;
+  background: $brand-primary;
+}
+
+.screen {
+  min-height: 100%;
+}
+
 @import "cover";
-@import "affix";
-@import "content";
-
-html, body { height: 100%; }
-body { position: relative; }
-
-/*
- * Typography
- * --------------------------------------
- */
-//.logo, h1, h2, h3, h4, h5, h6, strong, b { color: $brand-primary; }
-
-.strong-title {
-  display: block;
-  @include size-min(lg) { display: inline-block; }
-
-  padding-right: 10px;
-}
-
-.logo {
-  padding: 15px 0;
-  font-family: "Rock Salt", $font-family-sans-serif;
-}
-
-h2.logo {
-  font-size: 1.6em;
-  @include size-min(lg) { font-size: 2em; }
-}
-
-hr {
-  width: 98%;
-  //border-top-color: $brand-primary;
-}
-
-/*
- * Footer Styles
- * --------------------------------------
- */
-.row-footer {
-  height: $footer-height;
-  font-size: .8em;
-
-  hr { margin: 35px auto; }
-
-  .fa {
-    padding: 0px 3px;
-    color: $brand-orange;
-  }
-}
+@import "work";
+@import "about";
+@import "footer";

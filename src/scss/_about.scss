@@ -1,0 +1,22 @@
+/*
+ * About Me Styles
+ * --------------------------------------
+ */
+.screen-about {
+  padding-top: 10%;
+  padding-bottom: 10%;
+
+  background: $brand-primary;
+  color: $color-inverse;
+
+  a, a:active, a:hover, a:visited {
+    padding: 0 15px;
+    text-decoration: none;
+    color: $color-inverse;
+    opacity: .7;
+  }
+
+  a:hover {
+    opacity: 1;
+  }
+}

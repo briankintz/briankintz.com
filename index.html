@@ -1,39 +1,112 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Brian Kintz</title>
+  <title>Brian Kintz</title>
 
-    <link href='//fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="res/css/styles.min.css">
-  </head>
-  <body>
-    <div class="cover">
-      <div class="cover-image-outer">
-        <div class="cover-image-inner"></div>
-      </div>
-      <div class="cover-scroll-hint animated fadeIn">
-        <span class="fa fa-2x fa-angle-down animated pulse infinite"></span>
-      </div>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="res/css/styles.min.css">
+</head>
+<body>
+  <div class="screen screen-cover">
+    <div class="animated fadeIn animation-delay-2s">
+      <span class="fa fa-2x fa-angle-down animated pulse infinite animation-delay-3s"></span>
     </div>
+  </div>
 
+  <div class="screen screen-work" id="work">
     <div class="container">
-      <div class="row row-content">
-        <div class="col-xs-12">
-          <p>Content here.</p>
+      <div class="row">
+        <div class="col-xs-12 col-md-9 col-lg-8">
+          <h2><a href="https://www.iav.com" target="_blank">IAV GmbH</a> <small>Software Engineer</small></h2>
+          <ul style="list-style-type: dash">
+            <li>Design and development of diagnostic and calibration software for engine control units</li>
+            <li>Software licensing and access control</li>
+            <li>Server administration</li>
+          </ul>
+          <hr>
+          <p class="small text-muted">C#, Java, C, C++/CLI, Linux, Oracle, MySQL, Web Development</p>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-3 col-lg-offset-1 text-center">
+          <a href="https://www.iav.com" target="_blank">
+            <img src="res/img/iav-logo.gif" width="200px" alt="IAV GmbH">
+          </a>
         </div>
       </div>
-      <div class="row row-footer">
-        <div class="col-xs-12 text-center">
+
+      <div class="row">
+        <div class="col-xs-12 col-md-9 col-lg-8">
+          <h2><a href="http://egr.uri.edu/ecc" target="_blank">University of Rhode Island</a> <small>System Administrator</small></h2>
+          <ul style="list-style-type: dash">
+            <li>Linux domain/web/mail server administratrion</li>
+            <li>Computer lab planning and maintenance, machine imaging, networking</li>
+            <li>Samba domain administration</li>
+          </ul>
           <hr>
-          <p>Handmade with lots of <span class="fa fa-heart animated pulse infinite"></span> by Brian Kintz - Copyright 2016</p>
+          <p class="small text-muted">Linux, Perl, Samba, LDAP, Apache, Sendmail, DNS, Networking</p>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-3 col-lg-offset-1 text-center">
+          <a href="http://egr.uri.edu/ecc" target="_blank">
+            <img src="res/img/uri-logo.png" width="200px" alt="University of Rhode Island">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-md-9 col-lg-8">
+          <h2><a href="https://www.mtv-gifhorn-ski.de" target="_blank">MTV Gifhorn Ski/Snowboard</a> <small>Website Development</small></h2>
+          <ul style="list-style-type: dash">
+            <li>Website design and development</li>
+            <li>Online course registration and course management</li>
+            <li>User management and marketing</li>
+          </ul>
+          <hr>
+          <p class="small text-muted">HTML/CSS, Bootstrap, PHP, MySQL</p>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-3 col-lg-offset-1 text-center">
+          <a href="https://www.mtv-gifhorn-ski.de" target="_blank">
+            <img src="res/img/mtv-gifhorn-logo.png" width="125px" alt="MTV Gifhorn">
+          </a>
         </div>
       </div>
     </div>
+  </div>
 
-  </body>
+  <div class="screen screen-about" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Who I Am</h1>
+          <p>I'm a software engineer and web developer currently living in Germany.</p>
+          <p>At work I handle everything from software planning and development to design and server administration.</p>
+          <p>On the weekends I ski, swim, cook, sail, volunteer, climb rocks, and tinker with assorted projects.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <hr>
+          <p>
+            <a href="https://www.facebook.com/bkintz" target="_blank">
+              <span class="fa fa-2x fa-facebook"></span>
+            </a>
+            <a href="https://github.com/elmugrat" target="_blank">
+              <span class="fa fa-2x fa-github"></span>
+            </a>
+            <a href="http://stackoverflow.com/users/362922/brian-kintz" target="_blank">
+              <span class="fa fa-2x fa-stack-overflow"></span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Handmade with <span class="fa fa-heart animated pulse infinite"></span> by Brian Kintz - Copyright 2016</p>
+    <p class="text-credit">Cover photo by Daniel Lodahl</p>
+  </footer>
+</body>
 </html>
