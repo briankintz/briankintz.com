@@ -1,0 +1,22 @@
+/*
+ * Footer Styles
+ * --------------------------------------
+ */
+footer {
+  @extend .small;
+
+  height: $footer-height;
+  padding-top: $footer-height / 3;
+
+  text-align: center;
+  color: #ddd;
+
+  background: #102134;
+
+  .text-credit { color: #38506A; }
+
+  .fa {
+    padding: 0px 3px;
+    color: $brand-orange;
+  }
+}
