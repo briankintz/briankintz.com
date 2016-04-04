@@ -11,7 +11,9 @@
 
 @font-face {
     font-family: 'Jaapokki';
-    src: url('../fonts/Jaapokki-Regular.otf');
+    src: url('../fonts/jaapokki-regular.woff2') format('woff2'),
+         url('../fonts/jaapokki-regular.woff') format('woff'),
+         url('../fonts/jaapokki-regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
