@@ -6,6 +6,12 @@
   height: 100%;
   position: relative;
 
+  &::before, &::after {
+    opacity: 0;
+    transition: opacity 500ms;
+  }
+
+  &.in::before { opacity: 0.4 }
   &::before {
     content: '';
     position: absolute;
@@ -14,21 +20,22 @@
     bottom: 0;
     right: 0;
 
-    background: url(../img/cover/cover_768x960.jpg) no-repeat center center;
-    @include size-min(md) { background: url(../img/cover/cover_1600x1200.jpg) no-repeat center center; }
-    @include size-min(xl) { background: url(../img/cover/cover_1920x1200.jpg) no-repeat center center; }
-    @include size-min(xxl) { background: url(../img/cover/cover_2880x1800.jpg) no-repeat center center; }
+    background: url(../img/cover/cover_8x10.jpg) no-repeat center center;
+    @include size-min(md) { background: url(../img/cover/cover_4x3.jpg) no-repeat center center; }
+    @include size-min(xl) { background: url(../img/cover/cover_16x10_sm.jpg) no-repeat center center; }
+    @include size-min(xxl) { background: url(../img/cover/cover_16x10_lg.jpg) no-repeat center center; }
 
     background-size: cover !important;
-    opacity: 0.4;
   }
 
+  &.in::after { opacity: 1 }
   &::after {
     content: 'BRIAN KINTZ';
     position: absolute;
     top: 10%;
     left: 5%;
     right: 0;
+    z-index: 1;
 
     font-family: "anuratiblankak";
     color: #fff;
@@ -48,8 +55,40 @@
     left: 50%;
     width: 22px;
     margin-left: -11px;
+
+    font-size: 1.5em;
     color: #ddd;
 
     animation-duration: 2s;
+
+    & > span {
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+.blur {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+
+  background: url(../img/cover/cover_8x10_preload.jpg) no-repeat center center;
+  @include size-min(md) { background: url(../img/cover/cover_4x3_preload.jpg) no-repeat center center; }
+  @include size-min(xl) { background: url(../img/cover/cover_16x10_preload.jpg) no-repeat center center; }
+
+  background-size: cover !important;
+
+  filter: blur(8px);
+  transform: translateZ(0);
+
+  opacity: 0.4;
+
+  transition: opacity 500ms;
+
+  &.out {
+    opacity: 0;
   }
 }
