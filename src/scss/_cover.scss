@@ -19,11 +19,11 @@
     @include size-min(xl) { background: url(../img/cover/cover_1920x1200.jpg) no-repeat center center; }
     @include size-min(xxl) { background: url(../img/cover/cover_2880x1800.jpg) no-repeat center center; }
 
-    background-size: cover;
+    background-size: cover !important;
     opacity: 0.4;
   }
 
-  &:after {
+  &::after {
     content: 'BRIAN KINTZ';
     position: absolute;
     top: 10%;
