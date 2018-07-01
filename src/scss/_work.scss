@@ -1,8 +1,4 @@
-/*
- * Work Styles
- * --------------------------------------
- */
-.screen-work {
+#work {
   background: #fff;
 
   padding-top: 7.5%;
@@ -35,32 +31,28 @@
   }
 
   h2 {
-    font-size: 0.75 * $font-size-h2;
-    @include size-min(md) { font-size: $font-size-h2; }
-
-    small, .small {
-      display: block;
-      @include size-min(sm) { display: inline; }
-    }
+    font-size: 0.75 * $h2-font-size;
+    @include media-breakpoint-up(md) { font-size: $h2-font-size; }
   }
 
-  a, a:visited { color: $text-color; }
-  a:hover, a:active { color: $brand-primary; }
-
-  img { margin-top: $line-height-computed; }
+  a, a:visited { color: $body-color; }
+  a:hover, a:active { color: $primary; }
 
   ul {
     list-style-type: none;
     padding: 0;
-  }
-  li { margin-left: 16px; }
-  li + li { padding-top: 8px; }
-  li:before {
-    content: '-';
-    margin-left: -12px;
-    margin-right: 8px;
-    color: #aaa;
-  }
 
-  hr + p { padding-left: 4px; }
+    li {
+      position: relative;
+      padding-bottom: .5rem;
+      padding-left: 1rem;
+
+      &:before {
+        content: '-';
+        position: absolute;
+        left: .1rem;
+        color: #aaa;
+      }
+    }
+  }
 }

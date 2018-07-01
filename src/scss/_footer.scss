@@ -1,22 +1,16 @@
-/*
- * Footer Styles
- * --------------------------------------
- */
+$footer-height: 125px;
+
 footer {
   @extend .small;
 
   height: $footer-height;
-  padding-top: $footer-height / 3;
 
-  text-align: center;
-  color: #ddd;
-
-  background: $brand-dark;
+  color: $gray-500;
 
   .text-credit { color: #38506A; }
 
   .fa {
-    padding: 0px 3px;
-    color: $brand-orange;
+    color: $orange;
+    animation-duration: 2s;
   }
 }

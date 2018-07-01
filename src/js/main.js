@@ -1,8 +1,8 @@
 window.onbeforeunload = function() { window.scrollTo(0,0); }
 
 window.onload = function() {
-  var cover = document.querySelector('.screen-cover');
-  var blur = document.querySelector('.blur');
+  var cover = document.querySelector('#cover');
+  var blur = document.querySelector('#blur');
 
   var img = new Image();
   img.onload = function() {
@@ -10,7 +10,7 @@ window.onload = function() {
     blur.className += ' out';
 
     setTimeout(function(cover) {
-      cover.innerHTML = '<span class="fadeIn"><span class="fa fa-angle-down pulse"></span></span>';
+      cover.innerHTML = '<span class="animated fadeIn"><span class="fa fa-angle-down animated infinite pulse"></span></span>';
     }, 2500, cover);
   }
 
