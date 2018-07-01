@@ -39,6 +39,7 @@ module.exports = function(grunt) {
       all: {
         files: {
           'res/js/main.min.js': [
+            'node_modules/waypoints/lib/noframework.waypoints.js',
             'src/js/main.js'
           ]
         }
