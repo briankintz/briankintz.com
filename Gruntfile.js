@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    clean: {
+      dist: [ 'dist' ]
+    },
 
     sass: {
       options: {
@@ -43,6 +45,15 @@ module.exports = function(grunt) {
       }
     },
 
+    copy: {
+      dist: {
+        files: [
+          { src: 'index.html', dest: 'dist/' },
+          { src: 'res/**', dest: 'dist/' }
+        ]
+      }
+    },
+
     watch: {
       sass: {
         files: 'src/scss/*.scss',
@@ -71,11 +82,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-postcss');
 
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browser-sync');
 
   grunt.registerTask('default', ['browserSync', 'watch']);
-  grunt.registerTask('build', ['sass', 'postcss', 'uglify'])
+  grunt.registerTask('build', [ 'clean', 'sass', 'postcss', 'uglify', 'copy'])
 };
