@@ -1,17 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Abel');
+
 @font-face {
     font-family: 'anuratiblankak';
     src: url('../fonts/anurati-blankak-regular.woff2') format('woff2'),
          url('../fonts/anurati-blankak-regular.woff') format('woff'),
          url('../fonts/anurati-blankak-regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Jaapokki';
-    src: url('../fonts/jaapokki-regular.woff2') format('woff2'),
-         url('../fonts/jaapokki-regular.woff') format('woff'),
-         url('../fonts/jaapokki-regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -30,6 +23,9 @@
 html, body {
   height: 100%;
   background: $dark;
+
+  @include media-breakpoint-up(sm) { font-size: 18px; }
+  @include media-breakpoint-up(md) { font-size: 19px; }
 }
 
 .screen {
