@@ -44,7 +44,6 @@
 
     li {
       position: relative;
-      padding-bottom: .5rem;
       padding-left: 1rem;
 
       &:before {
@@ -53,6 +52,10 @@
         left: .1rem;
         color: #aaa;
       }
+    }
+
+    li + li {
+      margin-top: .5rem;
     }
   }
 }
