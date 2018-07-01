@@ -1,29 +1,31 @@
-/*
- * About Me Styles
- * --------------------------------------
- */
-.screen-about {
+#about {
   padding-top: 10%;
   padding-bottom: 10%;
 
-  background: $brand-primary;
-  color: $color-inverse;
+  background: $primary;
+  color: $light;
+
+  hr {
+    border-color: darken($light, 30%);
+  }
 
   a, a:visited {
-      color: $color-inverse;
+      color: $light;
   }
 
-  .a-social,
-  .a-social:visited {
-    display: inline-block;
-    padding: 0 15px;
+  .a-social {
     text-decoration: none;
-    opacity: .7;
-  }
+    transition: opacity 100ms ease-in-out;
+    padding: .5rem 1rem;
 
-  .a-social:active,
-  .a-social:hover {
-    opacity: 1;
+    &, &:visited {
+      opacity: .7;
+    }
+
+    &:active,
+    &:hover {
+      opacity: 1;
+    }
   }
 
   p {

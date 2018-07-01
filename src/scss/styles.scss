@@ -1,5 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto);
-
 @font-face {
     font-family: 'anuratiblankak';
     src: url('../fonts/anurati-blankak-regular.woff2') format('woff2'),
@@ -18,36 +16,22 @@
     font-style: normal;
 }
 
-$brand-primary: #1D3249;
-$brand-dark: #102134;
-$brand-orange: #FF6D00;
+@import "bootstrap/bootstrap-custom";
+@import "bootstrap/bootstrap";
 
-$color-inverse: #f2f3f4;
-
-$font-size-base: 16px;
-$line-height-base: 1.375; // 23/16
-
-$font-family-sans-serif: "Roboto", Helvetica, Arial, sans-serif;
-$headings-font-family: "Jaapokki";
-
-$screen-xl-min: 1400px;
-
-$footer-height: 125px;
-
-@import "vendor/bootstrap/bootstrap-custom";
-@import "vendor/animate/animate-custom";
-@import "util";
-
-html, body {
-  height: 100%;
-  background: $brand-dark;
-}
-
-.screen {
-  min-height: 100%;
-}
+@import "animate-sass/animate-custom";
+@import "animate-sass/animate";
 
 @import "cover";
 @import "work";
 @import "about";
 @import "footer";
+
+html, body {
+  height: 100%;
+  background: $dark;
+}
+
+.screen {
+  min-height: 100%;
+}

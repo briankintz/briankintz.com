@@ -3,14 +3,16 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     sass: {
-      all: {
-        options: {
-          sourceMap: false,
-          includePaths: [ 'node_modules/bootstrap-sass/assets/stylesheets' ]
-        },
+      options: {
+        implementation: require('node-sass'),
+        sourceMap: true,
+        includePaths: [ 'node_modules' ]
+      },
 
-        src: 'src/scss/styles.scss',
-        dest: 'src/css/styles.css'
+      dist: {
+        files: {
+          'src/css/styles.css': 'src/scss/styles.scss'
+        }
       }
     },
 

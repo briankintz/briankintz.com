@@ -1,8 +1,4 @@
-/*
- * Cover Styles
- * --------------------------------------
- */
-.screen-cover {
+#cover {
   height: 100%;
   position: relative;
 
@@ -21,9 +17,9 @@
     right: 0;
 
     background: url(../img/cover/cover_8x10.jpg) no-repeat center center;
-    @include size-min(md) { background: url(../img/cover/cover_4x3.jpg) no-repeat center center; }
-    @include size-min(xl) { background: url(../img/cover/cover_16x10_sm.jpg) no-repeat center center; }
-    @include size-min(xxl) { background: url(../img/cover/cover_16x10_lg.jpg) no-repeat center center; }
+    @include media-breakpoint-only(lg) { background: url(../img/cover/cover_4x3.jpg) no-repeat center center; }
+    @include media-breakpoint-only(xl) { background: url(../img/cover/cover_16x10_sm.jpg) no-repeat center center; }
+    @include media-breakpoint-only(xxl) { background: url(../img/cover/cover_16x10_lg.jpg) no-repeat center center; }
 
     background-size: cover !important;
   }
@@ -40,13 +36,13 @@
     font-family: "anuratiblankak";
     color: #fff;
     text-align: center;
-    text-shadow: 2px 2px 5px rgba($brand-dark,.6);
+    text-shadow: 2px 2px 5px rgba($dark,.6);
 
     font-size: 24px; letter-spacing: 15px;
-    @include size-min(sm) { font-size: 32px; letter-spacing: 20px; top: 7%; }
-    @include size-min(md) { font-size: 32px; letter-spacing: 25px; top: 40%; left: 50%; }
-    @include size-min(lg) { font-size: 38px; }
-    @include size-min(xl) { font-size: 52px; }
+    @include media-breakpoint-up(sm) { font-size: 32px; letter-spacing: 16px; top: 7%; }
+    @include media-breakpoint-up(md) { font-size: 38px; letter-spacing: 18px; }
+    @include media-breakpoint-up(lg) { font-size: 42px; letter-spacing: 20px; top: 40%; left: 50%; }
+    @include media-breakpoint-up(xl) { font-size: 52px; }
   }
 
   span {
@@ -57,38 +53,35 @@
     margin-left: -11px;
 
     font-size: 1.5em;
-    color: #ddd;
+    color: $light;
 
     animation-duration: 2s;
+  }
 
-    & > span {
-      animation-iteration-count: infinite;
+  #blur {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+
+    background: url(../img/cover/cover_8x10_preload.jpg) no-repeat center center;
+    @include media-breakpoint-only(lg) { background: url(../img/cover/cover_4x3_preload.jpg) no-repeat center center; }
+    @include media-breakpoint-up(xl) { background: url(../img/cover/cover_16x10_preload.jpg) no-repeat center center; }
+
+    background-size: cover !important;
+
+    filter: blur(8px);
+    transform: translateZ(0);
+
+    opacity: 0.4;
+
+    transition: opacity 500ms;
+
+    &.out {
+      opacity: 0;
     }
   }
 }
 
-.blur {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
-
-  background: url(../img/cover/cover_8x10_preload.jpg) no-repeat center center;
-  @include size-min(md) { background: url(../img/cover/cover_4x3_preload.jpg) no-repeat center center; }
-  @include size-min(xl) { background: url(../img/cover/cover_16x10_preload.jpg) no-repeat center center; }
-
-  background-size: cover !important;
-
-  filter: blur(8px);
-  transform: translateZ(0);
-
-  opacity: 0.4;
-
-  transition: opacity 500ms;
-
-  &.out {
-    opacity: 0;
-  }
-}
