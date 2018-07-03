@@ -30,10 +30,21 @@
   h2 {
     font-size: $h3-font-size;
     @include media-breakpoint-up(md) { font-size: $h2-font-size; }
-  }
 
-  a, a:visited { color: $body-color; }
-  a:hover, a:active { color: $primary; }
+    a {
+      color: $body-color;
+      text-decoration: none;
+
+      border-bottom: 2px solid transparent;
+
+      transition: all 100ms ease-in-out;
+
+      &:hover, &:active {
+        color: $primary;
+        border-bottom-color: $primary;
+      }
+    }
+  }
 
   ul {
     list-style-type: none;
