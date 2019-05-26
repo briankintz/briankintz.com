@@ -17,23 +17,13 @@ window.onload = function() {
   var style = window.getComputedStyle(cover, ':before');
   img.src = style.backgroundImage.slice(4, -1).replace(/"/g, "");
 
-  var waypoint1 = new Waypoint({
-    element: document.getElementById('row-work-1'),
-    handler: waypointIn,
-    offset: '90%'
-  });
-
-  var waypoint1 = new Waypoint({
-    element: document.getElementById('row-work-2'),
-    handler: waypointIn,
-    offset: '90%'
-  });
-
-  var waypoint1 = new Waypoint({
-    element: document.getElementById('row-work-3'),
-    handler: waypointIn,
-    offset: '90%'
-  });
+  for (i = 1; i <= 5; i++) {
+    new Waypoint({
+      element: document.getElementById('row-work-' + i),
+      handler: waypointIn,
+      offset: '90%'
+    });
+  }
 }
 
 function waypointIn() {
