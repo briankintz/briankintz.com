@@ -50,6 +50,7 @@ module.exports = function(grunt) {
       dist: {
         files: [
           { src: 'index.html', dest: 'dist/' },
+          { src: 'headers.netlify', dest: 'dist/_headers' },
           { src: 'res/**', dest: 'dist/' }
         ]
       }
