@@ -1,16 +1,20 @@
-Description
-=
-Source Code for [briankintz.com](http://briankintz.com)
+# briankintz.com
 
-Grunt Tasks
-=
+## Build Setup
 
-`grunt`
--
-Watches `index.html` and the `src/*` directories for changes and runs Sass compilation and JS minification tasks on changes.  Also starts the `browserSync` plugin.
+```bash
+# install dependencies
+$ npm install
 
-Output files land in the `res/` directory.
+# serve with hot reload at localhost:3000
+$ npm run dev
 
-`grunt build`
--
-Runs JS minification, Sass compilation, and CSS minification tasks.  Output files land in the `res/` directory.
+# build for production and launch server
+$ npm run build
+$ npm run start
+
+# generate static project
+$ npm run generate
+```
+
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

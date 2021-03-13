@@ -1,10 +1,11 @@
-.DS_Store
-.sass-cache
-node_modules
+# Logs
+*.log
+npm-debug.log*
 
+# Dependency directories
+.npm
+node_modules/
+
+# nuxt.js build output
+.nuxt
 dist
-
-res/css
-res/js
-
-src/css

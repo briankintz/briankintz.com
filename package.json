@@ -1,32 +1,41 @@
 {
-  "name": "brian-kintz-personal",
-  "version": "1.0.0",
-  "description": "Brian Kintz Personal Site",
+  "name": "briankintz.com",
+  "version": "2.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@git.briankintz.com:www-dev/brian-kintz-personal.git"
-  },
-  "author": "Brian Kintz",
-  "license": "MIT",
-  "devDependencies": {
-    "animate-sass": "^0.8.2",
-    "autoprefixer": "^9.5.1",
-    "cssnano": "^4.1.10",
-    "grunt": "^1.0.4",
-    "grunt-browser-sync": "^2.2.0",
-    "grunt-contrib-clean": "^2.0.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-uglify": "^4.0.1",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-postcss": "^0.9.0",
-    "grunt-sass": "^3.0.2",
-    "node-sass": "^4.12.0"
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+    "lint": "npm run lint:js"
   },
   "dependencies": {
-    "bootstrap": "^4.3.1",
-    "waypoints": "^4.0.1"
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/pro-duotone-svg-icons": "^5.15.2",
+    "@fortawesome/pro-light-svg-icons": "^5.15.2",
+    "@fortawesome/pro-solid-svg-icons": "^5.15.2",
+    "core-js": "^3.9.1",
+    "nuxt": "^2.15.3"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^6.0.0",
+    "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/fontawesome": "^1.1.2",
+    "@nuxtjs/tailwindcss": "^4.0.0-9",
+    "autoprefixer": "^10.2.5",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-nuxt": "^2.0.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.7.0",
+    "nuxt-lazysizes": "^1.2.0",
+    "postcss": "^8.2.8",
+    "postcss-hexrgba": "^2.0.1",
+    "postcss-nested": "^5.0.5",
+    "postcss-responsive-type": "^1.0.0",
+    "prettier": "^2.2.1",
+    "tailwind-css-variables": "^2.0.3"
   }
 }
