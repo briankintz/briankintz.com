@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+  @font-face {
+    font-family: 'anuratiblankak';
+    src: url('~/assets/fonts/anurati-blankak-regular.woff2') format('woff2'),
+      url('~/assets/fonts/anurati-blankak-regular.woff') format('woff'),
+      url('~/assets/fonts/anurati-blankak-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  html {
+    font-size: responsive;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+}
