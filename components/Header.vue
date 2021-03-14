@@ -15,6 +15,8 @@
         class="w-full h-screen object-cover object-top opacity-40 lazyload"
         :srcset="preloadSet('sm')"
         :data-srcset="coverSet('sm')"
+        width="100%"
+        height="100%"
       />
     </picture>
     <h1>BRIAN KINTZ</h1>

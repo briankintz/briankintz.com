@@ -24,6 +24,8 @@
         class="hidden lg:block justify-self-end h-16 lazyload"
         :data-src="logo"
         :alt="company"
+        height="100%"
+        width="auto"
       />
     </div>
   </div>
@@ -38,8 +40,7 @@ export default {
     },
     logo: {
       type: String,
-      required: false,
-      default: '',
+      required: true,
     },
     role: {
       type: String,
