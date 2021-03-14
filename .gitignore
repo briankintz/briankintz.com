@@ -9,3 +9,6 @@ node_modules/
 # nuxt.js build output
 .nuxt
 dist
+
+# ESlint cache
+.eslintcache
