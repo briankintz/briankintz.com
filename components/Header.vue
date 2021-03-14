@@ -15,6 +15,9 @@
         class="w-full h-screen object-cover object-top opacity-40 lazyload"
         :srcset="preloadSet('sm')"
         :data-srcset="coverSet('sm')"
+        alt="Me sitting on a piling at the beach"
+        width="100%"
+        height="100%"
       />
     </picture>
     <h1>BRIAN KINTZ</h1>

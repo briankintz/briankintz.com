@@ -12,6 +12,7 @@
       url('~/assets/fonts/anurati-blankak-regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: block;
   }
 
   html {

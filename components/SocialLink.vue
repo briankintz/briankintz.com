@@ -2,6 +2,7 @@
   <a
     :href="href"
     class="inline-block rounded focus:outline-none focus:ring ring-blue-light"
+    :aria-label="`Social media link to ${faIcon}`"
   >
     <FontAwesomeIcon
       :icon="[faFamily, faIcon]"

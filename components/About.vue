@@ -29,6 +29,8 @@
         data-src="~/assets/img/bk.jpg"
         class="col-span-3 lg:col-span-1 place-self-center lg:justify-self-end rounded-full lazyload"
         alt="Brian Kintz"
+        height="353"
+        width="353"
       />
 
       <hr class="col-span-3 border-4 border-blue-light rounded-full" />
