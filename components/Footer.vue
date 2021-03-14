@@ -11,7 +11,7 @@
         class="hover:underline"
         rel="noopener"
         target="_blank"
-        >{{ gitCommitSha }}</a
+        >{{ gitCommitShaShort }}</a
       >
       ©
       {{ buildYear }}
@@ -25,6 +25,7 @@ export default {
     return {
       buildDate: process.env.buildDate,
       gitCommitSha: process.env.gitCommitSha,
+      gitCommitShaShort: process.env.gitCommitShaShort,
     }
   },
   computed: {

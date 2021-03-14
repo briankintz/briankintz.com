@@ -15,6 +15,7 @@
     "@fortawesome/pro-duotone-svg-icons": "^5.15.2",
     "@fortawesome/pro-light-svg-icons": "^5.15.2",
     "@fortawesome/pro-solid-svg-icons": "^5.15.2",
+    "@nuxtjs/sentry": "^5.0.2",
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3"
   },

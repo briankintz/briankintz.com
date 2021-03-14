@@ -38,6 +38,7 @@ export default {
   },
   components: true,
   css: ['~/assets/css/tailwind'],
+  modules: ['@nuxtjs/sentry'],
   buildModules: [
     '@nuxtjs/eslint-module',
     '@nuxtjs/fontawesome',
@@ -58,7 +59,8 @@ export default {
 
   env: {
     buildDate: new Date(),
-    gitCommitSha: process.env.CI_COMMIT_SHORT_SHA || 'unknown',
+    gitCommitSha: process.env.COMMIT_REF || 'unknown',
+    gitCommitShaShort: (process.env.COMMIT_REF || 'unknown').substring(0, 8),
   },
 
   fontawesome: {
@@ -76,5 +78,11 @@ export default {
       img: ['src', 'srcset', 'data-src', 'data-srcset', 'data-lowsrc'],
       source: ['src', 'srcset', 'data-src', 'data-srcset', 'data-lowsrc'],
     },
+  },
+
+  sentry: {
+    dsn:
+      'https://a4901f39c5704c5a8edad131692a1192@o345407.ingest.sentry.io/5675152',
+    publishRelease: true,
   },
 }
