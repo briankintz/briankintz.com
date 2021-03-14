@@ -56,6 +56,11 @@ export default {
     },
   },
 
+  env: {
+    buildDate: new Date(),
+    gitCommitSha: process.env.CI_COMMIT_SHORT_SHA || 'unknown',
+  },
+
   fontawesome: {
     icons: {
       brands: ['faInstagram', 'faGitlab', 'faStackOverflow', 'faLinkedin'],
