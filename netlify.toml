@@ -1,0 +1,32 @@
+[build]
+  base = "."
+  publish = "dist/"
+  command = "npm run generate"
+
+[build.environment]
+  NODE_VERSION = "14"
+
+[build.processing]
+  skip_processing = true
+
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Cache-Control = "public, max-age=604800, immutable"
+    Content-Security-Policy = """
+      default-src 'none'; \
+      base-uri 'self'; \
+      frame-ancestors 'none'; \
+      form-action 'none'; \
+      connect-src *.sentry.io; \
+      manifest-src 'self'; \
+      img-src 'self'; \
+      font-src 'self' https://fonts.gstatic.com; \
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; \
+      script-src 'self' 'unsafe-inline'; \
+      report-uri https://o345407.ingest.sentry.io/api/5675152/security/?sentry_key=a4901f39c5704c5a8edad131692a1192;\
+    """
