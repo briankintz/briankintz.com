@@ -1,5 +1,5 @@
 <template>
-  <header class="fixed top-0 w-full px-5 py-3 flex justify-between">
+  <header class="fixed top-0 w-screen px-5 py-3 flex justify-between">
     <a href="/">
       <span class="text-accent-magenta">/</span
       ><span class="text-accent-orange">/</span>
