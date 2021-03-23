@@ -62,7 +62,10 @@
           Guided investment in strategically scalable, distributed storage
           solutions
         </li>
-        <li>Organically grew GitLab into a central DevOps hub</li>
+        <li>
+          Organically grew GitLab from a team solution into a company-wide
+          DevOps hub
+        </li>
       </ul>
     </Card>
 
