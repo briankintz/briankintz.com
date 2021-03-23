@@ -1,7 +1,7 @@
 <template>
   <Aurora variant="orange">
     <Card
-      class="col-span-full order-1 lg:col-span-8 lg:col-start-3"
+      class="col-span-full order-1 lg:col-span-10 lg:col-start-2 xl:col-span-8 xl:col-start-3"
       fa-icon="brain-circuit"
       title="Work"
       data-aos="zoom-in-up"
