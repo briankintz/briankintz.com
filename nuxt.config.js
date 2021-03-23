@@ -49,7 +49,6 @@ export default {
   build: {
     postcss: {
       plugins: {
-        '@tailwindcss/jit': {},
         'postcss-import': {},
         'postcss-nested': {},
         'postcss-hexrgba': {},

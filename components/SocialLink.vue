@@ -6,7 +6,7 @@
   >
     <FontAwesomeIcon
       :icon="[faFamily, faIcon]"
-      class="mx-2 lg:mx-1 p-1"
+      class="mx-1 p-1"
       rel="noopener"
       target="_blank"
     />

@@ -1,6 +1,10 @@
 <template>
-  <div class="aurora-bg w-screen my-10 pb-56" :style="cssProps">
-    <slot />
+  <div class="aurora-bg w-screen overflow-hidden pb-56" :style="cssProps">
+    <div
+      class="container mx-auto grid grid-cols-12 lg:gap-x-10 gap-y-16 lg:gap-y-24 text-center lg:text-left"
+    >
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -58,7 +62,7 @@ div.aurora-bg::before {
   width: 100%;
 
   background: var(--aurora-variant);
-  transform: rotate(-2.5deg) scale(1.2, 1.1);
+  transform: rotate(-2.5deg) scale(1.3, 1.1);
   transform-origin: center center;
   z-index: -1;
 }
