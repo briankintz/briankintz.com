@@ -1,22 +1,78 @@
+@import url('https://use.typekit.net/ulq6snh.css');
+
+/* AOS */
+
+@import 'aos/dist/aos.css';
+
+[data-aos='fade-out'][data-aos='fade-out'] {
+  opacity: 1;
+  transition-property: opacity;
+  &.aos-animate {
+    opacity: 0;
+  }
+}
+
+/* Tailwind */
+
+:root {
+  --bk-dark-default: 54, 57, 59; /* Hex: #36393b */
+  --bk-dark-darker: 38, 40, 42; /* Hex: #26282a */
+  --bk-dark-lighter: 108, 114, 117; /* Hex: #6c7275 */
+
+  --bk-light-default: 239, 239, 244; /* Hex: #efeff4 */
+  --bk-light-darker: 219, 219, 231; /* Hex: #dbdbe7 */
+  --bk-light-white: 252, 252, 255; /* Hex: #fcfcff */
+
+  --bk-accent-blue: 0, 114, 163; /* Hex: #0072a3 */
+  --bk-accent-green: 97, 231, 134; /* Hex: #61e786 */
+  --bk-accent-magenta: 179, 60, 134; /* Hex: #b33c86 */
+  --bk-accent-orange: 238, 108, 77; /* Hex: #ee6c4d */
+  --bk-accent-purple: 155, 119, 187; /* Hex: #9b77bb */
+  --bk-accent-red: 209, 84, 106; /* Hex: #d1546a */
+  --bk-accent-teal: 49, 173, 180; /* Hex: #31adb4 */
+  --bk-accent-yellow: 255, 200, 87; /* Hex: #ffc857 */
+
+  --bk-aurora-orange: radial-gradient(
+      215.87% 215.87% at -9.39% 100%,
+      rgba(var(--bk-accent-magenta), 1) 0%,
+      rgba(var(--bk-accent-orange), 0) 100%
+    ),
+    radial-gradient(
+      144.78% 144.78% at 81.62% 100%,
+      rgba(var(--bk-accent-yellow), 1) 0%,
+      rgba(var(--bk-accent-orange), 0) 100%
+    ),
+    rgba(var(--bk-accent-orange), 1);
+
+  --bk-aurora-blue: radial-gradient(
+      164.48% 164.48% at -8.11% 121.61%,
+      rgba(var(--bk-accent-blue), 1) 0%,
+      rgba(var(--bk-accent-purple), 0) 100%
+    ),
+    radial-gradient(
+      150.1% 248.05% at 100% 100%,
+      rgba(var(--bk-accent-green), 1) 0%,
+      rgba(var(--bk-accent-purple), 0) 100%
+    ),
+    rgba(var(--bk-accent-purple), 1);
+
+  --bk-shadow: 1px 2px 4px rgba(var(--bk-dark-darker), 0.1),
+    2px 4px 8px rgba(var(--bk-dark-darker), 0.15),
+    3px 8px 16px rgba(var(--bk-dark-darker), 0.2),
+    4px 16px 32px rgba(var(--bk-dark-darker), 0.25);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
-
-  @font-face {
-    font-family: 'anuratiblankak';
-    src: url('~/assets/fonts/anurati-blankak-regular.woff2') format('woff2'),
-      url('~/assets/fonts/anurati-blankak-regular.woff') format('woff'),
-      url('~/assets/fonts/anurati-blankak-regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-  }
-
   html {
-    font-size: responsive 16px 21px;
+    font-size: responsive 16px 20px;
+    @apply bg-light text-dark overflow-x-hidden;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1 {
@@ -24,10 +80,22 @@
   }
 
   h2 {
-    @apply text-2xl;
+    @apply text-xl;
   }
 
   h3 {
-    @apply text-xl;
+    @apply text-lg;
+  }
+
+  .bg-aurora-orange {
+    background: var(--bk-aurora-orange);
+  }
+
+  .bg-aurora-blue {
+    background: var(--bk-aurora-blue);
+  }
+
+  ::selection {
+    @apply text-light bg-accent-red;
   }
 }

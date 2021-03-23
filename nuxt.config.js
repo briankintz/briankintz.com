@@ -49,6 +49,7 @@ export default {
   build: {
     postcss: {
       plugins: {
+        '@tailwindcss/jit': {},
         'postcss-import': {},
         'postcss-nested': {},
         'postcss-hexrgba': {},
@@ -56,6 +57,8 @@ export default {
       },
     },
   },
+
+  plugins: ['~/plugins/aos.client.js'],
 
   env: {
     buildDate: new Date(),
@@ -68,7 +71,23 @@ export default {
       brands: ['faInstagram', 'faGitlab', 'faStackOverflow', 'faLinkedin'],
     },
     proIcons: {
-      light: ['faAngleDown', 'faCode', 'faTerminal', 'faStar'],
+      light: [
+        'faAnchor',
+        'faBadgeCheck',
+        'faBrainCircuit',
+        'faBullseyeArrow',
+        'faBurgerCheese',
+        'faCircleHeart',
+        'faCloud',
+        'faElephant',
+        'faGuitars',
+        'faMountain',
+        'faNetworkWired',
+        'faPersonSkiing',
+        'faStar',
+        'faUserBountyHunter',
+        'faUserRobot',
+      ],
       solid: ['faHeart'],
     },
   },
@@ -84,5 +103,9 @@ export default {
     dsn:
       'https://a4901f39c5704c5a8edad131692a1192@o345407.ingest.sentry.io/5675152',
     publishRelease: true,
+  },
+
+  tailwindcss: {
+    jit: true,
   },
 }

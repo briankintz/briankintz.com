@@ -1,12 +1,12 @@
 <template>
   <a
+    class="inline-block rounded focus:outline-none focus:ring ring-accent-magenta text-dark hover:text-accent-red transition-colors"
     :href="href"
-    class="inline-block rounded focus:outline-none focus:ring ring-blue-light"
     :aria-label="`Social media link to ${faIcon}`"
   >
     <FontAwesomeIcon
       :icon="[faFamily, faIcon]"
-      class="mx-5 lg:mx-2 p-1 fa-2x text-gray-50 hover:text-blue-light transition-colors"
+      class="mx-2 lg:mx-1 p-1"
       rel="noopener"
       target="_blank"
     />
@@ -31,3 +31,9 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss" scoped>
+svg {
+  @apply text-2xl;
+}
+</style>
