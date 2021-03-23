@@ -26,7 +26,7 @@
       manifest-src 'self'; \
       img-src 'self' data:; \
       font-src 'self' https://use.typekit.net; \
-      style-src 'self' 'unsafe-inline' https://use.typekit.net; \
+      style-src 'self' 'unsafe-inline' https://use.typekit.net https://p.typekit.net; \
       script-src 'self' 'unsafe-inline'; \
       report-uri https://o345407.ingest.sentry.io/api/5675152/security/?sentry_key=a4901f39c5704c5a8edad131692a1192;\
     """
