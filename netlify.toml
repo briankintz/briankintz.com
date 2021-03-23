@@ -24,7 +24,7 @@
       form-action 'none'; \
       connect-src *.sentry.io; \
       manifest-src 'self'; \
-      img-src 'self'; \
+      img-src 'self' data:; \
       font-src 'self' https://use.typekit.net; \
       style-src 'self' 'unsafe-inline' https://use.typekit.net; \
       script-src 'self' 'unsafe-inline'; \
