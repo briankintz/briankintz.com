@@ -1,11 +1,11 @@
 <template>
-  <footer class="py-10 bg-blue-dark">
-    <p class="text-center text-gray-300 opacity-90 text-xs mb-3">
+  <footer class="py-5 text-center text-xs">
+    <p class="mb-3">
       Handcrafted with
-      <FontAwesomeIcon class="text-orange mx-1" :icon="['fas', 'heart']" />
+      <FontAwesomeIcon class="text-accent-red mx-1" :icon="['fas', 'heart']" />
       by Brian Kintz
     </p>
-    <p class="text-center text-gray-400 opacity-80 text-xs">
+    <p class="font-thin">
       <a
         :href="gitUrl"
         class="hover:underline"
