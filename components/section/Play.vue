@@ -65,7 +65,7 @@
       <p>
         I've raced, I've cruised, I've sailed offshore along most of eastern
         north america and I've enjoyed a hard earned dark 'n stormy after
-        navigating through fog so think I could barely see my hand in front of
+        navigating through fog so thick I could barely see my hand in front of
         my face.
       </p>
       <p>And I loved it all!</p>
