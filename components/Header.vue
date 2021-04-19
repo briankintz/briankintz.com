@@ -9,7 +9,7 @@
     <div>
       <SocialLink
         fa-icon="instagram"
-        href="https://www.instagram.com/daslebendesbrian/"
+        href="https://www.instagram.com/brian.kintz/"
       />
       <SocialLink
         fa-icon="linkedin"
