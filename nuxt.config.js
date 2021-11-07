@@ -71,7 +71,7 @@ export default {
 
   fontawesome: {
     icons: {
-      brands: ['faInstagram', 'faGitlab', 'faStackOverflow', 'faLinkedin'],
+      brands: ['faInstagram', 'faGithub', 'faLinkedin'],
     },
     proIcons: {
       light: [
