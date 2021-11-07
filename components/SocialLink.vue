@@ -1,6 +1,14 @@
 <template>
   <a
-    class="inline-block rounded focus:outline-none focus:ring ring-accent-magenta text-dark hover:text-accent-red transition-colors"
+    class="
+      inline-block
+      rounded
+      focus:outline-none focus:ring
+      ring-accent-magenta
+      text-dark
+      hover:text-accent-red
+      transition-colors
+    "
     :href="href"
     :aria-label="`Social media link to ${faIcon}`"
   >

@@ -103,8 +103,7 @@ export default {
   },
 
   sentry: {
-    dsn:
-      'https://a4901f39c5704c5a8edad131692a1192@o345407.ingest.sentry.io/5675152',
+    dsn: 'https://a4901f39c5704c5a8edad131692a1192@o345407.ingest.sentry.io/5675152',
     publishRelease: true,
   },
 
