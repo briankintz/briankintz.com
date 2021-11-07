@@ -9,16 +9,12 @@
     <div>
       <SocialLink
         fa-icon="instagram"
-        href="https://www.instagram.com/brian.kintz/"
+        href="https://www.instagram.com/brr.ian/"
       />
+      <SocialLink fa-icon="github" href="https://github.com/briankintz" />
       <SocialLink
         fa-icon="linkedin"
         href="https://www.linkedin.com/in/bkintz"
-      />
-      <SocialLink fa-icon="gitlab" href="https://gitlab.com/bkintz" />
-      <SocialLink
-        fa-icon="stack-overflow"
-        href="http://stackoverflow.com/users/362922/brian-kintz"
       />
     </div>
   </header>
@@ -28,6 +24,8 @@
 header {
   background: rgba(var(--bk-light-default), 0.9);
   backdrop-filter: blur(5px);
+
+  padding-right: 2rem;
 
   z-index: 999;
 }
