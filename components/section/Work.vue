@@ -7,7 +7,19 @@
       data-aos="zoom-in-up"
     >
       <p>
-        Currently I'm building
+        Currently I'm a Senior Cloud Solution Architect at
+        <a
+          href="https://teqwerk.de"
+          target="_blank"
+          class="hover:underline"
+          rel="noopener"
+          >TEQWERK</a
+        >, where I use my background in cloud-native infrastructure, software
+        development and DevOps to guide companies of all sizes on their journey
+        to the cloud.
+      </p>
+      <p>
+        Before that I built
         <a
           href="https://www.iav.com"
           target="_blank"
@@ -15,15 +27,14 @@
           rel="noopener"
           >IAV's</a
         >
-        private cloud.
+        private cloud and was responsible for on-premise Kubernetes, Ceph and
+        GitLab, as well as driving the adoption of public and hybrid cloud
+        services.
       </p>
       <p>
-        I'm responsible for on-premise Kubernetes, Ceph and GitLab, as well as
-        driving our adoption of public and hybrid cloud services.
-      </p>
-      <p>
-        Over the years I've been active in our Digital Lab and am renowned as a
-        leader for DevOps methodology and cloud technology.
+        Over the years I've had an active voice in evolving modern enterprise IT
+        architecture and am renowned as a leader for DevOps methodology and
+        cloud technology.
       </p>
     </Card>
 
@@ -35,7 +46,7 @@
     >
       <ul class="lg:list-disc lg:pl-3">
         <li>
-          Core team member for the development of the company-wide technology
+          Core team member for the development of the enterprise technology
           strategy
         </li>
         <li>
@@ -63,8 +74,8 @@
           solutions
         </li>
         <li>
-          Organically grew GitLab from a team solution into a company-wide
-          DevOps hub
+          Organically grew GitLab from a team solution into an enterprise DevOps
+          hub
         </li>
       </ul>
     </Card>
