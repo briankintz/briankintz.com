@@ -33,7 +33,7 @@ export default {
       return new Date(this.buildDate).getFullYear()
     },
     gitUrl() {
-      return `https://gitlab.com/bkintz/briankintz.com/-/tree/${this.gitCommitSha}`
+      return `https://github.com/briankintz/briankintz.com/commit/${this.gitCommitSha}`
     },
   },
 }
