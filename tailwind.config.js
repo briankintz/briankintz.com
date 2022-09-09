@@ -1,7 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  purge: [
+  content: [
     './components/**/*.{vue,js}',
     './layouts/**/*.vue',
     './pages/**/*.vue',
@@ -40,5 +40,4 @@ module.exports = {
       sans: ['t26-carbon', ...defaultTheme.fontFamily.sans],
     },
   },
-  darkMode: false,
 }

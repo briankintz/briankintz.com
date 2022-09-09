@@ -6,15 +6,7 @@
     data-aos-offset="300"
   >
     <div
-      class="
-        container
-        max-w-screen-lg
-        grid grid-cols-1
-        lg:grid-cols-2
-        gap-10
-        place-items-center
-        text-center
-      "
+      class="container max-w-screen-lg grid grid-cols-1 lg:grid-cols-2 gap-10 place-items-center text-center"
     >
       <div>
         <h1 class="mb-5">Hey there!</h1>
@@ -26,14 +18,7 @@
         </h2>
       </div>
       <div
-        class="
-          rounded-full
-          shadow
-          order-first
-          lg:order-last
-          p-[3px]
-          bg-aurora-orange
-        "
+        class="rounded-full shadow order-first lg:order-last p-[3px] bg-aurora-orange"
       >
         <img
           class="rounded-full lazyload blur-up"

@@ -1,12 +1,7 @@
 <template>
   <Aurora variant="orange">
     <Card
-      class="
-        col-span-full
-        order-1
-        lg:col-span-10 lg:col-start-2
-        xl:col-span-8 xl:col-start-3
-      "
+      class="col-span-full order-1 lg:col-span-10 lg:col-start-2 xl:col-span-8 xl:col-start-3"
       fa-icon="brain-circuit"
       title="Work"
       data-aos="zoom-in-up"
@@ -92,12 +87,7 @@
     <Card
       fa-icon="circle-heart"
       title="Favorite Tools"
-      class="
-        col-span-full
-        order-5
-        lg:order-3 lg:col-span-5 lg:row-span-3
-        card-vertical
-      "
+      class="col-span-full order-5 lg:order-3 lg:col-span-5 lg:row-span-3 card-vertical"
       data-aos="fade-left"
       data-aos-offset="300"
     >
@@ -115,12 +105,7 @@
     <Card
       fa-icon="badge-check"
       title="Certifications"
-      class="
-        col-span-full
-        order-6
-        lg:order-5 lg:col-span-5 lg:row-span-3
-        card-vertical
-      "
+      class="col-span-full order-6 lg:order-5 lg:col-span-5 lg:row-span-3 card-vertical"
       data-aos="fade-up-left"
     >
       <ul>

@@ -1,16 +1,7 @@
 <template>
   <div class="aurora-bg w-screen overflow-hidden pb-56" :style="cssProps">
     <div
-      class="
-        container
-        mx-auto
-        grid grid-cols-12
-        lg:gap-x-10
-        gap-y-16
-        lg:gap-y-24
-        text-center
-        lg:text-left
-      "
+      class="container mx-auto grid grid-cols-12 lg:gap-x-10 gap-y-16 lg:gap-y-24 text-center lg:text-left"
     >
       <slot />
     </div>
