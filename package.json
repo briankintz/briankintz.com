@@ -25,6 +25,7 @@
     "@nuxtjs/eslint-module": "^3.1.0",
     "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/tailwindcss": "^5.3.3",
+    "@sentry/webpack-plugin": "^1.19.0",
     "autoprefixer": "^10.4.8",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
