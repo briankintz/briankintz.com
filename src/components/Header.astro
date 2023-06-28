@@ -1,0 +1,60 @@
+---
+import SocialLink from './SocialLink.astro'
+---
+
+<header>
+  <a class="logo" href="/">
+    <span class="logo-slash-1">/</span><span class="logo-slash-2">/</span>
+    Brian Kintz
+  </a>
+
+  <div class="social-icons">
+    <SocialLink brand="instagram" href="https://www.instagram.com/brr.ian/" />
+    <SocialLink brand="github" href="https://github.com/briankintz" />
+    <SocialLink brand="linkedin" href="https://www.linkedin.com/in/bkintz" />
+  </div>
+</header>
+
+<style>
+  header {
+    position: sticky;
+    width: 100%;
+    top: 0;
+
+    padding: 1rem 2rem;
+
+    display: flex;
+    justify-content: space-between;
+
+    background: var(--clr-gray-200);
+    backdrop-filter: blur(5px);
+
+    z-index: 999;
+  }
+
+  .logo {
+    padding: 0.225rem 0.5rem 0.125rem;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 0.5rem;
+  }
+
+  .logo:focus-visible {
+    color: var(--clr-accent-r);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--clr-accent-r);
+    transition: box-shadow 150ms ease-in;
+  }
+
+  .logo .logo-slash-1 {
+    color: var(--clr-accent-m);
+  }
+  .logo .logo-slash-2 {
+    color: var(--clr-accent-o);
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 0.5rem;
+  }
+</style>

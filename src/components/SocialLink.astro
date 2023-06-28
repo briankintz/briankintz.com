@@ -1,0 +1,35 @@
+---
+interface Props {
+  brand: string
+  href: string
+}
+
+const { brand, href } = Astro.props
+---
+
+<a href={href} aria-label={`Social media link to ${brand}`}>
+  <i class:list={['fa-brands', `fa-${brand}`]}></i>
+</a>
+
+<style>
+  a {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0.225rem 0.5rem 0.125rem;
+    border-radius: 0.5rem;
+    color: inherit;
+    transition: color 150ms ease-in, box-shadow 150ms ease-in;
+  }
+
+  a:hover {
+    color: var(--clr-accent-r);
+    transition: color 150ms ease-in;
+  }
+
+  a:focus-visible {
+    color: var(--clr-accent-r);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--clr-accent-r);
+    transition: box-shadow 150ms ease-in;
+  }
+</style>

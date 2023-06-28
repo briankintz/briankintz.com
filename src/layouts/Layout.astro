@@ -1,0 +1,31 @@
+---
+import '../styles/global.css'
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="DevOps engineer and cloud architect with experience designing and building scalable cloud-native applications and systems."
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>Brian Kintz</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script
+      src="https://kit.fontawesome.com/34d36e55e2.js"
+      crossorigin="anonymous"></script>
+    <script>
+      import AOS from 'aos'
+      AOS.init()
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
