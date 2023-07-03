@@ -1,0 +1,71 @@
+---
+interface Props {
+  icon: string
+  color: 'red' | 'teal'
+  position: string
+  orientation?: 'horizontal' | 'vertical'
+  offset?: number
+}
+
+const {
+  icon,
+  color,
+  position,
+  orientation = 'horizontal',
+  offset = 0,
+} = Astro.props
+---
+
+<div
+  class:list={['card', `card-${color}`, orientation]}
+  data-aos="zoom-in-up"
+  data-aos-offset={offset}
+>
+  <i class:list={['card-icon', 'fa-4x', 'fa-thin', `fa-${icon}`]}></i>
+  <div>
+    <slot />
+  </div>
+</div>
+
+<style define:vars={{ position }}>
+  .card {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    grid-area: var(--position);
+    gap: 2rem;
+    align-items: center;
+    padding: 2rem;
+    background: var(--clr-gray-100);
+    border-radius: 1rem;
+    border: 1px solid var(--clr-gray-200);
+    box-shadow: var(--shadow);
+  }
+
+  .card.vertical {
+    grid-template-columns: 1fr;
+    align-items: start;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .card-icon {
+    place-self: center;
+  }
+
+  .card-red .card-icon {
+    color: var(--clr-accent-r);
+  }
+  .card-teal .card-icon {
+    color: var(--clr-accent-t);
+  }
+
+  @media screen and (max-width: 1240px) {
+    .card {
+      grid-template-columns: 1fr;
+      align-items: start;
+      justify-items: center;
+      padding-block: 2rem;
+      padding-inline: 1rem;
+    }
+  }
+</style>

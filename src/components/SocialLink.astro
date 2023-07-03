@@ -8,14 +8,14 @@ const { brand, href } = Astro.props
 ---
 
 <a href={href} aria-label={`Social media link to ${brand}`}>
-  <i class:list={['fa-brands', `fa-${brand}`]}></i>
+  <i class:list={['fa-brands', 'fa-fw', `fa-${brand}`]}></i>
 </a>
 
 <style>
   a {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 0.225rem 0.5rem 0.125rem;
+    display: grid;
+    place-items: center;
+    padding: 0.125rem 0.25rem;
     border-radius: 0.5rem;
     color: inherit;
     transition: color 150ms ease-in, box-shadow 150ms ease-in;

@@ -1,0 +1,53 @@
+---
+const buildDate = new Date()
+const gitCommitSha = process.env.COMMIT_REF || 'unknown'
+const gitCommitShaShort = (process.env.COMMIT_REF || 'unknown').substring(0, 7)
+---
+
+<footer>
+  <p>Made with <i class="fa fa-heart"></i> by Brian Kintz</p>
+
+  <div class="version-copyright">
+    <a
+      href={`https://github.com/briankintz/briankintz.com/commit/${gitCommitSha}`}
+      >{gitCommitShaShort} © {buildDate.getFullYear()}</a
+    >
+  </div>
+</footer>
+
+<style>
+  footer {
+    display: grid;
+    place-items: center;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    padding-inline: 1rem;
+    font-size: var(--font-size-sm);
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+
+  svg {
+    color: var(--clr-accent-r);
+  }
+
+  a {
+    position: relative;
+    padding: 0.5rem;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 0.5rem;
+  }
+
+  a:hover {
+    background-color: var(--clr-gray-300);
+  }
+
+  a:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--clr-accent-r);
+    transition: box-shadow 150ms ease-in;
+  }
+</style>

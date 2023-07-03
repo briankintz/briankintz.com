@@ -26,7 +26,9 @@ import SocialLink from './SocialLink.astro'
     display: flex;
     justify-content: space-between;
 
-    background: var(--clr-gray-200);
+    font-family: var(--font-family-headings);
+    font-size: var(--font-size-l);
+    background: color-mix(in srgb, var(--clr-gray-200), transparent 5%);
     backdrop-filter: blur(5px);
 
     z-index: 999;
@@ -55,6 +57,12 @@ import SocialLink from './SocialLink.astro'
 
   .social-icons {
     display: flex;
-    gap: 0.5rem;
+    gap: clamp(0.5rem, 0.25rem + 1vw, 1rem);
+  }
+
+  @media screen and (max-width: 992px) {
+    header {
+      padding-inline: 1rem;
+    }
   }
 </style>

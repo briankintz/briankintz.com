@@ -1,0 +1,64 @@
+---
+import Card from './Card.astro'
+
+interface Frontmatter {
+  icon: string
+  position: string
+  orientation: 'horizontal' | 'vertical'
+  offset: number
+}
+
+const cards = await Astro.glob<Frontmatter>('../content/work/*.md')
+---
+
+<div class="board">
+  {
+    cards.map((c) => (
+      <Card
+        color="red"
+        icon={c.frontmatter.icon}
+        orientation={c.frontmatter.orientation}
+        position={c.frontmatter.position}
+        offset={c.frontmatter.offset}
+      >
+        <c.Content />
+      </Card>
+    ))
+  }
+</div>
+
+<style>
+  .board {
+    position: relative;
+    top: -12rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-areas:
+      '... title title title ...'
+      'cl1  cl1   cl1   cr1  cr1'
+      'cl1  cl1   cl1   cr1  cr1'
+      'cl2  cl2   cl2   cr1  cr1'
+      'cl2  cl2   cl2   cr2  cr2'
+      'cl3  cl3   cl3   cr2  cr2'
+      'cl3  cl3   cl3   cr2  cr2';
+    gap: clamp(2rem, 2rem + 5vw, 7rem);
+    width: min(90%, 80rem);
+    margin-inline: auto;
+    margin-top: 15rem;
+    margin-bottom: 3rem;
+    padding-block: 3rem;
+  }
+
+  @media screen and (max-width: 992px) {
+    .board {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'title'
+        'cl1'
+        'cl2'
+        'cl3'
+        'cr1'
+        'cr2';
+    }
+  }
+</style>

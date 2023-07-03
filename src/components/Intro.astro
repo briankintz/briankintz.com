@@ -1,32 +1,35 @@
----
----
-
 <section>
   <div class="hello">
     <h1>Hey there!</h1>
-    <p>I'm Brian...a cloud architect and DevOps engineer based in Germany.</p>
+    <p>I'm Brian - a cloud architect and DevOps engineer based in Germany.</p>
     <p>Scroll on down to find out a bit about me!</p>
   </div>
 
   <div class="avatar">
     <img
-          class="rounded-full lazyload blur-up"
-          :src="loading"
-          :data-src="cover"
-          width="275"
-          height="275"
-          alt="Brian Kintz"
-        />
+      src="/img/profile.webp"
+      width="275"
+      height="275"
+      loading="lazy"
+      alt="Brian Kintz"
+    />
   </div>
 </section>
 
 <style>
   section {
-    min-height: 100vh;
+    min-height: calc(100dvh - 4rem);
+    width: min(90%, 40rem);
+    margin-inline: auto;
 
     display: grid;
-    grid-template-columns: 2;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 4rem;
     place-items: center;
+  }
+
+  p {
+    font-size: var(--font-size-m);
   }
 
   .hello {
@@ -35,5 +38,16 @@
     max-width: 24ch;
   }
 
-  img
+  .avatar {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 3px;
+    background: var(--aurora-orange);
+    border-radius: 50%;
+  }
+
+  .avatar img {
+    border-radius: 50%;
+  }
 </style>

@@ -1,0 +1,37 @@
+---
+interface Props {
+  variant?: 'default' | 'aurora-orange' | 'aurora-blue'
+}
+
+const { variant = 'default' } = Astro.props
+---
+
+<section class:list={[`bg-${variant}`]}>
+  <slot />
+</section>
+
+<style>
+  section {
+    min-height: 60rem;
+    position: relative;
+    isolation: isolate;
+  }
+
+  section::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    transform: skewY(-3.5deg);
+  }
+
+  section.bg-default::after {
+    display: none;
+  }
+  section.bg-aurora-orange::after {
+    background: var(--aurora-orange);
+  }
+  section.bg-aurora-blue::after {
+    background: var(--aurora-blue);
+  }
+</style>
