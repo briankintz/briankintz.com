@@ -1,0 +1,30 @@
+[build]
+  base = "."
+  publish = "dist/"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[build.processing]
+  skip_processing = true
+
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Cache-Control = "public, max-age=604800, immutable"
+    Content-Security-Policy = """
+      default-src 'none'; \
+      base-uri 'self'; \
+      frame-ancestors 'none'; \
+      form-action 'none'; \
+      manifest-src 'self'; \
+      img-src 'self' data:; \
+      font-src 'self' https://use.typekit.net; \
+      style-src 'self' https://use.typekit.net https://p.typekit.net; \
+      script-src 'self'; \
+    """
