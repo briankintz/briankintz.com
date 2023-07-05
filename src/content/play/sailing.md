@@ -1,5 +1,5 @@
 ---
-icon: sailboat
+icon: anchor
 position: cl2
 orientation: horizontal
 ---
