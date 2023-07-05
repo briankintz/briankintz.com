@@ -25,6 +25,6 @@
       manifest-src 'self'; \
       img-src 'self' data:; \
       font-src 'self' https://use.typekit.net; \
-      style-src 'self' https://use.typekit.net https://p.typekit.net; \
-      script-src 'self'; \
+      style-src 'self' 'unsafe-inline' https://use.typekit.net https://p.typekit.net; \
+      script-src 'self' https://kit.fontawesome.com https://netlify-cdp-loader.netlify.app; \
     """
