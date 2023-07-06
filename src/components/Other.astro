@@ -1,0 +1,53 @@
+---
+const tiles = [
+  'Emergency Medical Technician',
+  'Ski Instructor',
+  'Bicycle Mechanic',
+  'German Teaching Assistant',
+  'Lifeguard',
+  'Guest Speaker',
+  'Tutor',
+  'Sailboat Crew',
+]
+---
+
+<div class="board">
+  <div class="tiles">
+    <p>Over the years I've had the chance to wear many hats.</p>
+    <p>Some of my previous non-tech roles include:</p>
+    <ul>
+      {tiles.map((tile) => <li>{tile}</li>)}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .board {
+    display: grid;
+    place-items: center;
+    min-height: 100dvh;
+    text-align: center;
+
+    font-size: var(--font-size-l);
+    line-height: 1.35;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: min(90%, 36rem);
+    margin-inline: auto;
+    margin-top: 2rem;
+  }
+
+  li {
+    padding: 0.5rem 1rem;
+    font-size: var(--font-size-m);
+    color: var(--clr-gray-200);
+    background: var(--clr-accent-b);
+    border-radius: 0.5rem;
+    list-style-type: none;
+  }
+</style>

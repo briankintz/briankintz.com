@@ -1,0 +1,129 @@
+/* Fonts */
+@import url('https://use.typekit.net/ulq6snh.css');
+
+/* AOS */
+@import 'aos/dist/aos.css';
+
+:root {
+  --clr-gray-100: rgb(252, 252, 255);
+  --clr-gray-200: rgb(239, 239, 244);
+  --clr-gray-300: rgb(219, 219, 231);
+  --clr-gray-400: rgb(108, 114, 117);
+  --clr-gray-600: rgb(54, 57, 59);
+  --clr-gray-800: rgb(38, 40, 42);
+
+  --clr-accent-b: rgb(0, 114, 163);
+  --clr-accent-g: rgb(97, 231, 134);
+  --clr-accent-m: rgb(179, 60, 134);
+  --clr-accent-o: rgb(238, 108, 77);
+  --clr-accent-p: rgb(155, 119, 187);
+  --clr-accent-r: rgb(209, 84, 106);
+  --clr-accent-t: rgb(49, 173, 180);
+  --clr-accent-y: rgb(255, 200, 87);
+
+  --aurora-orange: radial-gradient(
+      215.87% 215.87% at -9.39% 100%,
+      rgba(179, 60, 134, 1) 0%,
+      rgba(238, 108, 77, 0) 100%
+    ),
+    radial-gradient(
+      144.78% 144.78% at 81.62% 100%,
+      rgba(255, 200, 87, 1) 0%,
+      rgba(238, 108, 77, 0) 100%
+    ),
+    rgba(238, 108, 77, 1);
+
+  --aurora-blue: radial-gradient(
+      164.48% 164.48% at -8.11% 121.61%,
+      rgba(0, 114, 163, 1) 0%,
+      rgba(155, 119, 187, 0) 100%
+    ),
+    radial-gradient(
+      150.1% 248.05% at 100% 100%,
+      rgba(97, 231, 134, 1) 0%,
+      rgba(155, 119, 187, 0) 100%
+    ),
+    rgba(155, 119, 187, 1);
+
+  --shadow: 1px 2px 4px rgba(38, 40, 42, 0.1),
+    2px 4px 8px rgba(38, 40, 42, 0.15), 3px 8px 16px rgba(38, 40, 42, 0.2),
+    4px 16px 32px rgba(38, 40, 42, 0.25);
+
+  /* https://utopia.fyi/type/calculator/?c=320,18,1.25,1240,20,1.25,3,1,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  --font-size-sm: clamp(0.9rem, calc(0.87rem + 0.17vw), 1rem);
+  --font-size-m: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  --font-size-l: clamp(1.41rem, calc(1.35rem + 0.27vw), 1.56rem);
+  --font-size-xl: clamp(1.76rem, calc(1.69rem + 0.34vw), 1.95rem);
+  --font-size-2xl: clamp(2.2rem, calc(2.11rem + 0.42vw), 2.44rem);
+
+  --font-family-headings: 'aptly', system-ui, sans-serif;
+  --font-family-body: 'interstate-condensed', system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-m);
+  font-weight: 400;
+  line-height: 1.25;
+
+  color: var(--clr-gray-600);
+  background: var(--clr-gray-200);
+}
+
+::selection {
+  color: var(--clr-gray-200);
+  background: var(--clr-accent-r);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-family-headings);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: var(--font-size-xl);
+  margin-bottom: 1.25rem;
+}
+
+h3 {
+  font-size: var(--font-size-l);
+  margin-bottom: 1rem;
+}
+
+p:where(:not(:last-child)) {
+  margin-bottom: 1rem;
+}
+
+ul {
+  padding-inline: 0.5rem;
+  list-style-type: '- ';
+}
+
+a {
+  color: inherit;
+}
+
+ul li:where(:not(:last-child)) {
+  padding-bottom: 0.5rem;
+}
+
+@media (max-width: 1240px) {
+  h2,
+  h3 {
+    text-align: center;
+  }
+}

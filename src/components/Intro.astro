@@ -1,0 +1,66 @@
+<section>
+  <div class="hello">
+    <h1>Hey there!</h1>
+    <p>I'm Brian — a cloud architect and DevOps engineer living in Germany</p>
+    <p>Scroll on down to learn<br />a bit about me!</p>
+  </div>
+
+  <div class="avatar">
+    <img
+      src="/img/profile.webp"
+      width="275"
+      height="275"
+      loading="lazy"
+      alt="Brian Kintz"
+    />
+  </div>
+</section>
+
+<style>
+  section {
+    min-height: calc(100dvh - 4rem);
+    width: min(90%, 40rem);
+    margin-inline: auto;
+
+    display: grid;
+    grid-template-areas: 'hello avatar';
+    gap: 4rem;
+    place-items: center;
+  }
+
+  .hello {
+    grid-area: hello;
+    text-align: center;
+    text-wrap: balance;
+    max-width: 22ch;
+
+    font-size: var(--font-size-l);
+    line-height: 1.35;
+  }
+
+  .avatar {
+    grid-area: avatar;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 3px;
+    background: var(--aurora-orange);
+    border-radius: 50%;
+  }
+
+  .avatar img {
+    border-radius: 50%;
+  }
+
+  @media (max-width: 992px) {
+    section {
+      grid-template-areas:
+        'avatar'
+        'hello';
+    }
+
+    .hello {
+      align-self: start;
+    }
+  }
+</style>
