@@ -10,10 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "aos": "^2.3.4",
     "astro": "^2.7.4"
   },
   "devDependencies": {
-    "@types/node": "^20.3.3"
+    "@types/node": "^20.4.0"
   }
 }
