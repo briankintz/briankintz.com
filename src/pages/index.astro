@@ -20,21 +20,23 @@ import Play from '../components/Play.astro'
       name="description"
       content="DevOps engineer and cloud architect with experience designing and building scalable cloud-native applications and systems."
     />
-    <meta name="generator" content={Astro.generator} />
     <title>Brian Kintz</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preconnect" href="https://p.typekit.net" />
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
+    <link rel="preconnect" href="https://ka-p.fontawesome.com" crossorigin />
+
+    <link rel="stylesheet" href="https://use.typekit.net/ulq6snh.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
     <script
+      defer
       src="https://kit.fontawesome.com/34d36e55e2.js"
-      crossorigin="anonymous" defer></script>
-    <script>
-      import AOS from 'aos'
-      AOS.init({
-        once: true,
-      })
-    </script>
+      crossorigin="anonymous"></script>
   </head>
   <body>
     <Header />
@@ -51,5 +53,9 @@ import Play from '../components/Play.astro'
       </Section>
     </main>
     <Footer />
+    <script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script is:inline>
+      AOS.init()
+    </script>
   </body>
 </html>
