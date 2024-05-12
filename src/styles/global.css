@@ -15,16 +15,8 @@
   --clr-accent-t: rgb(49, 173, 180);
   --clr-accent-y: rgb(255, 200, 87);
 
-  --aurora-orange: radial-gradient(
-      215.87% 215.87% at -9.39% 100%,
-      rgba(179, 60, 134, 1) 0%,
-      rgba(238, 108, 77, 0) 100%
-    ),
-    radial-gradient(
-      144.78% 144.78% at 81.62% 100%,
-      rgba(255, 200, 87, 1) 0%,
-      rgba(238, 108, 77, 0) 100%
-    ),
+  --aurora-orange: radial-gradient(215.87% 215.87% at -9.39% 100%, rgba(179, 60, 134, 1) 0%, rgba(238, 108, 77, 0) 100%),
+    radial-gradient(144.78% 144.78% at 81.62% 100%, rgba(255, 200, 87, 1) 0%, rgba(238, 108, 77, 0) 100%),
     rgba(238, 108, 77, 1);
 
   --aurora-blue: radial-gradient(
@@ -32,15 +24,10 @@
       rgba(0, 114, 163, 1) 0%,
       rgba(155, 119, 187, 0) 100%
     ),
-    radial-gradient(
-      150.1% 248.05% at 100% 100%,
-      rgba(97, 231, 134, 1) 0%,
-      rgba(155, 119, 187, 0) 100%
-    ),
+    radial-gradient(150.1% 248.05% at 100% 100%, rgba(97, 231, 134, 1) 0%, rgba(155, 119, 187, 0) 100%),
     rgba(155, 119, 187, 1);
 
-  --shadow: 1px 2px 4px rgba(38, 40, 42, 0.1),
-    2px 4px 8px rgba(38, 40, 42, 0.15), 3px 8px 16px rgba(38, 40, 42, 0.2),
+  --shadow: 1px 2px 4px rgba(38, 40, 42, 0.1), 2px 4px 8px rgba(38, 40, 42, 0.15), 3px 8px 16px rgba(38, 40, 42, 0.2),
     4px 16px 32px rgba(38, 40, 42, 0.25);
 
   /* https://utopia.fyi/type/calculator/?c=320,18,1.25,1240,20,1.25,3,1,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
