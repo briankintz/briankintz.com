@@ -1,15 +1,14 @@
 ---
 const buildDate = new Date()
-const gitCommitSha = process.env.COMMIT_REF || 'unknown'
-const gitCommitShaShort = (process.env.COMMIT_REF || 'unknown').substring(0, 7)
+const gitCommitSha = process.env.VERCEL_GIT_COMMIT_SHA || 'unknown'
+const gitCommitShaShort = (process.env.VERCEL_GIT_COMMIT_SHA || 'unknown').substring(0, 7)
 ---
 
 <footer>
   <p>Made with <i class="fa fa-heart"></i> by Brian Kintz</p>
 
   <div class="version-copyright">
-    <a
-      href={`https://github.com/briankintz/briankintz.com/commit/${gitCommitSha}`}
+    <a href={`https://github.com/briankintz/briankintz.com/commit/${gitCommitSha}`}
       >{gitCommitShaShort} © {buildDate.getFullYear()}</a
     >
   </div>
