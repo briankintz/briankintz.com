@@ -2,7 +2,6 @@
 icon: burger-cheese
 position: cr1
 orientation: horizontal
-offset: 150
 ---
 
 ### Cooking

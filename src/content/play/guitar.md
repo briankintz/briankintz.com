@@ -2,7 +2,6 @@
 icon: guitars
 position: cr3
 orientation: horizontal
-offset: 150
 ---
 
 ### Guitar

@@ -2,7 +2,6 @@
 icon: mountain
 position: cr2
 orientation: horizontal
-offset: 150
 ---
 
 ### Mountain Life

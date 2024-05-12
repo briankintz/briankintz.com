@@ -2,7 +2,6 @@
 icon: circle-heart
 position: cr1
 orientation: vertical
-offset: 150
 ---
 
 ### Favorite Tools
