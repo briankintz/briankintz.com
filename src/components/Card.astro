@@ -4,28 +4,38 @@ interface Props {
   color: 'red' | 'teal'
   position: string
   orientation?: 'horizontal' | 'vertical'
-  offset?: number
 }
 
-const {
-  icon,
-  color,
-  position,
-  orientation = 'horizontal',
-  offset = 0,
-} = Astro.props
+const { icon, color, position, orientation = 'horizontal' } = Astro.props
 ---
 
-<div
-  class:list={['card', `card-${color}`, orientation]}
-  data-aos="zoom-in-up"
-  data-aos-offset={offset}
->
+<div class:list={['card', `card-${color}`, orientation]}>
   <i class:list={['card-icon', 'fa-4x', 'fa-thin', `fa-${icon}`]}></i>
   <div>
     <slot />
   </div>
 </div>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('show', entry.isIntersecting)
+
+        if (entry.isIntersecting) {
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    {
+      threshold: 0.5,
+    }
+  )
+
+  document.querySelectorAll('.card').forEach((card) => {
+    observer.observe(card)
+  })
+</script>
 
 <style define:vars={{ position }}>
   .card {
@@ -39,6 +49,15 @@ const {
     border-radius: 1rem;
     border: 1px solid var(--clr-gray-200);
     box-shadow: var(--shadow);
+
+    transition:
+      opacity 200ms,
+      transform 200ms;
+  }
+
+  .card:not(.show) {
+    opacity: 0;
+    transform: translateY(2rem) scale(0.8);
   }
 
   .card.vertical {

@@ -43,19 +43,6 @@ import Play from '../components/Play.astro'
       /></noscript
     >
 
-    <link
-      rel="preload"
-      href="https://unpkg.com/aos@next/dist/aos.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="https://unpkg.com/aos@next/dist/aos.css"
-      /></noscript
-    >
-
     <script
       defer
       src="https://kit.fontawesome.com/34d36e55e2.js"
@@ -76,9 +63,5 @@ import Play from '../components/Play.astro'
       </Section>
     </main>
     <Footer />
-    <script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script is:inline>
-      AOS.init()
-    </script>
   </body>
 </html>
