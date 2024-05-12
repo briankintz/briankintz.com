@@ -1,3 +1,8 @@
+---
+import { Image } from 'astro:assets'
+import profile from '../content/img/briankintz.png'
+---
+
 <section>
   <div class="hello">
     <h1>Hey there!</h1>
@@ -6,14 +11,24 @@
   </div>
 
   <div class="avatar">
-    <img src="/img/profile.webp" width="275" height="275" alt="Brian Kintz" />
+    <Image src={profile} alt="Brian Kintz" />
+
+    <svg width="0" height="0" viewBox="0 0 1 1" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="profile-clip" clipPathUnits="objectBoundingBox">
+          <path
+            d="M 0.71875 0.132812 C 0.789062 0.171875 0.859375 0.214844 0.902344 0.277344 C 0.941406 0.34375 0.957031 0.425781 0.953125 0.503906 C 0.949219 0.582031 0.925781 0.660156 0.886719 0.730469 C 0.847656 0.796875 0.792969 0.859375 0.726562 0.898438 C 0.660156 0.933594 0.582031 0.945312 0.5 0.949219 C 0.417969 0.953125 0.335938 0.945312 0.269531 0.90625 C 0.207031 0.867188 0.160156 0.796875 0.121094 0.726562 C 0.0820312 0.652344 0.046875 0.578125 0.046875 0.503906 C 0.0429688 0.429688 0.0742188 0.355469 0.117188 0.285156 C 0.15625 0.214844 0.207031 0.148438 0.273438 0.105469 C 0.339844 0.0625 0.421875 0.0429688 0.496094 0.0507812 C 0.574219 0.0585938 0.648438 0.09375 0.71875 0.132812 "
+          ></path>
+        </clipPath>
+      </defs>
+    </svg>
   </div>
 </section>
 
 <style>
   section {
     min-height: calc(100dvh - 4rem);
-    width: min(90%, 40rem);
+    width: min(90%, 50rem);
     margin-inline: auto;
 
     display: grid;
@@ -34,16 +49,14 @@
 
   .avatar {
     grid-area: avatar;
-    display: grid;
-    align-items: center;
-    justify-items: center;
-    padding: 3px;
-    background: var(--aurora-orange);
-    border-radius: 50%;
+    filter: drop-shadow(0.2rem 0.2rem 2px rgba(179, 60, 134, 0.7))
+      drop-shadow(0.2rem -0.3rem 2px rgba(155, 119, 187, 0.7)) drop-shadow(-0.3rem 0 2px rgba(238, 108, 77, 0.7));
   }
 
   .avatar img {
-    border-radius: 50%;
+    width: 26rem;
+    height: auto;
+    clip-path: url(#profile-clip);
   }
 
   @media (max-width: 992px) {
