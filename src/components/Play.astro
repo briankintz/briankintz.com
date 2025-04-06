@@ -1,27 +1,24 @@
 ---
+import { getCollection, render } from 'astro:content'
 import Card from './Card.astro'
 
-interface Frontmatter {
-  icon: string
-  position: string
-  orientation: 'horizontal' | 'vertical'
-}
-
-const cards = await Astro.glob<Frontmatter>('../content/play/*.md')
+const cards = await getCollection('play')
 ---
 
 <div class="board">
   {
-    cards.map((c) => (
+    cards.map(async (c) => {
+      const { Content } = await render(c)
+      return(
       <Card
         color="teal"
-        icon={c.frontmatter.icon}
-        orientation={c.frontmatter.orientation}
-        position={c.frontmatter.position}
+        icon={c.data.icon}
+        orientation={c.data.orientation}
+        position={c.data.position}
       >
-        <c.Content />
+        <Content />
       </Card>
-    ))
+    )})
   }
 </div>
 
