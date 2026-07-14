@@ -1,21 +1,5 @@
 import { defineCollection, z } from 'astro:content'
-import { glob, file } from 'astro/loaders'
-
-const cardSchema = z.object({
-  icon: z.string(),
-  position: z.enum(['title', 'cl1', 'cl2', 'cl3', 'cr1', 'cr2', 'cr3']),
-  orientation: z.enum(['horizontal', 'vertical']),
-})
-
-const work = defineCollection({
-  loader: glob({ pattern: '*.md', base: 'src/content/work' }),
-  schema: cardSchema,
-})
-
-const play = defineCollection({
-  loader: glob({ pattern: '*.md', base: 'src/content/play' }),
-  schema: cardSchema,
-})
+import { glob } from 'astro/loaders'
 
 const TAGS = ['comfort food', 'spicy', 'weeknight', 'quick', 'show-off', 'healthy-ish', 'breakfast'] as const
 const CATEGORIES = ['breakfast', 'dinner', 'snacks-and-sides', 'bread', 'sauces', 'desserts'] as const
@@ -35,4 +19,4 @@ const recipes = defineCollection({
   }),
 })
 
-export const collections = { work, play, recipes }
+export const collections = { recipes }
