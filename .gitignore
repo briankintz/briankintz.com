@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # local Claude Code settings
 .claude/settings.local.json
+
+# local Claude Code permission config (accidentally committed once; keep local)
+.claude/settings.json
