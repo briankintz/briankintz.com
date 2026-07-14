@@ -1,4 +1,4 @@
-// Homepage Work section content, transcribed from cv.md via handoff/mockups/index.html.
+// Homepage Work section content, transcribed from cv.md (briankintz/briankintz repo) — keep figures exactly as written.
 // Figures are exact and must stay as written: >10×, −95%, 10,000+, 15+.
 
 export interface Stat {

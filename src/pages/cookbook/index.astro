@@ -1,23 +1,13 @@
 ---
-import { getCollection } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import { CATEGORIES, TAGS } from '../../content.config'
+import { CATEGORY_LABELS, effortDots, publishedRecipes } from '../../lib/recipes'
 
-// Mockup order. Empty categories (breakfast, once drafts are excluded) render no heading.
-const CATEGORIES: [string, string][] = [
-  ['breakfast', 'Breakfast'],
-  ['dinner', 'Dinner'],
-  ['snacks-and-sides', 'Snacks & Sides'],
-  ['bread', 'Bread'],
-  ['sauces', 'Sauces'],
-  ['desserts', 'Desserts'],
-]
-// Fixed 7-tag vocabulary — mirrors the zod enum in content.config.ts
-const TAGS = ['comfort food', 'spicy', 'weeknight', 'quick', 'show-off', 'healthy-ish', 'breakfast']
-
-const recipes = await getCollection('recipes', ({ data }) => !data.draft)
-const sections = CATEGORIES.map(([slug, label]) => ({
-  label,
-  recipes: recipes.filter((r) => r.data.category === slug).sort((a, b) => a.data.title.localeCompare(b.data.title)),
+// Empty categories (breakfast, once drafts are excluded) render no heading.
+const recipes = await publishedRecipes()
+const sections = CATEGORIES.map((slug) => ({
+  label: CATEGORY_LABELS[slug],
+  recipes: recipes.filter((r) => r.data.category === slug),
 })).filter((s) => s.recipes.length > 0)
 
 const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
@@ -65,7 +55,7 @@ const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
                 <p>{data.tagline}</p>
                 <div class="meta">
                   <span>
-                    <b>effort</b> {'●'.repeat(data.effort) + '○'.repeat(3 - data.effort)}
+                    <b>effort</b> {effortDots(data.effort)}
                   </span>
                   <span>
                     <b>origin</b> {data.origin}
@@ -248,16 +238,6 @@ const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
     color: var(--color-purple);
     font-weight: 700;
     letter-spacing: 0.06em;
-  }
-
-  .rtag {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    color: var(--color-orange);
-    background: var(--color-orange-tag);
-    border-radius: var(--radius-tag);
-    padding: 3px 8px;
   }
 
   .empty-note {

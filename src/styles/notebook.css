@@ -1,7 +1,7 @@
 /*
  * briankintz.com — "Notebook" global base styles.
  * Shared chrome for every page on the new system; everything derives from tokens.css.
- * Values translated 1:1 from the shared CSS in handoff/mockups/.
+ * Values translated 1:1 from the Notebook design mockups.
  */
 
 * {
@@ -69,6 +69,18 @@ body {
 
 .btn.ghost:hover {
   background: var(--color-purple-soft);
+}
+
+/* Recipe tag chip — orange annotation accent, fixed vocabulary only */
+.rtag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-orange-text);
+  background: var(--color-orange-tag);
+  border-radius: var(--radius-tag);
+  padding: 3px 8px;
 }
 
 a:focus-visible,

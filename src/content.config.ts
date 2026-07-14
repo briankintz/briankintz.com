@@ -1,8 +1,9 @@
 import { defineCollection, z } from 'astro:content'
 import { glob } from 'astro/loaders'
 
-const TAGS = ['comfort food', 'spicy', 'weeknight', 'quick', 'show-off', 'healthy-ish', 'breakfast'] as const
-const CATEGORIES = ['breakfast', 'dinner', 'snacks-and-sides', 'bread', 'sauces', 'desserts'] as const
+// Closed vocabularies, in the cookbook's browsing order (category order = mockup section order)
+export const TAGS = ['comfort food', 'spicy', 'weeknight', 'quick', 'show-off', 'healthy-ish', 'breakfast'] as const
+export const CATEGORIES = ['breakfast', 'dinner', 'snacks-and-sides', 'bread', 'sauces', 'desserts'] as const
 
 const recipes = defineCollection({
   loader: glob({ pattern: '*.md', base: 'src/content/recipes' }),

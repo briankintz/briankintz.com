@@ -1,7 +1,6 @@
 ---
 // Identical on every page: colophon line + social icon links. No nav links.
-// Lives in components/notebook/ until the old homepage (and its Footer.astro) is retired.
-import Icon from '../Icon.astro'
+import Icon from './Icon.astro'
 
 const sha = process.env.VERCEL_GIT_COMMIT_SHA || 'unknown'
 const shortSha = sha.substring(0, 7)

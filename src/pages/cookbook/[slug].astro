@@ -1,12 +1,12 @@
 ---
-import { getCollection } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Icon from '../../components/Icon.astro'
+import IngredientList from '../../components/IngredientList.astro'
+import { CATEGORY_LABELS, effortDots, publishedRecipes } from '../../lib/recipes'
 
 export async function getStaticPaths() {
-  const recipes = (await getCollection('recipes', ({ data }) => !data.draft)).sort((a, b) =>
-    a.data.title.localeCompare(b.data.title)
-  )
+  // prev/next follow the cookbook index's browsing order (category, then title)
+  const recipes = await publishedRecipes()
   return recipes.map((recipe, i) => ({
     params: { slug: recipe.id },
     props: { recipe, prev: recipes[i - 1], next: recipes[i + 1] },
@@ -29,23 +29,18 @@ const extras = sections.filter((s) => s !== ingredients && s !== method) // Vari
 // Drafts are excluded from routes, so every published recipe must follow the body convention.
 if (!ingredients || !method) throw new Error(`${recipe.id}: recipe body needs ## Ingredients and ## Method`)
 
-// CSS-only checkable list: wrap each ingredient's inline content in <label><input/>…,
-// stopping before any nested <ul> so two-level lists keep their sublist outside the label.
-const ingredientsHtml = ingredients.html.replace(
-  /<li>([\s\S]*?)(?=<ul>|<\/li>)/g,
-  (_, text) => `<li><label><input type="checkbox" /><span>${text.trim()}</span></label>`
-)
-
 // Highlighter swipe on the last word of the title — once per page, as in the mockup
 const words = title.split(' ')
 const hlWord = words.pop()
 const titleLead = words.join(' ')
 
-const categoryLabel = category.replace('-and-', ' & ').replaceAll('-', ' ')
-const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
+const categoryLabel = CATEGORY_LABELS[category]
 ---
 
-<BaseLayout title={`${title} — The Cookbook — Brian Kintz`} description={`${title}: ${tagline}. A recipe from Brian's cookbook.`}>
+<BaseLayout
+  title={`${title} — The Cookbook — Brian Kintz`}
+  description={`${title}: ${tagline}. A recipe from Brian's cookbook.`}
+>
   <main class="wrap">
     <div class="r-hero">
       <a class="back" href="/cookbook">← All recipes</a>
@@ -63,7 +58,7 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
         )
       }
       <div class="meta-strip">
-        <div class="meta-cell"><b>Effort</b><span class="dots">{effortDots}</span></div>
+        <div class="meta-cell"><b>Effort</b><span class="dots">{effortDots(effort)}</span></div>
         <div class="meta-cell"><b>Serves</b><span>{serves}</span></div>
         <div class="meta-cell"><b>Origin</b><span>{origin}</span></div>
       </div>
@@ -72,7 +67,7 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     <div class="r-body">
       <aside class="ing-card">
         <h2>Ingredients</h2>
-        <div class="ing" set:html={ingredientsHtml} />
+        <IngredientList html={ingredients.html} />
       </aside>
 
       <article class="method">
@@ -98,8 +93,22 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     </div>
 
     <nav class="r-nav" aria-label="More recipes">
-      {prev ? <a class="btn" href={`/cookbook/${prev.id}`}>← Previous: {prev.data.title}</a> : <span />}
-      {next && <a class="btn" href={`/cookbook/${next.id}`}>Next: {next.data.title} →</a>}
+      {
+        prev ? (
+          <a class="btn" href={`/cookbook/${prev.id}`}>
+            ← Previous: {prev.data.title}
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        next && (
+          <a class="btn" href={`/cookbook/${next.id}`}>
+            Next: {next.data.title} →
+          </a>
+        )
+      }
     </nav>
   </main>
 </BaseLayout>
@@ -130,7 +139,7 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-orange);
+    color: var(--color-orange-text);
     background: var(--color-orange-tag);
     border-radius: var(--radius-tag);
     padding: 5px 12px;
@@ -176,13 +185,9 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     margin-top: 16px;
   }
 
+  /* Hero-sized variant of the global .rtag chip */
   .rtag {
     font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    color: var(--color-orange);
-    background: var(--color-orange-tag);
-    border-radius: var(--radius-tag);
     padding: 4px 11px;
   }
 
@@ -224,7 +229,7 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
   }
 
   .meta-cell .dots {
-    color: var(--color-orange);
+    color: var(--color-orange-text);
     letter-spacing: 2px;
   }
 
@@ -257,50 +262,6 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
 
   .ing-card h2 {
     margin-bottom: 14px;
-  }
-
-  .ing :global(ul) {
-    list-style: none;
-  }
-
-  .ing :global(ul ul) {
-    margin-left: 28px; /* nested groups (chocolate-chip-cookies) indent under the parent label */
-  }
-
-  .ing :global(label) {
-    display: flex;
-    gap: 12px;
-    align-items: baseline;
-    font-size: var(--text-body);
-    cursor: pointer;
-    line-height: 1.55;
-    padding: 8px 0;
-  }
-
-  .ing :global(input) {
-    width: 16px;
-    height: 16px;
-    accent-color: var(--color-purple);
-    transform: translateY(2px);
-    flex-shrink: 0;
-    cursor: pointer;
-  }
-
-  .ing :global(input:checked + span) {
-    color: var(--color-soft);
-    text-decoration: line-through;
-    text-decoration-color: var(--color-orange);
-  }
-
-  /* `### <group>` subheads become purple group labels */
-  .ing :global(h3) {
-    font-family: var(--font-sans);
-    font-size: var(--text-label);
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-purple);
-    padding: 16px 0 4px;
   }
 
   /* ---------- method ---------- */
@@ -363,7 +324,7 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     font-family: var(--font-slab);
     font-style: italic;
     font-size: 13.5px;
-    color: var(--color-orange);
+    color: var(--color-orange-text);
     margin-top: 6px;
   }
 

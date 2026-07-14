@@ -1,0 +1,62 @@
+---
+// Renders a recipe's `## Ingredients` section (rendered-markdown HTML) as a CSS-only
+// checkable list: each <li>'s inline content is wrapped in <label><input/><span>,
+// stopping before any nested <ul> so two-level lists keep their sublist outside the
+// label. `### <group>` subheads survive as <h3> group labels; nested groups indent.
+interface Props {
+  html: string
+}
+const { html } = Astro.props
+const checkable = html.replace(
+  /<li>([\s\S]*?)(?=<ul>|<\/li>)/g,
+  (_, text) => `<li><label><input type="checkbox" /><span>${text.trim()}</span></label>`,
+)
+---
+
+<div class="ing" set:html={checkable} />
+
+<style>
+  .ing :global(ul) {
+    list-style: none;
+  }
+
+  .ing :global(ul ul) {
+    margin-left: 28px; /* nested groups (chocolate-chip-cookies) indent under the parent label */
+  }
+
+  .ing :global(label) {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    font-size: var(--text-body);
+    cursor: pointer;
+    line-height: 1.55;
+    padding: 8px 0;
+  }
+
+  .ing :global(input) {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-purple);
+    transform: translateY(2px);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .ing :global(input:checked + span) {
+    color: var(--color-soft);
+    text-decoration: line-through;
+    text-decoration-color: var(--color-orange);
+  }
+
+  /* `### <group>` subheads become purple group labels */
+  .ing :global(h3) {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-purple);
+    padding: 16px 0 4px;
+  }
+</style>
