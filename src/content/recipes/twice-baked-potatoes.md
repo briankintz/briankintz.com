@@ -4,7 +4,6 @@ tagline: Po-ta-to, po-tah-to
 category: snacks-and-sides
 effort: 2
 serves: '6'
-origin: USA
 tags: [comfort food, show-off]
 draft: false
 ---

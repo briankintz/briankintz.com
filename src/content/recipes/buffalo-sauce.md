@@ -1,10 +1,9 @@
 ---
 title: Buffalo Sauce
 tagline: Blue cheese's best friend
-category: sauces
+category: dips-and-sauces
 effort: 1
-serves: About 1 cup
-origin: USA
+makes: About 1 cup
 tags: [spicy, quick]
 draft: false
 ---

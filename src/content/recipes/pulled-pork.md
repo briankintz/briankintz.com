@@ -1,10 +1,9 @@
 ---
 title: Pulled Pork
 tagline: Low and slow baby
-category: dinner
+category: main-courses
 effort: 2
 serves: 8–10
-origin: USA
 tags: [comfort food, show-off]
 draft: false
 ---

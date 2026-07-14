@@ -1,10 +1,9 @@
 ---
 title: Mango Habanero Hot Sauce
 tagline: Sweet up front, scorching on the back end
-category: sauces
+category: dips-and-sauces
 effort: 2
-serves: A few bottles
-origin: Caribbean
+makes: A few bottles
 tags: [spicy, show-off]
 draft: false
 ---

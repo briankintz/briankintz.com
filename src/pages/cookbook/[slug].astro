@@ -4,9 +4,8 @@ import Icon from '../../components/Icon.astro'
 import IngredientList from '../../components/IngredientList.astro'
 import Highlight from '../../components/Highlight.astro'
 import LinkButton from '../../components/LinkButton.astro'
-import LabelChip from '../../components/LabelChip.astro'
 import TagChip from '../../components/TagChip.astro'
-import { CATEGORY_LABELS, effortDots, publishedRecipes } from '../../lib/recipes'
+import { CATEGORY_LABELS, effortDots, publishedRecipes, yieldMeta } from '../../lib/recipes'
 
 export async function getStaticPaths() {
   // prev/next follow the cookbook index's browsing order (category, then title)
@@ -18,7 +17,8 @@ export async function getStaticPaths() {
 }
 
 const { recipe, prev, next } = Astro.props
-const { title, tagline, category, effort, serves, origin, tags, tip } = recipe.data
+const { title, tagline, category, effort, tags, tip } = recipe.data
+const { label: yieldLabel, value: yieldValue } = yieldMeta(recipe.data)
 
 // Split the rendered markdown into its `## <heading>` sections: split with a capture
 // group yields [preamble, heading, body, heading, body, ...].
@@ -48,7 +48,6 @@ const categoryLabel = CATEGORY_LABELS[category]
   <main class="wrap">
     <div class="r-hero">
       <a class="back" href="/cookbook">← All recipes</a>
-      <LabelChip color="orange">{categoryLabel}</LabelChip>
       <h1>{titleLead}{titleLead && ' '}<Highlight>{hlWord}</Highlight></h1>
       <p class="tagline">{tagline}</p>
       {preamble && <div class="preamble" set:html={preamble} />}
@@ -62,9 +61,9 @@ const categoryLabel = CATEGORY_LABELS[category]
         )
       }
       <div class="meta-strip">
+        <div class="meta-cell"><b>Category</b><span>{categoryLabel}</span></div>
         <div class="meta-cell"><b>Effort</b><span class="dots">{effortDots(effort)}</span></div>
-        <div class="meta-cell"><b>Serves</b><span>{serves}</span></div>
-        <div class="meta-cell"><b>Origin</b><span>{origin}</span></div>
+        <div class="meta-cell"><b>{yieldLabel}</b><span>{yieldValue}</span></div>
       </div>
     </div>
 

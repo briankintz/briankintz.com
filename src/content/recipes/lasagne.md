@@ -1,10 +1,9 @@
 ---
 title: Lasagna
 tagline: Laura's favorite
-category: dinner
+category: main-courses
 effort: 3
 serves: 6–8
-origin: Italy
 tags: [comfort food, show-off]
 draft: false
 ---

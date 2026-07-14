@@ -3,8 +3,7 @@ title: Oven Roasted Mushrooms
 tagline: Great on salads, pizza, or anything really
 category: snacks-and-sides
 effort: 1
-serves: Scales by the handful
-origin: Earth
+makes: Scales by the handful
 tags: [healthy-ish, quick]
 draft: false
 ---

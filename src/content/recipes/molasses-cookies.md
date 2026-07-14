@@ -3,8 +3,7 @@ title: Molasses Cookies
 tagline: Chewy, spicy, wintery
 category: desserts
 effort: 1
-serves: A big batch
-origin: USA
+makes: A big batch
 tags: [comfort food]
 draft: false
 ---

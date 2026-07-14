@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Highlight from '../../components/Highlight.astro'
 import TagChip from '../../components/TagChip.astro'
 import { CATEGORIES, TAGS } from '../../content.config'
-import { CATEGORY_LABELS, effortDots, publishedRecipes } from '../../lib/recipes'
+import { CATEGORY_LABELS, effortDots, publishedRecipes, yieldMeta } from '../../lib/recipes'
 
 // Empty categories (breakfast, once drafts are excluded) render no heading.
 const recipes = await publishedRecipes()
@@ -29,15 +29,33 @@ const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
       </p>
     </div>
 
-    <div class="filters" role="group" aria-label="Filter recipes by tag">
-      <button class="chip on" aria-pressed="true">All</button>
-      {
-        TAGS.map((tag) => (
-          <button class="chip" data-tag={tag} aria-pressed="false">
-            {chipLabel(tag)}
-          </button>
-        ))
-      }
+    <div class="filters">
+      <div class="filter-group" role="group" aria-label="Filter by category">
+        <span class="filter-label">Category</span>
+        <div class="chip-row">
+          <button class="chip on" data-filter="category" data-value="all" aria-pressed="true"> All </button>
+          {
+            CATEGORIES.map((cat) => (
+              <button class="chip" data-filter="category" data-value={cat} aria-pressed="false">
+                {CATEGORY_LABELS[cat]}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+      <div class="filter-group" role="group" aria-label="Filter by tag">
+        <span class="filter-label">Tags</span>
+        <div class="chip-row">
+          <button class="chip on" data-filter="tag" data-value="all" aria-pressed="true"> All </button>
+          {
+            TAGS.map((tag) => (
+              <button class="chip" data-filter="tag" data-value={tag} aria-pressed="false">
+                {chipLabel(tag)}
+              </button>
+            ))
+          }
+        </div>
+      </div>
     </div>
 
     {
@@ -50,24 +68,30 @@ const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
             </span>
           </div>
           <div class="cards">
-            {recipes.map(({ id, data }) => (
-              <a class="rcard" href={`/cookbook/${id}`} data-tags={data.tags.join('|')}>
-                <span class="cat-tag">{label}</span>
-                <h3>{data.title}</h3>
-                <p>{data.tagline}</p>
-                <div class="meta">
-                  <span>
-                    <b>effort</b> {effortDots(data.effort)}
-                  </span>
-                  <span>
-                    <b>origin</b> {data.origin}
-                  </span>
-                  {data.tags.map((tag) => (
-                    <TagChip tag={tag} />
-                  ))}
-                </div>
-              </a>
-            ))}
+            {recipes.map(({ id, data }) => {
+              const { label: yieldLabel, value: yieldValue } = yieldMeta(data)
+              return (
+                <a class="rcard" href={`/cookbook/${id}`} data-category={data.category} data-tags={data.tags.join('|')}>
+                  <h3>{data.title}</h3>
+                  <p>{data.tagline}</p>
+                  {data.tags.length > 0 && (
+                    <div class="tags-row">
+                      {data.tags.map((tag) => (
+                        <TagChip tag={tag} />
+                      ))}
+                    </div>
+                  )}
+                  <div class="meta">
+                    <span>
+                      <b>effort</b> {effortDots(data.effort)}
+                    </span>
+                    <span>
+                      <b>{yieldLabel.toLowerCase()}</b> {yieldValue}
+                    </span>
+                  </div>
+                </a>
+              )
+            })}
           </div>
         </section>
       ))
@@ -110,9 +134,31 @@ const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
 
   .filters {
     display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 8px 0 40px;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    font-size: var(--text-label);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-soft);
+    flex-shrink: 0;
+  }
+
+  .chip-row {
+    display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    padding: 8px 0 40px;
   }
 
   .chip {
@@ -203,14 +249,6 @@ const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
     opacity: 0.85;
   }
 
-  .cat-tag {
-    font-size: var(--text-label);
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-purple);
-  }
-
   .rcard h3 {
     font-family: var(--font-slab);
     font-size: 21px;
@@ -224,6 +262,13 @@ const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
     font-size: 14.5px;
     color: var(--color-soft);
     min-height: 44px;
+  }
+
+  .tags-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
   }
 
   .meta {
@@ -265,16 +310,30 @@ const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
   const counts = [...document.querySelectorAll<HTMLElement>('.cat-head span')]
   const note = document.querySelector<HTMLElement>('.empty-note')!
 
+  // Single-select per group ('category' | 'tag'), AND-combined across groups.
+  const selected: Record<string, string> = { category: 'all', tag: 'all' }
+
+  function applyFilters() {
+    for (const card of cards) {
+      const matchesCategory = selected.category === 'all' || card.dataset.category === selected.category
+      const matchesTag = selected.tag === 'all' || (card.dataset.tags || '').split('|').includes(selected.tag)
+      card.hidden = !(matchesCategory && matchesTag)
+    }
+    for (const cat of cats) cat.hidden = !cat.querySelector('.rcard:not([hidden])')
+    const filtering = selected.category !== 'all' || selected.tag !== 'all'
+    for (const count of counts) count.hidden = filtering // counts describe the full category, not the filtered view
+    note.hidden = cards.some((card) => !card.hidden)
+  }
+
   for (const chip of chips)
     chip.addEventListener('click', () => {
-      const tag = chip.dataset.tag
-      for (const c of chips) {
-        c.classList.toggle('on', c === chip)
-        c.setAttribute('aria-pressed', String(c === chip))
-      }
-      for (const card of cards) card.hidden = Boolean(tag) && !(card.dataset.tags || '').split('|').includes(tag!)
-      for (const cat of cats) cat.hidden = !cat.querySelector('.rcard:not([hidden])')
-      for (const count of counts) count.hidden = Boolean(tag) // counts describe the full category, not the filtered view
-      note.hidden = cards.some((card) => !card.hidden)
+      const group = chip.dataset.filter!
+      selected[group] = chip.dataset.value!
+      for (const c of chips)
+        if (c.dataset.filter === group) {
+          c.classList.toggle('on', c === chip)
+          c.setAttribute('aria-pressed', String(c === chip))
+        }
+      applyFilters()
     })
 </script>

@@ -1,10 +1,9 @@
 ---
 title: Jerk Chicken
 tagline: Taste the Caribbean heat
-category: dinner
+category: main-courses
 effort: 2
-serves: 1–2 lbs of chicken
-origin: Jamaica
+makes: 1–2 lbs of chicken
 tags: [spicy, show-off]
 tip: As with all dishes containing chilies, they can be adjusted or skipped according to taste.
 draft: false
