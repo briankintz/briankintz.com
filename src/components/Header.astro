@@ -1,6 +1,5 @@
 ---
-// The only global nav. Sticky, blurred paper, purple active state — per handoff/mockups/.
-// Lives in components/notebook/ until the old homepage (and its Header.astro) is retired.
+// The only global nav. Sticky, blurred paper, purple active state — per the Notebook design system.
 const path = Astro.url.pathname
 const inSection = (base: string) => path === base || path.startsWith(base + '/')
 const isCookbook = inSection('/cookbook')

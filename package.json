@@ -16,7 +16,9 @@
     "astro": "^7.0.9"
   },
   "devDependencies": {
-    "@types/node": "^24.13.3"
+    "@types/node": "^24.13.3",
+    "prettier": "^3.9.5",
+    "prettier-plugin-astro": "^0.14.1"
   },
   "overrides": {
     "@vercel/routing-utils": {

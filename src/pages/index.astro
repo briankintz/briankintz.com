@@ -1,11 +1,11 @@
 ---
-// Homepage — hero, Work block, teaser cards. Styles translated 1:1 from handoff/mockups/index.html.
-import { getCollection } from 'astro:content'
+// Homepage — hero, Work block, teaser cards. Styles translated 1:1 from the Notebook design mockups.
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Icon from '../components/Icon.astro'
 import { stats, roles, credentials } from '../data/work'
+import { publishedRecipes } from '../lib/recipes'
 
-const recipeCount = (await getCollection('recipes', ({ data }) => !data.draft)).length
+const recipeCount = (await publishedRecipes()).length
 ---
 
 <BaseLayout
@@ -17,9 +17,8 @@ const recipeCount = (await getCollection('recipes', ({ data }) => !data.draft)).
       <p class="hi">Hi, I'm Brian —</p>
       <h1>I design and build <span class="hl">cloud-native platforms</span>.</h1>
       <p>
-        Senior Cloud Solutions Architect in Germany, consulting on Azure and Google Cloud — with 15+ years across
-        DevOps and software engineering behind it. This site also holds my cookbook and everything else I do off the
-        clock.
+        Senior Cloud Solutions Architect in Germany, consulting on Azure and Google Cloud — with 15+ years across DevOps
+        and software engineering behind it. This site also holds my cookbook and everything else I do off the clock.
       </p>
       <div class="hero-actions">
         <a class="btn primary" href="#work">See my work</a>
@@ -172,7 +171,7 @@ const recipeCount = (await getCollection('recipes', ({ data }) => !data.draft)).
   }
 
   .block-tag.orange {
-    color: var(--color-orange);
+    color: var(--color-orange-text);
     background: var(--color-orange-tag);
   }
 
@@ -250,7 +249,7 @@ const recipeCount = (await getCollection('recipes', ({ data }) => !data.draft)).
   .role .title {
     font-size: 13px;
     font-weight: 700;
-    color: var(--color-orange);
+    color: var(--color-orange-text);
     letter-spacing: 0.04em;
     text-transform: uppercase;
     margin-bottom: 10px;
