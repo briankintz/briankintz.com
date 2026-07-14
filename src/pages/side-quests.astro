@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import Highlight from '../components/Highlight.astro'
+import LabelChip from '../components/LabelChip.astro'
 
 const quests = [
   {
@@ -36,14 +38,14 @@ const quests = [
 >
   <main class="wrap">
     <div class="hero">
-      <h1>Side <span class="hl">Quests</span></h1>
+      <h1>Side <Highlight>Quests</Highlight></h1>
       <p>Work's fun, but so are lots of other things. A running list of what fills the rest of the calendar.</p>
     </div>
 
     <div class="quests">
       <div class="quest wide">
         <div>
-          <span class="lvl">Happy place</span>
+          <LabelChip color="purple">Happy place</LabelChip>
           <h2>Mountains</h2>
         </div>
         <p>
@@ -52,16 +54,16 @@ const quests = [
         </p>
       </div>
       {
-        quests.map((q) => (
+        quests.map((q, i) => (
           <div class="quest">
-            <span class="lvl">{q.level}</span>
+            <LabelChip color={i % 2 === 0 ? 'orange' : 'purple'}>{q.level}</LabelChip>
             <h2>{q.title}</h2>
             <p>{q.body}</p>
           </div>
         ))
       }
       <div class="quest">
-        <span class="lvl">See: cookbook</span>
+        <LabelChip color="purple">See: cookbook</LabelChip>
         <h2>Cooking</h2>
         <p>Big enough to get its own section of this site. <a href="/cookbook">Head to the cookbook →</a></p>
       </div>
@@ -109,27 +111,6 @@ const quests = [
 
   .quest:hover {
     transform: translateY(-3px);
-  }
-
-  .lvl {
-    display: inline-block;
-    font-size: var(--text-label);
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    border-radius: var(--radius-tag);
-    padding: 4px 11px;
-    margin-bottom: 16px;
-  }
-
-  .quest:nth-child(odd) .lvl {
-    color: var(--color-purple);
-    background: var(--color-purple-soft);
-  }
-
-  .quest:nth-child(even) .lvl {
-    color: var(--color-orange-text);
-    background: var(--color-orange-tag);
   }
 
   .quest h2 {

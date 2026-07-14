@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import Highlight from '../../components/Highlight.astro'
+import TagChip from '../../components/TagChip.astro'
 import { CATEGORIES, TAGS } from '../../content.config'
 import { CATEGORY_LABELS, effortDots, publishedRecipes } from '../../lib/recipes'
 
@@ -19,7 +21,7 @@ const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
 >
   <main class="wrap">
     <div class="hero">
-      <h1>The <span class="hl">Cookbook</span></h1>
+      <h1>The <Highlight>Cookbook</Highlight></h1>
       <p>
         Nothing too serious — just documentation of things I've enjoyed cooking over the years. Fair warning: <em
           >I hate measuring things</em
@@ -61,7 +63,7 @@ const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
                     <b>origin</b> {data.origin}
                   </span>
                   {data.tags.map((tag) => (
-                    <span class="rtag">{tag}</span>
+                    <TagChip tag={tag} />
                   ))}
                 </div>
               </a>

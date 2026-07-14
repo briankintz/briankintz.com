@@ -1,14 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import Highlight from '../components/Highlight.astro'
+import LinkButton from '../components/LinkButton.astro'
 ---
 
 <BaseLayout title="Page not found — Brian Kintz" description="This page doesn't exist.">
   <main class="wrap">
     <div class="hero">
       <p class="code">404 —</p>
-      <h1>This page got <span class="hl">torn out</span>.</h1>
+      <h1>This page got <Highlight>torn out</Highlight>.</h1>
       <p>Whatever used to be here isn't in the notebook anymore — or never was. The homepage has everything that is.</p>
-      <a class="btn primary" href="/">Back to the homepage</a>
+      <LinkButton class="cta" href="/" variant="primary">Back to the homepage</LinkButton>
     </div>
   </main>
 </BaseLayout>
@@ -42,7 +44,9 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     max-width: 54ch;
   }
 
-  .btn {
+  /* :global — the class lands on LinkButton's own root element, which carries
+     LinkButton's scope id, not this page's, so a plain scoped selector won't match. */
+  :global(.cta) {
     margin-top: 30px;
   }
 

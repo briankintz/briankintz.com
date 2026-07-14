@@ -1,0 +1,47 @@
+---
+// Buttons — purple is structural. variant omitted = plain (recipe prev/next nav
+// supplies its own page-local colors via a passed-through class, see .r-nav).
+interface Props {
+  href: string
+  variant?: 'primary' | 'ghost'
+  class?: string
+}
+
+const { href, variant, class: className } = Astro.props
+---
+
+<a href={href} class:list={['btn', variant, className]}>
+  <slot />
+</a>
+
+<style>
+  .btn {
+    display: inline-block;
+    font-size: 14.5px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    transition:
+      transform 0.12s,
+      background 0.15s;
+  }
+
+  .btn.primary {
+    background: var(--color-purple);
+    color: var(--color-card);
+  }
+
+  .btn.primary:hover {
+    background: var(--color-purple-hover);
+  }
+
+  .btn.ghost {
+    color: var(--color-purple);
+    border: 1.5px solid var(--color-purple);
+  }
+
+  .btn.ghost:hover {
+    background: var(--color-purple-soft);
+  }
+</style>
