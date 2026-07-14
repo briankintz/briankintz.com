@@ -1,18 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/:section(dinner|snacks|sides|desserts|bread|sauces)/:slug",
-      "has": [{ "type": "host", "value": "cookbook.briankintz.com" }],
-      "destination": "https://briankintz.com/cookbook/:slug",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "cookbook.briankintz.com" }],
-      "destination": "https://briankintz.com/cookbook",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
