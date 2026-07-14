@@ -1,0 +1,489 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Icon from '../../components/Icon.astro'
+
+export async function getStaticPaths() {
+  const recipes = (await getCollection('recipes', ({ data }) => !data.draft)).sort((a, b) =>
+    a.data.title.localeCompare(b.data.title)
+  )
+  return recipes.map((recipe, i) => ({
+    params: { slug: recipe.id },
+    props: { recipe, prev: recipes[i - 1], next: recipes[i + 1] },
+  }))
+}
+
+const { recipe, prev, next } = Astro.props
+const { title, tagline, category, effort, serves, origin, tags, tip } = recipe.data
+
+// Split the rendered markdown into its `## <heading>` sections: split with a capture
+// group yields [preamble, heading, body, heading, body, ...].
+const parts = (recipe.rendered?.html ?? '').split(/<h2[^>]*>([\s\S]*?)<\/h2>/)
+const preamble = parts[0].trim() // e.g. hamburger-buns' attribution blockquote above ## Ingredients
+const sections = []
+for (let i = 1; i < parts.length; i += 2) sections.push({ heading: parts[i].trim(), html: parts[i + 1] })
+
+const ingredients = sections.find((s) => s.heading === 'Ingredients')
+const method = sections.find((s) => s.heading === 'Method')
+const extras = sections.filter((s) => s !== ingredients && s !== method) // Variations, Serving Ideas, ...
+
+// CSS-only checkable list: wrap each ingredient's inline content in <label><input/>…,
+// stopping before any nested <ul> so two-level lists keep their sublist outside the label.
+const ingredientsHtml = (ingredients?.html ?? '').replace(
+  /<li>([\s\S]*?)(?=<ul>|<\/li>)/g,
+  (_, text) => `<li><label><input type="checkbox" /><span>${text.trim()}</span></label>`
+)
+
+// Highlighter swipe on the last word of the title — once per page, as in the mockup
+const words = title.split(' ')
+const hlWord = words.pop()
+const titleLead = words.join(' ')
+
+const categoryLabel = category.replace('-and-', ' & ').replaceAll('-', ' ')
+const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
+---
+
+<BaseLayout title={`${title} — The Cookbook — Brian Kintz`} description={`${title}: ${tagline}. A recipe from Brian's cookbook.`}>
+  <main class="wrap">
+    <div class="r-hero">
+      <a class="back" href="/cookbook">← All recipes</a><br />
+      <span class="cat-tag">{categoryLabel}</span>
+      <h1>{titleLead}{titleLead && ' '}<span class="hl">{hlWord}</span></h1>
+      <p class="tagline">{tagline}</p>
+      {preamble && <div class="preamble" set:html={preamble} />}
+      {
+        tags.length > 0 && (
+          <div class="tags-row">
+            {tags.map((tag) => (
+              <span class="rtag">{tag}</span>
+            ))}
+          </div>
+        )
+      }
+      <div class="meta-strip">
+        <div class="meta-cell"><b>Effort</b><span class="dots">{effortDots}</span></div>
+        <div class="meta-cell"><b>Serves</b><span>{serves}</span></div>
+        <div class="meta-cell"><b>Origin</b><span>{origin}</span></div>
+      </div>
+    </div>
+
+    <div class="r-body">
+      <aside class="ing-card">
+        <h2>Ingredients</h2>
+        <div class="ing" set:html={ingredientsHtml} />
+      </aside>
+
+      <article class="method">
+        <h2>Method</h2>
+        {
+          tip && (
+            <div class="tip">
+              <Icon name="bulb" />
+              <p>{tip}</p>
+            </div>
+          )
+        }
+        {method && <div class="steps" set:html={method.html} />}
+        {
+          extras.map((section) => (
+            <section class="extra">
+              <h2>{section.heading}</h2>
+              <div class="prose" set:html={section.html} />
+            </section>
+          ))
+        }
+      </article>
+    </div>
+
+    <nav class="r-nav" aria-label="More recipes">
+      {prev ? <a href={`/cookbook/${prev.id}`}>← Previous: {prev.data.title}</a> : <span />}
+      {next && <a href={`/cookbook/${next.id}`}>Next: {next.data.title} →</a>}
+    </nav>
+  </main>
+</BaseLayout>
+
+<style>
+  /* ---------- hero ---------- */
+  .r-hero {
+    padding: 72px 0 40px;
+  }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--color-purple);
+    text-decoration: none;
+    margin-bottom: 20px;
+  }
+
+  .back:hover {
+    text-decoration: underline;
+  }
+
+  .cat-tag {
+    display: inline-block;
+    font-size: var(--text-label);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-orange);
+    background: var(--color-orange-tag);
+    border-radius: var(--radius-tag);
+    padding: 5px 12px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: var(--font-slab);
+    font-size: clamp(36px, 5.5vw, 56px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .tagline {
+    font-family: var(--font-slab);
+    font-style: italic;
+    font-size: 19px;
+    color: var(--color-soft);
+    margin-top: 8px;
+  }
+
+  .preamble {
+    margin-top: 14px;
+  }
+
+  .preamble :global(p) {
+    font-family: var(--font-slab);
+    font-style: italic;
+    font-size: 14.5px;
+    color: var(--color-soft);
+  }
+
+  .preamble :global(a) {
+    color: var(--color-purple);
+  }
+
+  .tags-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .rtag {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--color-orange);
+    background: var(--color-orange-tag);
+    border-radius: var(--radius-tag);
+    padding: 4px 11px;
+  }
+
+  /* Meta strip — one of the two sanctioned dashed borders */
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    border: var(--border-sketch);
+    border-radius: var(--radius-card);
+    background: var(--color-card);
+    overflow: hidden;
+  }
+
+  .meta-cell {
+    flex: 1;
+    min-width: 130px;
+    padding: 16px 20px;
+    border-right: var(--border-sketch);
+  }
+
+  .meta-cell:last-child {
+    border-right: none;
+  }
+
+  .meta-cell b {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-purple);
+  }
+
+  .meta-cell span {
+    font-family: var(--font-slab);
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .meta-cell .dots {
+    color: var(--color-orange);
+    letter-spacing: 2px;
+  }
+
+  /* ---------- layout ---------- */
+  .r-body {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 34px;
+    align-items: start;
+    padding-bottom: 40px;
+  }
+
+  /* ---------- ingredients card ---------- */
+  .ing-card {
+    position: sticky;
+    top: 86px;
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    padding: 26px 28px 22px;
+    overflow: hidden;
+  }
+
+  .ing-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--color-orange);
+    opacity: 0.85;
+  }
+
+  .ing-card h2 {
+    font-family: var(--font-slab);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  .ing :global(ul) {
+    list-style: none;
+  }
+
+  .ing :global(ul ul) {
+    margin-left: 28px; /* nested groups (chocolate-chip-cookies) indent under the parent label */
+  }
+
+  .ing :global(li) {
+    padding: 3px 0;
+  }
+
+  .ing :global(label) {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    font-size: 15px;
+    cursor: pointer;
+    line-height: 1.55;
+    padding: 5px 0;
+  }
+
+  .ing :global(input) {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-purple);
+    transform: translateY(2px);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .ing :global(input:checked + span) {
+    color: var(--color-soft);
+    text-decoration: line-through;
+    text-decoration-color: var(--color-orange);
+  }
+
+  /* `### <group>` subheads become purple group labels */
+  .ing :global(h3) {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-purple);
+    padding: 16px 0 4px;
+  }
+
+  /* ---------- method ---------- */
+  .method {
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-block);
+    box-shadow: var(--shadow-block);
+    padding: 36px 42px;
+    min-width: 0;
+  }
+
+  .method h2 {
+    font-family: var(--font-slab);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 22px;
+  }
+
+  .steps :global(ol) {
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .steps :global(ol > li) {
+    counter-increment: step;
+    position: relative;
+    padding: 0 0 26px 56px;
+    font-size: 15px;
+    color: var(--color-soft);
+  }
+
+  .steps :global(ol > li)::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--color-purple-soft);
+    color: var(--color-purple);
+    font-family: var(--font-slab);
+    font-weight: 700;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .steps :global(ol > li:not(:last-child))::after {
+    content: '';
+    position: absolute;
+    left: 17px;
+    top: 40px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--color-line);
+  }
+
+  .steps :global(p + p) {
+    margin-top: 8px;
+  }
+
+  .steps :global(a) {
+    color: var(--color-purple);
+  }
+
+  /* Blockquotes inside a step are Brian's margin notes */
+  .steps :global(blockquote) {
+    font-family: var(--font-slab);
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--color-orange);
+    margin-top: 6px;
+  }
+
+  .steps :global(blockquote p) {
+    font: inherit;
+    color: inherit;
+    margin: 0;
+  }
+
+  /* ---------- tip block ---------- */
+  .tip {
+    display: flex;
+    gap: 14px;
+    background: var(--color-orange-tint);
+    border: 1px solid var(--color-orange-soft);
+    border-radius: var(--radius-card);
+    padding: 18px 20px;
+    margin: 6px 0 26px;
+  }
+
+  .tip :global(svg) {
+    width: 20px;
+    height: 20px;
+    color: var(--color-orange);
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .tip p {
+    font-size: 14px;
+    color: var(--color-ink);
+  }
+
+  /* ---------- trailing sections (Variations, Serving Ideas, …) ---------- */
+  .extra {
+    margin-top: 8px;
+  }
+
+  .extra h2 {
+    margin-bottom: 14px;
+  }
+
+  .extra .prose {
+    font-size: 15px;
+    color: var(--color-soft);
+  }
+
+  .extra .prose :global(p + p),
+  .extra .prose :global(li + li) {
+    margin-top: 8px;
+  }
+
+  .extra .prose :global(ul) {
+    padding-left: 22px;
+  }
+
+  .extra .prose :global(a) {
+    color: var(--color-purple);
+  }
+
+  /* ---------- prev/next ---------- */
+  .r-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0 30px;
+    flex-wrap: wrap;
+  }
+
+  .r-nav a {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--color-purple);
+    text-decoration: none;
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: 10px;
+    padding: 12px 20px;
+  }
+
+  .r-nav a:hover {
+    border-color: var(--color-purple);
+  }
+
+  @media (max-width: 820px) {
+    .r-hero {
+      padding: 48px 0 30px;
+    }
+
+    .r-body {
+      grid-template-columns: 1fr;
+    }
+
+    .ing-card {
+      /* relative, not the mockup's static: the orange spine is position:absolute and needs a containing block */
+      position: relative;
+      top: auto;
+    }
+
+    .method {
+      padding: 28px 24px;
+    }
+  }
+</style>
