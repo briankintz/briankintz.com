@@ -13,6 +13,7 @@ import '../styles/notebook.css'
 
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+import Analytics from '@vercel/analytics/astro'
 
 interface Props {
   title: string
@@ -33,6 +34,9 @@ const { title, description } = Astro.props
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <!-- Vercel Web Analytics — same-origin (/_vercel/insights/*) on Vercel; explicit mode
+         because a static Astro build doesn't expose NODE_ENV to the client for auto-detection -->
+    <Analytics mode={import.meta.env.PROD ? 'production' : 'development'} />
   </head>
   <body>
     <Header />
