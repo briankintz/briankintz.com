@@ -81,5 +81,6 @@ export const credentials: Credential[] = [
     label: 'Core skills',
     items: ['Kubernetes & Docker', 'DevOps toolchains', 'TypeScript, C#, Go', 'React & Next.js, Svelte, Astro'],
   },
-  { label: 'Languages', items: ['English (native)', 'German (fluent)'] },
+  // "basst scho." is Brian's own line from cv.md — his authored humor carries over verbatim (see CLAUDE.md tone rule)
+  { label: 'Languages', items: ['English (native)', 'German (fluent)', 'Bavarian (basst scho.)'] },
 ]
