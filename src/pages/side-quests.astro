@@ -106,11 +106,13 @@ const quests = [
     padding: 30px 32px;
     transition:
       transform 0.15s,
+      box-shadow 0.15s,
       border-color 0.15s;
   }
 
   .quest:hover {
-    transform: translateY(-3px);
+    transform: var(--card-lift);
+    box-shadow: var(--shadow-hover);
   }
 
   .quest h2 {
