@@ -2,8 +2,9 @@
 // The only global nav. Sticky, blurred paper, purple active state — per handoff/mockups/.
 // Lives in components/notebook/ until the old homepage (and its Header.astro) is retired.
 const path = Astro.url.pathname
-const isCookbook = path === '/cookbook' || path.startsWith('/cookbook/')
-const isSideQuests = path === '/side-quests' || path.startsWith('/side-quests/')
+const inSection = (base: string) => path === base || path.startsWith(base + '/')
+const isCookbook = inSection('/cookbook')
+const isSideQuests = inSection('/side-quests')
 ---
 
 <header>

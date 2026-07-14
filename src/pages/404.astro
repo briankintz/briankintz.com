@@ -8,7 +8,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       <p class="code">404 —</p>
       <h1>This page got <span class="hl">torn out</span>.</h1>
       <p>Whatever used to be here isn't in the notebook anymore — or never was. The homepage has everything that is.</p>
-      <a class="btn" href="/">Back to the homepage</a>
+      <a class="btn primary" href="/">Back to the homepage</a>
     </div>
   </main>
 </BaseLayout>
@@ -43,22 +43,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   }
 
   .btn {
-    display: inline-block;
     margin-top: 30px;
-    font-size: 14.5px;
-    font-weight: 700;
-    text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 10px;
-    background: var(--color-purple);
-    color: var(--color-card);
-    transition:
-      transform 0.12s,
-      background 0.15s;
-  }
-
-  .btn:hover {
-    background: var(--color-purple-hover);
   }
 
   @media (max-width: 760px) {

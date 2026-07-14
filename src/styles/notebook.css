@@ -40,6 +40,37 @@ body {
   padding: 0 2px;
 }
 
+/* Buttons — purple is structural */
+.btn {
+  display: inline-block;
+  font-size: 14.5px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  transition:
+    transform 0.12s,
+    background 0.15s;
+}
+
+.btn.primary {
+  background: var(--color-purple);
+  color: var(--color-card);
+}
+
+.btn.primary:hover {
+  background: var(--color-purple-hover);
+}
+
+.btn.ghost {
+  color: var(--color-purple);
+  border: 1.5px solid var(--color-purple);
+}
+
+.btn.ghost:hover {
+  background: var(--color-purple-soft);
+}
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
