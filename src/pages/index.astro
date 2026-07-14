@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import Icon from '../components/Icon.astro'
 import Highlight from '../components/Highlight.astro'
 import LabelChip from '../components/LabelChip.astro'
-import { stats, roles, credentials, education } from '../data/work'
+import { stats, roles, certifications, education, technicalSkills, softSkills, languages } from '../data/work'
 import { publishedRecipes } from '../lib/recipes'
 
 const recipeCount = (await publishedRecipes()).length
@@ -65,30 +65,42 @@ const recipeCount = (await publishedRecipes()).length
         }
 
         <div class="creds">
-          <div class="cred">
-            <h4>{credentials[0].label}</h4>
-            <ul>
-              {credentials[0].items.map((item) => <li>{item}</li>)}
-            </ul>
+          <div class="cred-col">
+            <div class="cred">
+              <h4>Certifications</h4>
+              <ul>
+                {certifications.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+            <div class="cred">
+              <h4>Education</h4>
+              <p class="edu-name">{education.institution}</p>
+              <p class="edu-degree">{education.degree}</p>
+              <p class="edu-honor">{education.honor}</p>
+            </div>
           </div>
-          <div class="cred">
-            <h4>Education</h4>
-            <p class="edu-name">{education.institution}</p>
-            <p class="edu-degree">{education.degree}</p>
-            <p class="edu-honor">{education.honor}</p>
+          <div class="cred-col">
+            <div class="cred">
+              <h4>Technical skills</h4>
+              <ul>
+                {technicalSkills.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
           </div>
-          {
-            credentials.slice(1).map(({ label, items }) => (
-              <div class="cred">
-                <h4>{label}</h4>
-                <ul>
-                  {items.map((item) => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))
-          }
+          <div class="cred-col">
+            <div class="cred">
+              <h4>Soft skills</h4>
+              <ul>
+                {softSkills.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+            <div class="cred">
+              <h4>Languages</h4>
+              <ul>
+                {languages.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -257,13 +269,20 @@ const recipeCount = (await publishedRecipes()).length
     opacity: 0.75;
   }
 
+  /* certs + education | technical skills | soft skills + languages */
   .creds {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px 28px;
     margin-top: 34px;
     padding-top: 26px;
     border-top: 1px solid var(--color-line);
+  }
+
+  .cred-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 
   .cred h4 {
@@ -386,6 +405,9 @@ const recipeCount = (await publishedRecipes()).length
     .role {
       grid-template-columns: 1fr;
       gap: 8px;
+    }
+    .creds {
+      grid-template-columns: 1fr;
     }
     .teasers {
       grid-template-columns: 1fr;

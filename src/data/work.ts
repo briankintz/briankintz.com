@@ -1,5 +1,5 @@
 // Homepage Work section content, transcribed from cv.md (briankintz/briankintz repo) — keep figures exactly as written.
-// Figures are exact and must stay as written: >10×, −95%, 10,000+, 15+, >10M.
+// Figures are exact and must stay as written: >10×, −95%, 10,000+, 15+, 10M+.
 
 export interface Stat {
   value: string
@@ -12,11 +12,6 @@ export interface Role {
   heading: string
   title: string
   achievements: string[]
-}
-
-export interface Credential {
-  label: string
-  items: string[]
 }
 
 export interface Education {
@@ -50,7 +45,7 @@ export const roles: Role[] = [
     heading: 'AI product infrastructure',
     title: 'Cloud Software Architect',
     achievements: [
-      'Led the technical expansion of an AI app with >10M users to a multi-platform architecture, redesigning user, subscription, and storage systems.',
+      'Led the technical expansion of an AI app with 10M+ users to a multi-platform architecture, redesigning user, subscription, and storage systems.',
       'Oversaw and supported the development team building a next-generation AI chat web application.',
     ],
   },
@@ -72,15 +67,27 @@ export const education: Education = {
   honor: 'summa cum laude',
 }
 
-export const credentials: Credential[] = [
-  {
-    label: 'Certifications',
-    items: ['Microsoft Azure Cloud Solutions Architecture Expert', 'Google Professional Cloud Architect'],
-  },
-  {
-    label: 'Core skills',
-    items: ['Kubernetes & Docker', 'DevOps toolchains', 'TypeScript, C#, Go', 'React & Next.js, Svelte, Astro'],
-  },
-  // "basst scho." is Brian's own line from cv.md — his authored humor carries over verbatim (see CLAUDE.md tone rule)
-  { label: 'Languages', items: ['English (native)', 'German (fluent)', 'Bavarian (basst scho.)'] },
+export const certifications: string[] = [
+  'Microsoft Azure Cloud Solutions Architecture Expert',
+  'Google Professional Cloud Architect',
 ]
+
+// cv.md's nested sub-bullets are folded into their parent lines
+export const technicalSkills: string[] = [
+  'Public & hybrid cloud infrastructure & architecture',
+  'Cloud- and AI-native software engineering',
+  'Kubernetes & Docker',
+  'DevOps toolchains (GitHub Actions, GitLab)',
+  'Software development — TypeScript, C#, Go · React & Next.js, Svelte, Astro',
+  'Modern web infrastructure — serverless compute & databases · CDN, WAF, SEO',
+]
+
+export const softSkills: string[] = [
+  'Technical & strategic consulting',
+  'Leadership-level project communication',
+  'Project and budget management',
+  'Cultural & technical leadership',
+]
+
+// "basst scho." is Brian's own line from cv.md — his authored humor carries over verbatim (see CLAUDE.md tone rule)
+export const languages: string[] = ['English (native)', 'German (fluent)', 'Bavarian (basst scho.)']
