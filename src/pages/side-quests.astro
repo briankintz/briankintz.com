@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const quests = [
+  {
+    level: 'Offshore miles',
+    title: 'Sailing',
+    body: "Raced, cruised, and sailed offshore along most of eastern North America. There's no better reset than a night watch far from shore.",
+  },
+  {
+    level: 'DSV Level B',
+    title: 'Skiing',
+    body: 'Licensed instructor — I guide club ski trips in winter and will happily talk technique long after everyone else has moved on.',
+  },
+  {
+    level: 'No concerts planned',
+    title: 'Guitar',
+    body: 'A trusty Taylor for unwinding after long days. Requests accepted, quality not guaranteed.',
+  },
+  {
+    level: 'Fear, faced',
+    title: 'Dancing',
+    body: "Took a course to get over the dread of dancing in public. Turns out it's actually fun. Who knew.",
+  },
+  {
+    level: 'Formerly',
+    title: 'Emergency medicine',
+    body: 'Emergency Medical Technician and medical shift supervisor in a previous chapter — still handy on mountains and boats.',
+  },
+]
+---
+
+<BaseLayout title="Side Quests — Brian Kintz" description="What fills the rest of Brian Kintz's calendar: mountains, sailing, skiing, guitar, and more.">
+  <main class="wrap">
+    <div class="hero">
+      <h1>Side <span class="hl">Quests</span></h1>
+      <p>Work's fun, but so are lots of other things. A running list of what fills the rest of the calendar.</p>
+    </div>
+
+    <div class="quests">
+      <div class="quest wide">
+        <div>
+          <span class="lvl">Happy place</span>
+          <h2>Mountains</h2>
+        </div>
+        <p>
+          Hiking, climbing, via ferrata, trail running — if there's elevation involved, I'm in. Most vacation plans
+          start with a topographic map and end with sore legs and zero regrets.
+        </p>
+      </div>
+      {
+        quests.map((q) => (
+          <div class="quest">
+            <span class="lvl">{q.level}</span>
+            <h2>{q.title}</h2>
+            <p>{q.body}</p>
+          </div>
+        ))
+      }
+      <div class="quest">
+        <span class="lvl">See: cookbook</span>
+        <h2>Cooking</h2>
+        <p>Big enough to get its own section of this site. <a href="/cookbook">Head to the cookbook →</a></p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 80px 0 52px;
+  }
+
+  h1 {
+    font-family: var(--font-slab);
+    font-size: clamp(36px, 5.5vw, 54px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .hero p {
+    margin-top: 14px;
+    font-size: 16.5px;
+    color: var(--color-soft);
+    max-width: 54ch;
+  }
+
+  /* padding-bottom = mockup's 20px grid padding + 36px pre-footer gap */
+  .quests {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    padding-bottom: 56px;
+  }
+
+  .quest {
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-block);
+    box-shadow: var(--shadow-block);
+    padding: 30px 32px;
+    transition:
+      transform 0.15s,
+      border-color 0.15s;
+  }
+
+  .quest:hover {
+    transform: translateY(-3px);
+  }
+
+  .lvl {
+    display: inline-block;
+    font-size: var(--text-label);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: var(--radius-tag);
+    padding: 4px 11px;
+    margin-bottom: 16px;
+  }
+
+  .quest:nth-child(odd) .lvl {
+    color: var(--color-purple);
+    background: var(--color-purple-soft);
+  }
+
+  .quest:nth-child(even) .lvl {
+    color: var(--color-orange);
+    background: var(--color-orange-tag);
+  }
+
+  .quest h2 {
+    font-family: var(--font-slab);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .quest p {
+    font-size: 14.5px;
+    color: var(--color-soft);
+  }
+
+  .quest p a {
+    color: var(--color-purple);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .quest.wide {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 40px;
+    align-items: center;
+  }
+
+  .quest.wide p {
+    max-width: 56ch;
+  }
+
+  @media (max-width: 760px) {
+    .hero {
+      padding: 52px 0 36px;
+    }
+    .quest.wide {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
