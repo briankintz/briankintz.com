@@ -2,6 +2,9 @@
 // Homepage — hero, Work block, teaser cards. Styles translated 1:1 from the Notebook design mockups.
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Icon from '../components/Icon.astro'
+import Highlight from '../components/Highlight.astro'
+import LinkButton from '../components/LinkButton.astro'
+import LabelChip from '../components/LabelChip.astro'
 import { stats, roles, credentials } from '../data/work'
 import { publishedRecipes } from '../lib/recipes'
 
@@ -15,20 +18,20 @@ const recipeCount = (await publishedRecipes()).length
   <main>
     <div class="wrap hero">
       <p class="hi">Hi, I'm Brian —</p>
-      <h1>I design and build <span class="hl">cloud-native platforms</span>.</h1>
+      <h1>I design and build <Highlight>cloud-native platforms</Highlight>.</h1>
       <p>
         Senior Cloud Solutions Architect in Germany, consulting on Azure and Google Cloud — with 15+ years across DevOps
         and software engineering behind it. This site also holds my cookbook and everything else I do off the clock.
       </p>
       <div class="hero-actions">
-        <a class="btn primary" href="#work">See my work</a>
-        <a class="btn ghost" href="/cookbook">Visit the cookbook</a>
+        <LinkButton href="#work" variant="primary">See my work</LinkButton>
+        <LinkButton href="/cookbook" variant="ghost">Visit the cookbook</LinkButton>
       </div>
     </div>
 
     <div class="wrap">
       <section class="block" id="work">
-        <span class="block-tag">Work</span>
+        <LabelChip color="purple">Work</LabelChip>
         <h2>Cloud architecture, end to end</h2>
         <p class="sub">
           From strategy through implementation and optimization — planning and managing medium- to enterprise-scale
@@ -80,7 +83,7 @@ const recipeCount = (await publishedRecipes()).length
 
       <div class="teasers">
         <a class="tease" href="/cookbook">
-          <span class="block-tag orange">Cookbook</span>
+          <LabelChip color="orange">Cookbook</LabelChip>
           <h2>Things worth cooking twice</h2>
           <p class="desc">{recipeCount} recipes and counting, documented over the years.</p>
           <ul>
@@ -91,7 +94,7 @@ const recipeCount = (await publishedRecipes()).length
           <span class="go">Open the cookbook <Icon name="arrow" /></span>
         </a>
         <a class="tease" href="/side-quests">
-          <span class="block-tag">Side Quests</span>
+          <LabelChip color="purple">Side Quests</LabelChip>
           <h2>Away from the keyboard</h2>
           <p class="desc">Work's fun, but so are lots of other things.</p>
           <ul>
@@ -155,24 +158,6 @@ const recipeCount = (await publishedRecipes()).length
     margin-bottom: 34px;
     /* not in the mockup: keep the block heading visible below the 62px sticky header on #work jumps */
     scroll-margin-top: 78px;
-  }
-
-  .block-tag {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-purple);
-    background: var(--color-purple-soft);
-    border-radius: var(--radius-tag);
-    padding: 5px 12px;
-    margin-bottom: 18px;
-  }
-
-  .block-tag.orange {
-    color: var(--color-orange-text);
-    background: var(--color-orange-tag);
   }
 
   h2 {

@@ -1,0 +1,35 @@
+---
+// Uppercase tinted label chip — unifies the hand-rolled `.block-tag` (homepage),
+// `.cat-tag` (recipe hero), and `.lvl` (side quests) variants. Purple is structural,
+// orange is annotation; orange text always uses --color-orange-text.
+interface Props {
+  color: 'purple' | 'orange'
+}
+
+const { color } = Astro.props
+---
+
+<span class:list={['chip', color]}><slot /></span>
+
+<style>
+  .chip {
+    display: inline-block;
+    font-size: var(--text-label);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: var(--radius-tag);
+    padding: 5px 12px;
+    margin-bottom: 16px;
+  }
+
+  .chip.purple {
+    color: var(--color-purple);
+    background: var(--color-purple-soft);
+  }
+
+  .chip.orange {
+    color: var(--color-orange-text);
+    background: var(--color-orange-tag);
+  }
+</style>

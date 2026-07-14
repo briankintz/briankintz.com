@@ -1,0 +1,30 @@
+---
+// Recipe tag chip — orange annotation accent, fixed vocabulary only.
+// sm = card default, lg = recipe hero (src/pages/cookbook/[slug].astro).
+interface Props {
+  tag: string
+  size?: 'sm' | 'lg'
+}
+
+const { tag, size = 'sm' } = Astro.props
+---
+
+<span class:list={['rtag', size]}>{tag}</span>
+
+<style>
+  .rtag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--color-orange-text);
+    background: var(--color-orange-tag);
+    border-radius: var(--radius-tag);
+    padding: 3px 8px;
+  }
+
+  .rtag.lg {
+    font-size: 12px;
+    padding: 4px 11px;
+  }
+</style>

@@ -2,6 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Icon from '../../components/Icon.astro'
 import IngredientList from '../../components/IngredientList.astro'
+import Highlight from '../../components/Highlight.astro'
+import LinkButton from '../../components/LinkButton.astro'
+import LabelChip from '../../components/LabelChip.astro'
+import TagChip from '../../components/TagChip.astro'
 import { CATEGORY_LABELS, effortDots, publishedRecipes } from '../../lib/recipes'
 
 export async function getStaticPaths() {
@@ -44,15 +48,15 @@ const categoryLabel = CATEGORY_LABELS[category]
   <main class="wrap">
     <div class="r-hero">
       <a class="back" href="/cookbook">← All recipes</a>
-      <span class="cat-tag">{categoryLabel}</span>
-      <h1>{titleLead}{titleLead && ' '}<span class="hl">{hlWord}</span></h1>
+      <LabelChip color="orange">{categoryLabel}</LabelChip>
+      <h1>{titleLead}{titleLead && ' '}<Highlight>{hlWord}</Highlight></h1>
       <p class="tagline">{tagline}</p>
       {preamble && <div class="preamble" set:html={preamble} />}
       {
         tags.length > 0 && (
           <div class="tags-row">
             {tags.map((tag) => (
-              <span class="rtag">{tag}</span>
+              <TagChip tag={tag} size="lg" />
             ))}
           </div>
         )
@@ -95,18 +99,18 @@ const categoryLabel = CATEGORY_LABELS[category]
     <nav class="r-nav" aria-label="More recipes">
       {
         prev ? (
-          <a class="btn" href={`/cookbook/${prev.id}`}>
+          <LinkButton class="r-btn" href={`/cookbook/${prev.id}`}>
             ← Previous: {prev.data.title}
-          </a>
+          </LinkButton>
         ) : (
           <span />
         )
       }
       {
         next && (
-          <a class="btn" href={`/cookbook/${next.id}`}>
+          <LinkButton class="r-btn" href={`/cookbook/${next.id}`}>
             Next: {next.data.title} →
-          </a>
+          </LinkButton>
         )
       }
     </nav>
@@ -131,19 +135,6 @@ const categoryLabel = CATEGORY_LABELS[category]
 
   .back:hover {
     text-decoration: underline;
-  }
-
-  .cat-tag {
-    display: inline-block;
-    font-size: var(--text-label);
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-orange-text);
-    background: var(--color-orange-tag);
-    border-radius: var(--radius-tag);
-    padding: 5px 12px;
-    margin-bottom: 16px;
   }
 
   h1 {
@@ -183,12 +174,6 @@ const categoryLabel = CATEGORY_LABELS[category]
     gap: 8px;
     flex-wrap: wrap;
     margin-top: 16px;
-  }
-
-  /* Hero-sized variant of the global .rtag chip */
-  .rtag {
-    font-size: 12px;
-    padding: 4px 11px;
   }
 
   /* Meta strip — one of the two sanctioned dashed borders */
@@ -383,14 +368,16 @@ const categoryLabel = CATEGORY_LABELS[category]
     flex-wrap: wrap;
   }
 
-  .r-nav .btn {
+  /* :global(.r-btn) — the class lands on LinkButton's own root element, which carries
+     LinkButton's scope id, not this page's, so a plain scoped selector won't match. */
+  .r-nav :global(.r-btn) {
     color: var(--color-purple);
     background: var(--color-card);
     border: 1px solid var(--color-line);
     padding: 12px 20px;
   }
 
-  .r-nav .btn:hover {
+  .r-nav :global(.r-btn):hover {
     border-color: var(--color-purple);
   }
 
