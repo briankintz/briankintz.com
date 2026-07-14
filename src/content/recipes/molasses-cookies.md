@@ -1,6 +1,6 @@
 ---
 title: Molasses Cookies
-tagline: Chewy, spicy, grandma-approved
+tagline: Chewy, spicy, wintery
 category: desserts
 effort: 1
 serves: A big batch

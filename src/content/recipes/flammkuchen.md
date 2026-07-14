@@ -4,7 +4,7 @@ tagline: Flame-cake
 category: dinner
 effort: 1
 serves: 2 flammkuchen
-origin: Alsace
+origin: France / Germany
 tags: [weeknight, comfort food]
 draft: false
 ---

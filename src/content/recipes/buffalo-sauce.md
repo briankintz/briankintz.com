@@ -1,10 +1,10 @@
 ---
 title: Buffalo Sauce
-tagline: Frank's, butter, done
+tagline: Blue cheese's best friend
 category: sauces
 effort: 1
 serves: About 1 cup
-origin: Buffalo, NY
+origin: USA
 tags: [spicy, quick]
 draft: false
 ---

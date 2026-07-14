@@ -1,6 +1,6 @@
 ---
 title: Sub Rolls
-tagline: The sandwich is only as good as the bread
+tagline: ...or hoagies, or grinders, or ...
 category: bread
 effort: 2
 serves: 4–6 rolls

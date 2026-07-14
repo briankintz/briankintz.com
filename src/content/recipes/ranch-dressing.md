@@ -1,6 +1,6 @@
 ---
 title: Ranch Dressing
-tagline: Better than the bottle
+tagline: Shhh - don't tell Europe
 category: sauces
 effort: 1
 serves: About 150ml

@@ -1,6 +1,6 @@
 ---
 title: Jerk Chicken
-tagline: Taste the Caribbean Heat
+tagline: Taste the Caribbean heat
 category: dinner
 effort: 2
 serves: 1–2 lbs of chicken

@@ -4,7 +4,7 @@ tagline: Great on salads, pizza, or anything really
 category: snacks-and-sides
 effort: 1
 serves: Scales by the handful
-origin: Brian's kitchen
+origin: Earth
 tags: [healthy-ish, quick]
 draft: false
 ---

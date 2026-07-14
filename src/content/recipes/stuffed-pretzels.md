@@ -1,10 +1,10 @@
 ---
 title: Stuffed Pretzels
-tagline: Everything's better with chipotle and cheese
+tagline: Pretzels...but spicier and with cheese
 category: snacks-and-sides
 effort: 3
 serves: 6–8 pretzels
-origin: Germany
+origin: Germany / USA
 tags: [show-off, comfort food]
 tip: The dough can be frozen after its bath...just let it rise then carefully place in the freezer. Once it's mostly frozen it can be put in a plastic bag and kept in the freezer for a couple weeks. To finish baking it, just place the frozen dough directly into a preheated oven at 220F and bake normally until golden brown.
 draft: false

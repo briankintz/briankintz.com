@@ -1,6 +1,6 @@
 ---
 title: Enchilada Sauce
-tagline: Skip the can
+tagline: All the spices!
 category: sauces
 effort: 1
 serves: About 500ml

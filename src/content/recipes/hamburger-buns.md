@@ -1,10 +1,10 @@
 ---
 title: Hamburger Buns
-tagline: Brioche buns worth building a burger on
+tagline: Every burger deserves a great bun
 category: bread
 effort: 2
 serves: 6 buns
-origin: American BBQ, via a German blog
+origin: USA
 tags: [show-off]
 draft: false
 ---

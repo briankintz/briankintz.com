@@ -1,6 +1,6 @@
 ---
 title: Pulled Pork
-tagline: Low and slow - the slow cooker does the heavy lifting
+tagline: Low and slow baby
 category: dinner
 effort: 2
 serves: 8–10
