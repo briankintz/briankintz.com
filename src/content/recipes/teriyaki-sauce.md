@@ -1,11 +1,10 @@
 ---
 title: Teriyaki Sauce
 tagline: Half marinade, half glaze
-category: sauces
+category: dips-and-sauces
 effort: 1
-serves: About 150ml
-origin: Japan
-tags: [quick, weeknight]
+makes: About 150ml
+tags: [quick]
 draft: false
 ---
 

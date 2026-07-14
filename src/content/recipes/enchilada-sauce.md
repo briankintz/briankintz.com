@@ -1,10 +1,9 @@
 ---
 title: Enchilada Sauce
 tagline: All the spices!
-category: sauces
+category: dips-and-sauces
 effort: 1
-serves: About 500ml
-origin: Mexico
+makes: About 500ml
 tags: [spicy, quick]
 draft: false
 ---

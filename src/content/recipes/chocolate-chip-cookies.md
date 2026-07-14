@@ -3,8 +3,7 @@ title: Chocolate Chip Cookies
 tagline: Brown butter makes everything better
 category: desserts
 effort: 2
-serves: 1 small mountain of cookies
-origin: USA
+makes: 1 small mountain of cookies
 tags: [comfort food, show-off]
 tip: Bake half, freeze half! Form the dough balls normally, then place half of them on a plate or sheet tray and freeze. Once they're completely frozen, move to a freezer bag or other closed container for storage (freezing the dough balls separately keeps them from sticking together in the bag). Frozen cookie dough balls don't need to thaw before baking - just lower the temp to 325F / 160C and bake for a couple minutes longer.
 draft: false

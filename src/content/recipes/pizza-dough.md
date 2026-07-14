@@ -3,9 +3,8 @@ title: Pizza Dough
 tagline: Why is stretching dough so hard?
 category: bread
 effort: 1
-serves: 2 pizzas
-origin: Italy
-tags: [weeknight, comfort food]
+makes: 2 pizzas
+tags: [comfort food]
 draft: false
 ---
 

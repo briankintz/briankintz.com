@@ -1,10 +1,9 @@
 ---
 title: Ranch Dressing
 tagline: Shhh - don't tell Europe
-category: sauces
+category: dips-and-sauces
 effort: 1
-serves: About 150ml
-origin: USA
+makes: About 150ml
 tags: [quick]
 draft: false
 ---

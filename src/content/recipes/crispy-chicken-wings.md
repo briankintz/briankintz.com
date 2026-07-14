@@ -4,8 +4,7 @@ tagline: Oven-crispy, no fryer required
 category: snacks-and-sides
 effort: 1
 serves: 2–4
-origin: USA
-tags: [weeknight, comfort food]
+tags: [comfort food]
 draft: false
 ---
 

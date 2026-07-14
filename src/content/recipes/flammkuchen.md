@@ -1,11 +1,10 @@
 ---
 title: Flammkuchen
 tagline: Flame-cake
-category: dinner
+category: main-courses
 effort: 1
-serves: 2 flammkuchen
-origin: France / Germany
-tags: [weeknight, comfort food]
+makes: 2 flammkuchen
+tags: [comfort food]
 draft: false
 ---
 

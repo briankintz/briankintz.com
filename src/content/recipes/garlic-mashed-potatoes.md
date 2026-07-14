@@ -4,8 +4,7 @@ tagline: The garlic is not optional
 category: snacks-and-sides
 effort: 1
 serves: 4–6
-origin: USA
-tags: [comfort food, weeknight]
+tags: [comfort food]
 draft: false
 ---
 

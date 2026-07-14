@@ -1,10 +1,9 @@
 ---
 title: Chili Citrus Marinade
 tagline: Smoky chilis, bright citrus
-category: sauces
+category: dips-and-sauces
 effort: 1
-serves: Enough for ~1kg of meat
-origin: Mexico
+makes: Enough for ~1kg of meat
 tags: [spicy]
 draft: false
 ---

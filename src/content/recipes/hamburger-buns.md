@@ -3,8 +3,7 @@ title: Hamburger Buns
 tagline: Every burger deserves a great bun
 category: bread
 effort: 2
-serves: 6 buns
-origin: USA
+makes: 6 buns
 tags: [show-off]
 draft: false
 ---

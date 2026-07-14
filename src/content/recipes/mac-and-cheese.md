@@ -1,10 +1,9 @@
 ---
 title: Mac & Cheese
 tagline: You can't make everyone happy - you're not cheese
-category: dinner
+category: main-courses
 effort: 2
 serves: 6–8
-origin: USA
 tags: [comfort food]
 tip: Avoid using packaged shredded cheese - it has a lot of anti-clumping agents in it that keep the sauce from becoming super smooth and creamy. It will still work, but buying a block of cheese and grating it yourself is significantly better. It also just tastes better and even costs less!
 draft: false

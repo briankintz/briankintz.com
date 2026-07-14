@@ -3,8 +3,7 @@ title: Sub Rolls
 tagline: ...or hoagies, or grinders, or ...
 category: bread
 effort: 2
-serves: 4–6 rolls
-origin: USA
+makes: 4–6 rolls
 tags: [show-off]
 draft: false
 ---
