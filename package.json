@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^11.0.3",
+    "@fontsource/aleo": "^5.2.7",
+    "@fontsource/lato": "^5.2.7",
     "astro": "^7.0.9"
   },
   "devDependencies": {
