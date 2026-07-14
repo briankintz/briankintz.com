@@ -1,59 +1,402 @@
 ---
-import '../styles/global.css'
+// Homepage — hero, Work block, teaser cards. Styles translated 1:1 from handoff/mockups/index.html.
+import { getCollection } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Icon from '../components/Icon.astro'
+import { stats, roles, credentials } from '../data/work'
 
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
-
-import Intro from '../components/Intro.astro'
-import Section from '../components/Section.astro'
-import Work from '../components/Work.astro'
-import Other from '../components/Other.astro'
-import Play from '../components/Play.astro'
+const recipeCount = (await getCollection('recipes', ({ data }) => !data.draft)).length
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      name="description"
-      content="DevOps engineer and cloud architect with experience designing and building scalable cloud-native applications and systems."
-    />
-    <title>Brian Kintz</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+<BaseLayout
+  title="Brian Kintz — Cloud Solutions Architect"
+  description="Senior Cloud Solutions Architect in Germany, consulting on Azure and Google Cloud — with 15+ years across DevOps and software engineering. Also holds my cookbook and everything I do off the clock."
+>
+  <main>
+    <div class="wrap hero">
+      <p class="hi">Hi, I'm Brian —</p>
+      <h1>I design and build <span class="hl">cloud-native platforms</span>.</h1>
+      <p>
+        Senior Cloud Solutions Architect in Germany, consulting on Azure and Google Cloud — with 15+ years across
+        DevOps and software engineering behind it. This site also holds my cookbook and everything else I do off the
+        clock.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#work">See my work</a>
+        <a class="btn ghost" href="/cookbook">Visit the cookbook</a>
+      </div>
+    </div>
 
-    <link rel="preconnect" href="https://p.typekit.net" />
-    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
-    <link rel="preconnect" href="https://ka-p.fontawesome.com" crossorigin />
+    <div class="wrap">
+      <section class="block" id="work">
+        <span class="block-tag">Work</span>
+        <h2>Cloud architecture, end to end</h2>
+        <p class="sub">
+          From strategy through implementation and optimization — planning and managing medium- to enterprise-scale
+          cloud deployments, and bridging the gap between stakeholders and engineering teams.
+        </p>
 
-    <link
-      rel="preload"
-      href="https://use.typekit.net/ulq6snh.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="https://use.typekit.net/ulq6snh.css" /></noscript>
+        <div class="stats">
+          {
+            stats.map(({ value, label }) => (
+              <div class="stat">
+                <b>{value}</b>
+                <span>{label}</span>
+              </div>
+            ))
+          }
+        </div>
 
-    <script defer src="https://kit.fontawesome.com/34d36e55e2.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <Header />
-    <main>
-      <Intro />
-      <Section variant="aurora-orange">
-        <Work />
-      </Section>
-      <Section>
-        <Other />
-      </Section>
-      <Section variant="aurora-blue">
-        <Play />
-      </Section>
-    </main>
-    <Footer />
-  </body>
-</html>
+        {
+          roles.map(({ org, dates, heading, title, achievements }) => (
+            <div class="role">
+              <div class="when">
+                <b>{org}</b>
+                {dates}
+              </div>
+              <div>
+                <h3>{heading}</h3>
+                <p class="title">{title}</p>
+                <ul>
+                  {achievements.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        }
+
+        <div class="creds">
+          {
+            credentials.map(({ label, detail }) => (
+              <div class="cred">
+                <h4>{label}</h4>
+                <p>{detail}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <div class="teasers">
+        <a class="tease" href="/cookbook">
+          <span class="block-tag orange">Cookbook</span>
+          <h2>Things worth cooking twice</h2>
+          <p class="desc">{recipeCount} recipes and counting, documented over the years.</p>
+          <ul>
+            <li>Jerk Chicken <i>dinner</i></li>
+            <li>Stuffed Pretzels <i>snacks</i></li>
+            <li>Mango Habanero Hot Sauce <i>sauces</i></li>
+          </ul>
+          <span class="go">Open the cookbook <Icon name="arrow" /></span>
+        </a>
+        <a class="tease" href="/side-quests">
+          <span class="block-tag">Side Quests</span>
+          <h2>Away from the keyboard</h2>
+          <p class="desc">Work's fun, but so are lots of other things.</p>
+          <ul>
+            <li>Mountains <i>happy place</i></li>
+            <li>Sailing <i>offshore</i></li>
+            <li>Skiing <i>DSV Level B</i></li>
+          </ul>
+          <span class="go">See all side quests <Icon name="arrow" /></span>
+        </a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  /* ---------- hero ---------- */
+  /* vertical only — the mockup's shorthand `padding: 96px 0 72px` would clobber .wrap's 24px side padding */
+  .hero {
+    padding-top: 96px;
+    padding-bottom: 72px;
+  }
+
+  .hero .hi {
+    font-family: var(--font-slab);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--color-purple);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: var(--font-slab);
+    font-size: var(--text-h1);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    max-width: 20ch;
+  }
+
+  .hero p {
+    margin-top: 22px;
+    font-size: 17.5px;
+    color: var(--color-soft);
+    max-width: 54ch;
+  }
+
+  .hero-actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* ---------- blocks ---------- */
+  .block {
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-block);
+    box-shadow: var(--shadow-block);
+    padding: 44px 46px;
+    margin-bottom: 34px;
+    /* not in the mockup: keep the block heading visible below the 62px sticky header on #work jumps */
+    scroll-margin-top: 78px;
+  }
+
+  .block-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-purple);
+    background: var(--color-purple-soft);
+    border-radius: var(--radius-tag);
+    padding: 5px 12px;
+    margin-bottom: 18px;
+  }
+
+  .block-tag.orange {
+    color: var(--color-orange);
+    background: var(--color-orange-tag);
+  }
+
+  h2 {
+    font-family: var(--font-slab);
+    font-size: var(--text-h2);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .sub {
+    color: var(--color-soft);
+    font-size: 15.5px;
+    max-width: 58ch;
+    margin-top: 10px;
+  }
+
+  /* ---------- work ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin: 34px 0 40px;
+  }
+
+  .stat {
+    border: var(--border-sketch);
+    border-radius: var(--radius-card);
+    padding: 18px 18px 14px;
+  }
+
+  .stat b {
+    display: block;
+    font-family: var(--font-slab);
+    font-size: clamp(26px, 3.4vw, 34px);
+    font-weight: 700;
+    color: var(--color-purple);
+  }
+
+  .stat span {
+    font-size: 12.5px;
+    color: var(--color-soft);
+    line-height: 1.45;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .role {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 28px;
+    padding: 26px 0;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .role .when {
+    font-size: 13px;
+    color: var(--color-soft);
+  }
+
+  .role .when b {
+    display: block;
+    color: var(--color-ink);
+    font-weight: 700;
+    font-size: 14.5px;
+  }
+
+  .role h3 {
+    font-family: var(--font-slab);
+    font-size: var(--text-h3);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .role .title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-orange);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .role ul {
+    list-style: none;
+  }
+
+  .role li {
+    font-size: 14.5px;
+    color: var(--color-soft);
+    padding: 4px 0 4px 18px;
+    position: relative;
+  }
+
+  .role li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 7px;
+    height: 7px;
+    border-radius: 2px;
+    background: var(--color-orange);
+    opacity: 0.75;
+  }
+
+  .creds {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 24px;
+    margin-top: 34px;
+    padding-top: 26px;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .cred h4 {
+    font-size: var(--text-label);
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-purple);
+    margin-bottom: 8px;
+  }
+
+  .cred p {
+    font-size: 14px;
+    color: var(--color-ink);
+  }
+
+  /* ---------- teasers ---------- */
+  .teasers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 34px;
+    margin-bottom: 34px;
+  }
+
+  .tease {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-block);
+    box-shadow: var(--shadow-block);
+    padding: 36px 38px;
+    text-decoration: none;
+    color: var(--color-ink);
+    transition:
+      transform 0.15s,
+      border-color 0.15s;
+  }
+
+  .tease:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-purple);
+  }
+
+  .tease h2 {
+    font-size: 26px;
+  }
+
+  .tease p.desc {
+    color: var(--color-soft);
+    font-size: 14.5px;
+    margin-top: 10px;
+  }
+
+  .tease ul {
+    list-style: none;
+    margin: 18px 0 22px;
+  }
+
+  .tease li {
+    font-size: 14.5px;
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--color-line);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .tease li i {
+    font-style: normal;
+    color: var(--color-soft);
+    font-size: 13px;
+  }
+
+  .tease .go {
+    margin-top: auto;
+    font-weight: 700;
+    font-size: 14.5px;
+    color: var(--color-purple);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .tease .go :global(svg) {
+    width: 15px;
+    height: 15px;
+  }
+
+  .tease:hover .go {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 760px) {
+    .hero {
+      padding-top: 60px;
+      padding-bottom: 48px;
+    }
+    .block {
+      padding: 28px 24px;
+    }
+    .role {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .teasers {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .tease {
+      padding: 28px 24px;
+    }
+  }
+</style>
