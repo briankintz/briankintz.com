@@ -1,0 +1,59 @@
+/*
+ * briankintz.com — "Notebook" design system tokens
+ * Single source of truth. Claude Design can ingest this file directly;
+ * the Astro implementation should import it globally.
+ */
+
+:root {
+  /* ---------- Color ---------- */
+  --color-paper:        #FCFBF7;  /* page background (warm paper) */
+  --color-dot:          #D9D4C8;  /* dot-grid dots on the paper */
+  --color-card:         #FFFFFF;  /* content blocks / cards */
+  --color-ink:          #2A2530;  /* primary text */
+  --color-soft:         #6B6472;  /* secondary text */
+  --color-line:         #E8E4DB;  /* borders, dividers */
+
+  --color-purple:       #6A3AD4;  /* PRIMARY accent: structure, links, buttons, active states */
+  --color-purple-soft:  #F0EAFC;  /* purple tint: tag backgrounds, step numbers */
+  --color-purple-hover: #5A2EB8;  /* pressed/hover state for solid purple */
+
+  --color-orange:       #F26419;  /* SECONDARY accent: highlighter, recipe tags, margin notes */
+  --color-orange-soft:  rgba(242,110,28,.30);  /* highlighter swipe */
+  --color-orange-tag:   rgba(242,110,28,.12);  /* tag chip background */
+  --color-orange-tint:  #FEF1E7;  /* tip/callout block background */
+
+  /* ---------- Typography ---------- */
+  /* Self-hosted via Fontsource in production. Aleo = headings (slab serif),
+     Lato = body (Aleo's designed companion face). NO icon fonts, ever. */
+  --font-slab: 'Aleo', Rockwell, 'Roboto Slab', serif;
+  --font-sans: 'Lato', 'Segoe UI', system-ui, sans-serif;
+
+  --text-h1: clamp(38px, 6vw, 62px);      /* page titles; weight 700 slab */
+  --text-h2: clamp(26px, 3.6vw, 36px);    /* block titles; weight 700 slab */
+  --text-h3: 20px;                        /* entry titles; weight 600 slab */
+  --text-body: 15px;                      /* Lato 400; line-height 1.68 */
+  --text-meta: 12.5px;                    /* meta rows, footer */
+  --text-label: 11.5px;                   /* uppercase tags; weight 700, letter-spacing .14em */
+
+  /* ---------- Surface & shape ---------- */
+  --radius-block: 16px;   /* main content blocks */
+  --radius-card:  12px;   /* recipe index cards */
+  --radius-tag:   6px;    /* tag chips */
+  --radius-pill:  999px;  /* buttons, filter chips */
+  --shadow-block: 0 2px 0 rgba(42,37,48,.04);
+  --shadow-hover: 0 10px 24px rgba(106,58,212,.12);
+
+  /* ---------- Signature patterns ---------- */
+  /* Dot-grid paper (body background) */
+  --pattern-dotgrid: radial-gradient(circle, var(--color-dot) 1px, transparent 1px);
+  --pattern-dotgrid-size: 26px 26px;
+
+  /* Highlighter swipe: apply to a span, max once per page hero */
+  --pattern-highlight: linear-gradient(to top, var(--color-orange-soft) 42%, transparent 42%);
+
+  /* Recipe index-card spine: 4px solid orange bar on the left edge */
+  --pattern-card-spine: 4px solid var(--color-orange);
+
+  /* Stat tiles + recipe meta strip use dashed borders */
+  --border-sketch: 1.5px dashed var(--color-line);
+}

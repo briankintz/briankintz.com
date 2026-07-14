@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Side Quests — Brian Kintz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,500;0,600;0,700;1,500&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FCFBF7;
+    --ink:#2A2530;
+    --soft:#6B6472;
+    --purple:#6A3AD4;
+    --purple-soft:#F0EAFC;
+    --orange:#F26419;
+    --orange-soft:rgba(242,110,28,.30);
+    --line:#E8E4DB;
+    --card:#FFFFFF;
+    --slab:'Aleo',serif;
+    --sans:'Lato',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background-color:var(--paper);
+    background-image:radial-gradient(circle,#D9D4C8 1px,transparent 1px);
+    background-size:26px 26px;
+    color:var(--ink);font-family:var(--sans);line-height:1.68;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+  a:focus-visible{outline:2px solid var(--purple);outline-offset:3px;border-radius:4px}
+  ::selection{background:var(--orange-soft)}
+  .hl{background:linear-gradient(to top,var(--orange-soft) 42%,transparent 42%);padding:0 2px}
+
+  header{position:sticky;top:0;z-index:10;background:rgba(252,251,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{font-family:var(--slab);font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
+  .logo span{color:var(--purple)}
+  .nav-links{display:flex;gap:24px}
+  .nav-links a{font-size:14.5px;font-weight:500;color:var(--soft);text-decoration:none}
+  .nav-links a:hover{color:var(--purple)}
+  .nav-links a.active{color:var(--purple);font-weight:700}
+
+  .hero{padding:80px 0 52px}
+  h1{font-family:var(--slab);font-size:clamp(36px,5.5vw,54px);font-weight:700;letter-spacing:-.01em}
+  .hero p{margin-top:14px;font-size:16.5px;color:var(--soft);max-width:54ch}
+
+  .quests{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;padding-bottom:20px}
+  .quest{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 2px 0 rgba(42,37,48,.04);padding:30px 32px;transition:transform .15s,border-color .15s}
+  .quest:hover{transform:translateY(-3px)}
+  .quest .lvl{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-radius:6px;padding:4px 11px;margin-bottom:16px}
+  .quest:nth-child(odd) .lvl{color:var(--purple);background:var(--purple-soft)}
+  .quest:nth-child(even) .lvl{color:var(--orange);background:rgba(242,110,28,.14)}
+  .quest h2{font-family:var(--slab);font-size:24px;font-weight:700;margin-bottom:8px}
+  .quest p{font-size:14.5px;color:var(--soft)}
+  .quest.wide{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:16px 40px;align-items:center}
+  .quest.wide p{max-width:56ch}
+
+  footer{border-top:1px solid var(--line);padding:34px 0 56px;margin-top:36px}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .foot p{font-size:13px;color:var(--soft)}
+  .socials{display:flex;gap:12px}
+  .socials a{display:inline-flex;padding:8px;color:var(--soft);border:1px solid var(--line);border-radius:10px;background:var(--card)}
+  .socials a:hover{color:var(--purple);border-color:var(--purple)}
+  .socials svg{width:17px;height:17px;stroke:currentColor}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+  @media (max-width:760px){
+    .hero{padding:52px 0 36px}
+    .quest.wide{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html">Brian<span>Kintz</span></a>
+    <nav class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="cookbook.html">Cookbook</a>
+      <a href="side-quests.html" class="active">Side Quests</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Side <span class="hl">Quests</span></h1>
+    <p>Work's fun, but so are lots of other things. A running list of what fills the rest of the calendar.</p>
+  </div>
+
+  <div class="quests">
+    <div class="quest wide">
+      <div>
+        <span class="lvl" style="color:var(--purple);background:var(--purple-soft)">Happy place</span>
+        <h2>Mountains</h2>
+      </div>
+      <p>Hiking, climbing, via ferrata, trail running — if there's elevation involved, I'm in. Most vacation plans start with a topographic map and end with sore legs and zero regrets.</p>
+    </div>
+    <div class="quest">
+      <span class="lvl">Offshore miles</span>
+      <h2>Sailing</h2>
+      <p>Raced, cruised, and sailed offshore along most of eastern North America. There's no better reset than a night watch far from shore.</p>
+    </div>
+    <div class="quest">
+      <span class="lvl">DSV Level B</span>
+      <h2>Skiing</h2>
+      <p>Licensed instructor — I guide club ski trips in winter and will happily talk technique long after everyone else has moved on.</p>
+    </div>
+    <div class="quest">
+      <span class="lvl">No concerts planned</span>
+      <h2>Guitar</h2>
+      <p>A trusty Taylor for unwinding after long days. Requests accepted, quality not guaranteed.</p>
+    </div>
+    <div class="quest">
+      <span class="lvl">Fear, faced</span>
+      <h2>Dancing</h2>
+      <p>Took a course to get over the dread of dancing in public. Turns out it's actually fun. Who knew.</p>
+    </div>
+    <div class="quest">
+      <span class="lvl">Formerly</span>
+      <h2>Emergency medicine</h2>
+      <p>Emergency Medical Technician and medical shift supervisor in a previous chapter — still handy on mountains and boats.</p>
+    </div>
+    <div class="quest">
+      <span class="lvl">See: cookbook</span>
+      <h2>Cooking</h2>
+      <p>Big enough to get its own section of this site. <a href="cookbook.html" style="color:var(--purple);font-weight:700;text-decoration:none">Head to the cookbook →</a></p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>Made with ♥ by Brian Kintz · 19d9ac9 © 2026</p>
+    <div class="socials">
+      <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 00-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0020 4.8 5 5 0 0019.9 1s-1.2-.3-3.9 1.4a13.4 13.4 0 00-7 0C6.3.7 5.1 1 5.1 1A5 5 0 005 4.8a5.4 5.4 0 00-1.5 3.7c0 5.4 3.3 6.7 6.4 7a3.4 3.4 0 00-.9 2.6V22"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4V9h4v1.5A6 6 0 0116 8z"/><rect x="2" y="9" width="4" height="12" rx=".5"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

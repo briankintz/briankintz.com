@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cookbook — Brian Kintz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,500;0,600;0,700;1,500&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FCFBF7;
+    --ink:#2A2530;
+    --soft:#6B6472;
+    --purple:#6A3AD4;
+    --purple-soft:#F0EAFC;
+    --orange:#F26419;
+    --orange-soft:rgba(242,110,28,.30);
+    --line:#E8E4DB;
+    --card:#FFFFFF;
+    --rule:#EFEBE2;
+    --slab:'Aleo',serif;
+    --sans:'Lato',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background-color:var(--paper);
+    background-image:radial-gradient(circle,#D9D4C8 1px,transparent 1px);
+    background-size:26px 26px;
+    color:var(--ink);font-family:var(--sans);line-height:1.68;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+  a:focus-visible{outline:2px solid var(--purple);outline-offset:3px;border-radius:4px}
+  ::selection{background:var(--orange-soft)}
+  .hl{background:linear-gradient(to top,var(--orange-soft) 42%,transparent 42%);padding:0 2px}
+
+  header{position:sticky;top:0;z-index:10;background:rgba(252,251,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{font-family:var(--slab);font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
+  .logo span{color:var(--purple)}
+  .nav-links{display:flex;gap:24px}
+  .nav-links a{font-size:14.5px;font-weight:500;color:var(--soft);text-decoration:none}
+  .nav-links a:hover{color:var(--purple)}
+  .nav-links a.active{color:var(--purple);font-weight:700}
+
+  .hero{padding:80px 0 44px}
+  h1{font-family:var(--slab);font-size:clamp(36px,5.5vw,54px);font-weight:700;letter-spacing:-.01em}
+  .hero p{margin-top:14px;font-size:16.5px;color:var(--soft);max-width:56ch}
+  .hero p em{color:var(--ink)}
+
+  .filters{display:flex;gap:10px;flex-wrap:wrap;padding:8px 0 40px}
+  .chip{font-size:13.5px;font-weight:700;color:var(--soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 16px;text-decoration:none}
+  .chip:hover{border-color:var(--purple);color:var(--purple)}
+  .chip.on{background:var(--purple);border-color:var(--purple);color:#fff}
+
+  .cat{margin-bottom:52px}
+  .cat-head{display:flex;align-items:baseline;gap:14px;margin-bottom:20px}
+  .cat-head h2{font-family:var(--slab);font-size:24px;font-weight:700}
+  .cat-head span{font-size:13px;color:var(--soft)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+
+  /* index cards */
+  .rcard{position:relative;display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px 18px;text-decoration:none;color:var(--ink);overflow:hidden;transition:transform .15s,box-shadow .15s,border-color .15s}
+  .rcard:hover{transform:translateY(-3px) rotate(-.3deg);border-color:var(--purple);box-shadow:0 10px 24px rgba(106,58,212,.12)}
+  .rcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--orange);opacity:.85}
+  .rcard .cat-tag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--purple)}
+  .rcard h3{font-family:var(--slab);font-size:21px;font-weight:700;margin:6px 0 4px}
+  .rcard p{font-family:var(--slab);font-style:italic;font-size:14.5px;color:var(--soft);min-height:44px}
+  .rcard .meta{display:flex;align-items:center;gap:14px;margin-top:14px;font-size:12.5px;color:var(--soft);flex-wrap:wrap}
+  .rcard .meta b{color:var(--purple);font-weight:700;letter-spacing:.06em}
+  .rtag{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--orange);background:rgba(242,110,28,.12);border-radius:5px;padding:3px 8px}
+
+  .all-note{text-align:center;color:var(--soft);font-size:14px;padding:8px 0 24px;font-family:var(--slab);font-style:italic}
+
+  footer{border-top:1px solid var(--line);padding:34px 0 56px;margin-top:30px}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .foot p{font-size:13px;color:var(--soft)}
+  .socials{display:flex;gap:12px}
+  .socials a{display:inline-flex;padding:8px;color:var(--soft);border:1px solid var(--line);border-radius:10px;background:var(--card)}
+  .socials a:hover{color:var(--purple);border-color:var(--purple)}
+  .socials svg{width:17px;height:17px;stroke:currentColor}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+  @media (max-width:640px){.hero{padding:52px 0 32px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html">Brian<span>Kintz</span></a>
+    <nav class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="cookbook.html" class="active">Cookbook</a>
+      <a href="side-quests.html">Side Quests</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>The <span class="hl">Cookbook</span></h1>
+    <p>Nothing too serious — just documentation of things I've enjoyed cooking over the years. Fair warning: <em>I hate measuring things</em>, so take all units with a smidgen/pinch/dash of salt.</p>
+  </div>
+
+  <div class="filters" role="navigation" aria-label="Filter recipes by tag">
+    <a class="chip on" href="#">All</a>
+    <a class="chip" href="#">Comfort food</a>
+    <a class="chip" href="#">Spicy</a>
+    <a class="chip" href="#">Weeknight</a>
+    <a class="chip" href="#">Quick</a>
+    <a class="chip" href="#">Show-off</a>
+    <a class="chip" href="#">Healthy-ish</a>
+    <a class="chip" href="#">Breakfast</a>
+  </div>
+
+  <div class="cat">
+    <div class="cat-head"><h2>Dinner</h2><span>6 recipes</span></div>
+    <div class="cards">
+      <a class="rcard" href="recipe-jerk-chicken.html">
+        <span class="cat-tag">Dinner</span>
+        <h3>Jerk Chicken</h3>
+        <p>Taste the Caribbean heat.</p>
+        <div class="meta"><span><b>effort</b> ●●●</span><span><b>origin</b> Jamaica</span><span class="rtag">spicy</span><span class="rtag">show-off</span></div>
+      </a>
+      <a class="rcard" href="#">
+        <span class="cat-tag">Dinner</span>
+        <h3>Flammkuchen</h3>
+        <p>Flame-cake: thin, crispy, and gone in minutes.</p>
+        <div class="meta"><span><b>effort</b> ●○○</span><span><b>origin</b> Alsace</span><span class="rtag">weeknight</span></div>
+      </a>
+      <a class="rcard" href="#">
+        <span class="cat-tag">Dinner</span>
+        <h3>Mac &amp; Cheese</h3>
+        <p>You can't make everyone happy — you're not cheese.</p>
+        <div class="meta"><span><b>effort</b> ●○○</span><span><b>origin</b> USA</span><span class="rtag">comfort food</span><span class="rtag">weeknight</span></div>
+      </a>
+    </div>
+  </div>
+
+  <div class="cat">
+    <div class="cat-head"><h2>Bread & Snacks</h2><span>5 recipes</span></div>
+    <div class="cards">
+      <a class="rcard" href="#">
+        <span class="cat-tag">Snacks</span>
+        <h3>Stuffed Pretzels</h3>
+        <p>Everything's better with chipotle and cheese.</p>
+        <div class="meta"><span><b>effort</b> ●●○</span><span><b>origin</b> Germany × Mexico</span><span class="rtag">comfort food</span></div>
+      </a>
+      <a class="rcard" href="#">
+        <span class="cat-tag">Bread</span>
+        <h3>Pizza Dough</h3>
+        <p>The slow way, on purpose.</p>
+        <div class="meta"><span><b>effort</b> ●●○</span><span><b>origin</b> Italy</span><span class="rtag">show-off</span></div>
+      </a>
+      <a class="rcard" href="#">
+        <span class="cat-tag">Bread</span>
+        <h3>Sandwich Bread</h3>
+        <p>Better than the bakery, most days.</p>
+        <div class="meta"><span><b>effort</b> ●●○</span><span><b>origin</b> USA</span><span class="rtag">breakfast</span></div>
+      </a>
+    </div>
+  </div>
+
+  <div class="cat">
+    <div class="cat-head"><h2>Sauces</h2><span>4 recipes</span></div>
+    <div class="cards">
+      <a class="rcard" href="#">
+        <span class="cat-tag">Sauces</span>
+        <h3>Mango Habanero Hot Sauce</h3>
+        <p>Handle with care.</p>
+        <div class="meta"><span><b>effort</b> ●○○</span><span><b>origin</b> Caribbean</span><span class="rtag">spicy</span><span class="rtag">quick</span></div>
+      </a>
+      <a class="rcard" href="#">
+        <span class="cat-tag">Sauces</span>
+        <h3>Ranch Dressing</h3>
+        <p>From scratch — no packets involved.</p>
+        <div class="meta"><span><b>effort</b> ●○○</span><span><b>origin</b> USA</span><span class="rtag">quick</span></div>
+      </a>
+      <a class="rcard" href="#">
+        <span class="cat-tag">Sauces</span>
+        <h3>Teriyaki</h3>
+        <p>Sweet, glossy, goes on everything.</p>
+        <div class="meta"><span><b>effort</b> ●○○</span><span><b>origin</b> Japan</span><span class="rtag">quick</span><span class="rtag">weeknight</span></div>
+      </a>
+    </div>
+  </div>
+
+  <p class="all-note">…plus breakfast, sides, and desserts — 23 recipes in all.</p>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>Made with ♥ by Brian Kintz · 19d9ac9 © 2026</p>
+    <div class="socials">
+      <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 00-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0020 4.8 5 5 0 0019.9 1s-1.2-.3-3.9 1.4a13.4 13.4 0 00-7 0C6.3.7 5.1 1 5.1 1A5 5 0 005 4.8a5.4 5.4 0 00-1.5 3.7c0 5.4 3.3 6.7 6.4 7a3.4 3.4 0 00-.9 2.6V22"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4V9h4v1.5A6 6 0 0116 8z"/><rect x="2" y="9" width="4" height="12" rx=".5"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

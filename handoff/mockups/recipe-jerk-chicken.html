@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jerk Chicken — The Cookbook — Brian Kintz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FCFBF7;
+    --ink:#2A2530;
+    --soft:#6B6472;
+    --purple:#6A3AD4;
+    --purple-soft:#F0EAFC;
+    --orange:#F26419;
+    --orange-soft:rgba(242,110,28,.30);
+    --orange-tint:#FEF1E7;
+    --line:#E8E4DB;
+    --card:#FFFFFF;
+    --rule:#EFEBE2;
+    --slab:'Aleo',serif;
+    --sans:'Lato',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background-color:var(--paper);
+    background-image:radial-gradient(circle,#D9D4C8 1px,transparent 1px);
+    background-size:26px 26px;
+    color:var(--ink);font-family:var(--sans);line-height:1.68;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+  a:focus-visible,input:focus-visible{outline:2px solid var(--purple);outline-offset:3px;border-radius:4px}
+  ::selection{background:var(--orange-soft)}
+  .hl{background:linear-gradient(to top,var(--orange-soft) 42%,transparent 42%);padding:0 2px}
+
+  header{position:sticky;top:0;z-index:10;background:rgba(252,251,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{font-family:var(--slab);font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
+  .logo span{color:var(--purple)}
+  .nav-links{display:flex;gap:24px}
+  .nav-links a{font-size:14.5px;font-weight:500;color:var(--soft);text-decoration:none}
+  .nav-links a:hover{color:var(--purple)}
+  .nav-links a.active{color:var(--purple);font-weight:700}
+
+  /* ---------- recipe header ---------- */
+  .r-hero{padding:72px 0 40px}
+  .back{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--purple);text-decoration:none;margin-bottom:20px}
+  .back:hover{text-decoration:underline}
+  .tags-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .rtag{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--orange);background:rgba(242,110,28,.12);border-radius:6px;padding:4px 11px}
+  .cat-tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);background:rgba(242,110,28,.14);border-radius:6px;padding:5px 12px;margin-bottom:16px}
+  h1{font-family:var(--slab);font-size:clamp(36px,5.5vw,56px);font-weight:700;letter-spacing:-.01em}
+  .tagline{font-family:var(--slab);font-style:italic;font-size:19px;color:var(--soft);margin-top:8px}
+  .meta-strip{display:flex;gap:0;flex-wrap:wrap;margin-top:28px;border:1.5px dashed var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+  .meta-cell{flex:1;min-width:130px;padding:16px 20px;border-right:1.5px dashed var(--line)}
+  .meta-cell:last-child{border-right:none}
+  .meta-cell b{display:block;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--purple)}
+  .meta-cell span{font-family:var(--slab);font-size:17px;font-weight:600}
+  .meta-cell .flames{color:var(--orange);letter-spacing:2px}
+
+  /* ---------- layout ---------- */
+  .r-body{display:grid;grid-template-columns:340px 1fr;gap:34px;align-items:start;padding-bottom:40px}
+
+  /* ingredients card */
+  .ing-card{position:sticky;top:86px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px 28px 22px;overflow:hidden}
+  .ing-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--orange);opacity:.85}
+  .ing-card h2{font-family:var(--slab);font-size:22px;font-weight:700;margin-bottom:14px}
+  .ing-list{list-style:none}
+  .ing-list li{padding:3px 0}
+  .ing-list label{display:flex;gap:12px;align-items:baseline;font-size:15px;cursor:pointer;line-height:1.55;padding:5px 0}
+  .ing-list input{width:16px;height:16px;accent-color:var(--purple);transform:translateY(2px);flex-shrink:0;cursor:pointer}
+  .ing-list input:checked+span{color:var(--soft);text-decoration:line-through;text-decoration-color:var(--orange)}
+  .ing-list .grp{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--purple);padding:16px 0 4px}
+  .ing-note{margin-top:16px;font-family:var(--slab);font-style:italic;font-size:13.5px;color:var(--soft)}
+
+  /* method */
+  .method{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 2px 0 rgba(42,37,48,.04);padding:36px 42px}
+  .method h2{font-family:var(--slab);font-size:22px;font-weight:700;margin-bottom:22px}
+  .steps{list-style:none;counter-reset:step}
+  .steps>li{counter-increment:step;position:relative;padding:0 0 26px 56px}
+  .steps>li::before{content:counter(step);position:absolute;left:0;top:-2px;width:36px;height:36px;border-radius:10px;background:var(--purple-soft);color:var(--purple);font-family:var(--slab);font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
+  .steps>li:not(:last-child)::after{content:"";position:absolute;left:17px;top:40px;bottom:6px;width:2px;background:var(--line)}
+  .steps h3{font-family:var(--slab);font-size:17px;font-weight:600;margin-bottom:4px}
+  .steps p{font-size:15px;color:var(--soft)}
+  .margin-note{font-family:var(--slab);font-style:italic;font-size:13.5px;color:var(--orange);margin-top:6px}
+
+  /* tip block */
+  .tip{display:flex;gap:14px;background:var(--orange-tint);border:1px solid rgba(242,100,25,.35);border-radius:12px;padding:18px 20px;margin:6px 0 26px}
+  .tip svg{width:20px;height:20px;stroke:var(--orange);flex-shrink:0;margin-top:3px}
+  .tip p{font-size:14px;color:var(--ink)}
+  .tip b{font-weight:700}
+
+  /* footer nav */
+  .r-nav{display:flex;justify-content:space-between;gap:16px;padding:10px 0 30px;flex-wrap:wrap}
+  .r-nav a{font-size:14.5px;font-weight:700;color:var(--purple);text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 20px}
+  .r-nav a:hover{border-color:var(--purple)}
+
+  footer{border-top:1px solid var(--line);padding:34px 0 56px}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .foot p{font-size:13px;color:var(--soft)}
+  .socials{display:flex;gap:12px}
+  .socials a{display:inline-flex;padding:8px;color:var(--soft);border:1px solid var(--line);border-radius:10px;background:var(--card)}
+  .socials a:hover{color:var(--purple);border-color:var(--purple)}
+  .socials svg{width:17px;height:17px;stroke:currentColor}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+  @media (max-width:820px){
+    .r-hero{padding:48px 0 30px}
+    .r-body{grid-template-columns:1fr}
+    .ing-card{position:static}
+    .method{padding:28px 24px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html">Brian<span>Kintz</span></a>
+    <nav class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="cookbook.html" class="active">Cookbook</a>
+      <a href="side-quests.html">Side Quests</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="r-hero">
+    <a class="back" href="cookbook.html">← All recipes</a><br>
+    <span class="cat-tag">Dinner</span>
+    <h1>Jerk <span class="hl">Chicken</span></h1>
+    <p class="tagline">Taste the Caribbean heat.</p>
+    <div class="tags-row">
+      <span class="rtag">spicy</span>
+      <span class="rtag">show-off</span>
+    </div>
+    <div class="meta-strip">
+      <div class="meta-cell"><b>Effort</b><span class="flames">●●●</span></div>
+      <div class="meta-cell"><b>Serves</b><span>4–6</span></div>
+      <div class="meta-cell"><b>Origin</b><span>Jamaica</span></div>
+    </div>
+  </div>
+
+  <div class="r-body">
+    <aside class="ing-card">
+      <h2>Ingredients</h2>
+      <ul class="ing-list">
+        <li class="grp">The marinade</li>
+        <li><label><input type="checkbox"><span>Scotch bonnets (2–4, depending on bravery)</span></label></li>
+        <li><label><input type="checkbox"><span>A bunch of scallions</span></label></li>
+        <li><label><input type="checkbox"><span>Garlic, a generous handful</span></label></li>
+        <li><label><input type="checkbox"><span>Fresh thyme &amp; ginger</span></label></li>
+        <li><label><input type="checkbox"><span>Allspice, plenty</span></label></li>
+        <li><label><input type="checkbox"><span>Brown sugar, soy sauce, lime</span></label></li>
+        <li><label><input type="checkbox"><span>A glug of oil</span></label></li>
+        <li class="grp">The rest</li>
+        <li><label><input type="checkbox"><span>Chicken thighs, bone-in &amp; skin-on</span></label></li>
+        <li><label><input type="checkbox"><span>Charcoal (worth it)</span></label></li>
+      </ul>
+      <p class="ing-note">As always: I hate measuring. Take all units with a smidgen/pinch/dash of salt.</p>
+    </aside>
+
+    <article class="method">
+      <h2>Method</h2>
+
+      <div class="tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 00-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0012 2z"/><path d="M9 21h6"/></svg>
+        <p><b>Before you start:</b> wear gloves for the scotch bonnets. This is not a suggestion — it's advice from someone who learned the hard way.</p>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <h3>Blitz the marinade</h3>
+          <p>Everything from the first list goes into a blender — scotch bonnets, scallions, garlic, thyme, ginger, allspice, brown sugar, soy, lime, oil. Blend until it's a rough paste. It should smell like a holiday.</p>
+        </li>
+        <li>
+          <h3>Marinate overnight</h3>
+          <p>Coat the chicken thoroughly, getting some under the skin. Seal it up and refrigerate overnight — 24 hours is even better.</p>
+          <p class="margin-note">Patience here is 80% of the recipe.</p>
+        </li>
+        <li>
+          <h3>Set up the grill</h3>
+          <p>Charcoal, two zones: hot side and cool side. If you can get your hands on pimento wood, you win. Otherwise a chunk of any mild smoking wood does nicely.</p>
+        </li>
+        <li>
+          <h3>Cook low, finish hot</h3>
+          <p>Start the thighs on the cool side, lid on, until nearly cooked through. Then move them over the coals to char the skin. Turn often; the sugar in the marinade wants to burn.</p>
+        </li>
+        <li>
+          <h3>Rest and serve</h3>
+          <p>Rest a few minutes, then chop and pile onto a platter. Rice and peas on the side, extra lime over the top.</p>
+          <p class="margin-note">Pairs well with a cold drink and standing around the grill longer than necessary.</p>
+        </li>
+      </ol>
+    </article>
+  </div>
+
+  <div class="r-nav">
+    <a href="#">← Previous: Flank Steak</a>
+    <a href="#">Next: Flammkuchen →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>Made with ♥ by Brian Kintz · 19d9ac9 © 2026</p>
+    <div class="socials">
+      <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 00-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0020 4.8 5 5 0 0019.9 1s-1.2-.3-3.9 1.4a13.4 13.4 0 00-7 0C6.3.7 5.1 1 5.1 1A5 5 0 005 4.8a5.4 5.4 0 00-1.5 3.7c0 5.4 3.3 6.7 6.4 7a3.4 3.4 0 00-.9 2.6V22"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4V9h4v1.5A6 6 0 0116 8z"/><rect x="2" y="9" width="4" height="12" rx=".5"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
