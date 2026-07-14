@@ -26,10 +26,12 @@ for (let i = 1; i < parts.length; i += 2) sections.push({ heading: parts[i].trim
 const ingredients = sections.find((s) => s.heading === 'Ingredients')
 const method = sections.find((s) => s.heading === 'Method')
 const extras = sections.filter((s) => s !== ingredients && s !== method) // Variations, Serving Ideas, ...
+// Drafts are excluded from routes, so every published recipe must follow the body convention.
+if (!ingredients || !method) throw new Error(`${recipe.id}: recipe body needs ## Ingredients and ## Method`)
 
 // CSS-only checkable list: wrap each ingredient's inline content in <label><input/>…,
 // stopping before any nested <ul> so two-level lists keep their sublist outside the label.
-const ingredientsHtml = (ingredients?.html ?? '').replace(
+const ingredientsHtml = ingredients.html.replace(
   /<li>([\s\S]*?)(?=<ul>|<\/li>)/g,
   (_, text) => `<li><label><input type="checkbox" /><span>${text.trim()}</span></label>`
 )
@@ -46,7 +48,7 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
 <BaseLayout title={`${title} — The Cookbook — Brian Kintz`} description={`${title}: ${tagline}. A recipe from Brian's cookbook.`}>
   <main class="wrap">
     <div class="r-hero">
-      <a class="back" href="/cookbook">← All recipes</a><br />
+      <a class="back" href="/cookbook">← All recipes</a>
       <span class="cat-tag">{categoryLabel}</span>
       <h1>{titleLead}{titleLead && ' '}<span class="hl">{hlWord}</span></h1>
       <p class="tagline">{tagline}</p>
@@ -83,7 +85,7 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
             </div>
           )
         }
-        {method && <div class="steps" set:html={method.html} />}
+        <div class="steps" set:html={method.html} />
         {
           extras.map((section) => (
             <section class="extra">
@@ -96,8 +98,8 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     </div>
 
     <nav class="r-nav" aria-label="More recipes">
-      {prev ? <a href={`/cookbook/${prev.id}`}>← Previous: {prev.data.title}</a> : <span />}
-      {next && <a href={`/cookbook/${next.id}`}>Next: {next.data.title} →</a>}
+      {prev ? <a class="btn" href={`/cookbook/${prev.id}`}>← Previous: {prev.data.title}</a> : <span />}
+      {next && <a class="btn" href={`/cookbook/${next.id}`}>Next: {next.data.title} →</a>}
     </nav>
   </main>
 </BaseLayout>
@@ -109,9 +111,8 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
   }
 
   .back {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    display: block;
+    width: fit-content;
     font-size: 13.5px;
     font-weight: 700;
     color: var(--color-purple);
@@ -162,7 +163,9 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     color: var(--color-soft);
   }
 
-  .preamble :global(a) {
+  /* Content links are structural — purple, everywhere in the recipe body */
+  .preamble :global(a),
+  .r-body :global(a) {
     color: var(--color-purple);
   }
 
@@ -240,26 +243,19 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     top: 86px;
     background: var(--color-card);
     border: 1px solid var(--color-line);
+    border-left: var(--pattern-card-spine);
     border-radius: var(--radius-card);
     padding: 26px 28px 22px;
-    overflow: hidden;
   }
 
-  .ing-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: var(--color-orange);
-    opacity: 0.85;
-  }
-
-  .ing-card h2 {
+  .ing-card h2,
+  .method h2 {
     font-family: var(--font-slab);
     font-size: 22px;
     font-weight: 700;
+  }
+
+  .ing-card h2 {
     margin-bottom: 14px;
   }
 
@@ -271,18 +267,14 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     margin-left: 28px; /* nested groups (chocolate-chip-cookies) indent under the parent label */
   }
 
-  .ing :global(li) {
-    padding: 3px 0;
-  }
-
   .ing :global(label) {
     display: flex;
     gap: 12px;
     align-items: baseline;
-    font-size: 15px;
+    font-size: var(--text-body);
     cursor: pointer;
     line-height: 1.55;
-    padding: 5px 0;
+    padding: 8px 0;
   }
 
   .ing :global(input) {
@@ -322,9 +314,6 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
   }
 
   .method h2 {
-    font-family: var(--font-slab);
-    font-size: 22px;
-    font-weight: 700;
     margin-bottom: 22px;
   }
 
@@ -337,7 +326,7 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     counter-increment: step;
     position: relative;
     padding: 0 0 26px 56px;
-    font-size: 15px;
+    font-size: var(--text-body);
     color: var(--color-soft);
   }
 
@@ -369,14 +358,6 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     background: var(--color-line);
   }
 
-  .steps :global(p + p) {
-    margin-top: 8px;
-  }
-
-  .steps :global(a) {
-    color: var(--color-purple);
-  }
-
   /* Blockquotes inside a step are Brian's margin notes */
   .steps :global(blockquote) {
     font-family: var(--font-slab);
@@ -384,12 +365,6 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     font-size: 13.5px;
     color: var(--color-orange);
     margin-top: 6px;
-  }
-
-  .steps :global(blockquote p) {
-    font: inherit;
-    color: inherit;
-    margin: 0;
   }
 
   /* ---------- tip block ---------- */
@@ -413,7 +388,6 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
 
   .tip p {
     font-size: 14px;
-    color: var(--color-ink);
   }
 
   /* ---------- trailing sections (Variations, Serving Ideas, …) ---------- */
@@ -426,7 +400,7 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
   }
 
   .extra .prose {
-    font-size: 15px;
+    font-size: var(--text-body);
     color: var(--color-soft);
   }
 
@@ -439,10 +413,6 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     padding-left: 22px;
   }
 
-  .extra .prose :global(a) {
-    color: var(--color-purple);
-  }
-
   /* ---------- prev/next ---------- */
   .r-nav {
     display: flex;
@@ -452,18 +422,14 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     flex-wrap: wrap;
   }
 
-  .r-nav a {
-    font-size: 14.5px;
-    font-weight: 700;
+  .r-nav .btn {
     color: var(--color-purple);
-    text-decoration: none;
     background: var(--color-card);
     border: 1px solid var(--color-line);
-    border-radius: 10px;
     padding: 12px 20px;
   }
 
-  .r-nav a:hover {
+  .r-nav .btn:hover {
     border-color: var(--color-purple);
   }
 
@@ -477,9 +443,7 @@ const effortDots = '●'.repeat(effort) + '○'.repeat(3 - effort)
     }
 
     .ing-card {
-      /* relative, not the mockup's static: the orange spine is position:absolute and needs a containing block */
-      position: relative;
-      top: auto;
+      position: static;
     }
 
     .method {
