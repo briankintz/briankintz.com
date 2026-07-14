@@ -3,9 +3,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Icon from '../components/Icon.astro'
 import Highlight from '../components/Highlight.astro'
-import LinkButton from '../components/LinkButton.astro'
 import LabelChip from '../components/LabelChip.astro'
-import { stats, roles, credentials } from '../data/work'
+import { stats, roles, credentials, education } from '../data/work'
 import { publishedRecipes } from '../lib/recipes'
 
 const recipeCount = (await publishedRecipes()).length
@@ -17,16 +16,12 @@ const recipeCount = (await publishedRecipes()).length
 >
   <main>
     <div class="wrap hero">
-      <p class="hi">Hi, I'm Brian —</p>
+      <p class="hi">Hey there, I'm Brian.</p>
       <h1>I design and build <Highlight>cloud-native platforms</Highlight>.</h1>
       <p>
         Senior Cloud Solutions Architect in Germany, consulting on Azure and Google Cloud — with 15+ years across DevOps
-        and software engineering behind it. This site also holds my cookbook and everything else I do off the clock.
+        and software engineering behind it.
       </p>
-      <div class="hero-actions">
-        <LinkButton href="#work" variant="primary">See my work</LinkButton>
-        <LinkButton href="/cookbook" variant="ghost">Visit the cookbook</LinkButton>
-      </div>
     </div>
 
     <div class="wrap">
@@ -70,11 +65,27 @@ const recipeCount = (await publishedRecipes()).length
         }
 
         <div class="creds">
+          <div class="cred">
+            <h4>{credentials[0].label}</h4>
+            <ul>
+              {credentials[0].items.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+          <div class="cred">
+            <h4>Education</h4>
+            <p class="edu-name">{education.institution}</p>
+            <p class="edu-degree">{education.degree}</p>
+            <p class="edu-honor">{education.honor}</p>
+          </div>
           {
-            credentials.map(({ label, detail }) => (
+            credentials.slice(1).map(({ label, items }) => (
               <div class="cred">
                 <h4>{label}</h4>
-                <p>{detail}</p>
+                <ul>
+                  {items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
               </div>
             ))
           }
@@ -82,27 +93,17 @@ const recipeCount = (await publishedRecipes()).length
       </section>
 
       <div class="teasers">
-        <a class="tease" href="/cookbook">
-          <LabelChip color="orange">Cookbook</LabelChip>
-          <h2>Things worth cooking twice</h2>
-          <p class="desc">{recipeCount} recipes and counting, documented over the years.</p>
-          <ul>
-            <li>Jerk Chicken <i>dinner</i></li>
-            <li>Stuffed Pretzels <i>snacks</i></li>
-            <li>Mango Habanero Hot Sauce <i>sauces</i></li>
-          </ul>
-          <span class="go">Open the cookbook <Icon name="arrow" /></span>
-        </a>
         <a class="tease" href="/side-quests">
           <LabelChip color="purple">Side Quests</LabelChip>
           <h2>Away from the keyboard</h2>
           <p class="desc">Work's fun, but so are lots of other things.</p>
-          <ul>
-            <li>Mountains <i>happy place</i></li>
-            <li>Sailing <i>offshore</i></li>
-            <li>Skiing <i>DSV Level B</i></li>
-          </ul>
           <span class="go">See all side quests <Icon name="arrow" /></span>
+        </a>
+        <a class="tease orange" href="/cookbook">
+          <LabelChip color="orange">Cookbook</LabelChip>
+          <h2>Things worth cooking twice</h2>
+          <p class="desc">{recipeCount} recipes and counting, documented over the years.</p>
+          <span class="go">Open the cookbook <Icon name="arrow" /></span>
         </a>
       </div>
     </div>
@@ -139,13 +140,6 @@ const recipeCount = (await publishedRecipes()).length
     font-size: 17.5px;
     color: var(--color-soft);
     max-width: 54ch;
-  }
-
-  .hero-actions {
-    margin-top: 30px;
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
   }
 
   /* ---------- blocks ---------- */
@@ -281,9 +275,39 @@ const recipeCount = (await publishedRecipes()).length
     margin-bottom: 8px;
   }
 
-  .cred p {
+  .cred ul {
+    list-style: none;
+  }
+
+  .cred li {
     font-size: 14px;
     color: var(--color-ink);
+    padding: 3px 0 3px 14px;
+    position: relative;
+  }
+
+  .cred li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-soft);
+  }
+
+  .cred .edu-name,
+  .cred .edu-degree {
+    font-size: 14px;
+    color: var(--color-ink);
+    line-height: 1.5;
+  }
+
+  .cred .edu-honor {
+    font-size: 13px;
+    color: var(--color-soft);
+    margin-top: 2px;
   }
 
   /* ---------- teasers ---------- */
@@ -314,6 +338,10 @@ const recipeCount = (await publishedRecipes()).length
     border-color: var(--color-purple);
   }
 
+  .tease.orange:hover {
+    border-color: var(--color-orange);
+  }
+
   .tease h2 {
     font-size: 26px;
   }
@@ -324,26 +352,6 @@ const recipeCount = (await publishedRecipes()).length
     margin-top: 10px;
   }
 
-  .tease ul {
-    list-style: none;
-    margin: 18px 0 22px;
-  }
-
-  .tease li {
-    font-size: 14.5px;
-    padding: 7px 0;
-    border-bottom: 1px dashed var(--color-line);
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .tease li i {
-    font-style: normal;
-    color: var(--color-soft);
-    font-size: 13px;
-  }
-
   .tease .go {
     margin-top: auto;
     font-weight: 700;
@@ -352,6 +360,10 @@ const recipeCount = (await publishedRecipes()).length
     display: inline-flex;
     align-items: center;
     gap: 7px;
+  }
+
+  .tease.orange .go {
+    color: var(--color-orange-text);
   }
 
   .tease .go :global(svg) {

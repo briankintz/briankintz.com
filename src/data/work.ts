@@ -1,5 +1,5 @@
 // Homepage Work section content, transcribed from cv.md (briankintz/briankintz repo) — keep figures exactly as written.
-// Figures are exact and must stay as written: >10×, −95%, 10,000+, 15+.
+// Figures are exact and must stay as written: >10×, −95%, 10,000+, 15+, >10M.
 
 export interface Stat {
   value: string
@@ -16,7 +16,13 @@ export interface Role {
 
 export interface Credential {
   label: string
-  detail: string
+  items: string[]
+}
+
+export interface Education {
+  institution: string
+  degree: string
+  honor: string
 }
 
 export const stats: Stat[] = [
@@ -40,11 +46,11 @@ export const roles: Role[] = [
   },
   {
     org: 'tappz GmbH',
-    dates: '2025 — present',
+    dates: '2025',
     heading: 'AI product infrastructure',
     title: 'Cloud Software Architect',
     achievements: [
-      'Led the technical expansion of an AI app with 10M+ users to a multi-platform architecture, redesigning user, subscription, and storage systems.',
+      'Led the technical expansion of an AI app with >10M users to a multi-platform architecture, redesigning user, subscription, and storage systems.',
       'Oversaw and supported the development team building a next-generation AI chat web application.',
     ],
   },
@@ -60,12 +66,20 @@ export const roles: Role[] = [
   },
 ]
 
+export const education: Education = {
+  institution: 'University of Rhode Island',
+  degree: 'B.S. Computer Engineering & B.A. German',
+  honor: 'summa cum laude',
+}
+
 export const credentials: Credential[] = [
-  { label: 'Certifications', detail: 'Azure Solutions Architecture Expert · Google Professional Cloud Architect' },
   {
-    label: 'Education',
-    detail: 'B.S. Computer Engineering & B.A. German, University of Rhode Island — summa cum laude',
+    label: 'Certifications',
+    items: ['Microsoft Azure Cloud Solutions Architecture Expert', 'Google Professional Cloud Architect'],
   },
-  { label: 'Core skills', detail: 'Kubernetes & Docker · DevOps toolchains · TypeScript, C#, Go · React & Next.js' },
-  { label: 'Languages', detail: 'English (native) · German (fluent)' },
+  {
+    label: 'Core skills',
+    items: ['Kubernetes & Docker', 'DevOps toolchains', 'TypeScript, C#, Go', 'React & Next.js, Svelte, Astro'],
+  },
+  { label: 'Languages', items: ['English (native)', 'German (fluent)'] },
 ]
