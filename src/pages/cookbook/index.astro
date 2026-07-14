@@ -1,0 +1,298 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+
+// Mockup order. Empty categories (breakfast, once drafts are excluded) render no heading.
+const CATEGORIES: [string, string][] = [
+  ['breakfast', 'Breakfast'],
+  ['dinner', 'Dinner'],
+  ['snacks-and-sides', 'Snacks & Sides'],
+  ['bread', 'Bread'],
+  ['sauces', 'Sauces'],
+  ['desserts', 'Desserts'],
+]
+// Fixed 7-tag vocabulary — mirrors the zod enum in content.config.ts
+const TAGS = ['comfort food', 'spicy', 'weeknight', 'quick', 'show-off', 'healthy-ish', 'breakfast']
+
+const recipes = await getCollection('recipes', ({ data }) => !data.draft)
+const sections = CATEGORIES.map(([slug, label]) => ({
+  label,
+  recipes: recipes.filter((r) => r.data.category === slug).sort((a, b) => a.data.title.localeCompare(b.data.title)),
+})).filter((s) => s.recipes.length > 0)
+
+const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
+---
+
+<BaseLayout
+  title="The Cookbook — Brian Kintz"
+  description="Brian's cookbook — dinners, breads, sauces, snacks, and desserts, documented loosely and measured loosely too."
+>
+  <main class="wrap">
+    <div class="hero">
+      <h1>The <span class="hl">Cookbook</span></h1>
+      <p>
+        Nothing too serious — just documentation of things I've enjoyed cooking over the years. Fair warning: <em
+          >I hate measuring things</em
+        >, so take all units with a smidgen/pinch/dash of salt.
+      </p>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter recipes by tag">
+      <button class="chip on" aria-pressed="true">All</button>
+      {
+        TAGS.map((tag) => (
+          <button class="chip" data-tag={tag} aria-pressed="false">
+            {chipLabel(tag)}
+          </button>
+        ))
+      }
+    </div>
+
+    {
+      sections.map(({ label, recipes }) => (
+        <section class="cat">
+          <div class="cat-head">
+            <h2>{label}</h2>
+            <span>
+              {recipes.length} {recipes.length === 1 ? 'recipe' : 'recipes'}
+            </span>
+          </div>
+          <div class="cards">
+            {recipes.map(({ id, data }) => (
+              <a class="rcard" href={`/cookbook/${id}`} data-tags={data.tags.join('|')}>
+                <span class="cat-tag">{label}</span>
+                <h3>{data.title}</h3>
+                <p>{data.tagline}</p>
+                <div class="meta">
+                  <span>
+                    <b>effort</b> {'●'.repeat(data.effort) + '○'.repeat(3 - data.effort)}
+                  </span>
+                  <span>
+                    <b>origin</b> {data.origin}
+                  </span>
+                  {data.tags.map((tag) => (
+                    <span class="rtag">{tag}</span>
+                  ))}
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+
+    <p class="empty-note" hidden>Nothing tagged that yet — that page of the notebook is still blank.</p>
+  </main>
+</BaseLayout>
+
+<style>
+  [hidden] {
+    display: none !important;
+  }
+
+  main {
+    padding-bottom: 30px;
+  }
+
+  .hero {
+    padding: 80px 0 44px;
+  }
+
+  h1 {
+    font-family: var(--font-slab);
+    font-size: var(--text-h1);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .hero p {
+    margin-top: 14px;
+    font-size: 16.5px;
+    color: var(--color-soft);
+    max-width: 56ch;
+  }
+
+  .hero p em {
+    color: var(--color-ink);
+  }
+
+  .filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 8px 0 40px;
+  }
+
+  .chip {
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--color-soft);
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-pill);
+    padding: 7px 16px;
+    cursor: pointer;
+    transition:
+      border-color 0.15s,
+      color 0.15s;
+  }
+
+  .chip:hover {
+    border-color: var(--color-purple);
+    color: var(--color-purple);
+  }
+
+  .chip.on {
+    background: var(--color-purple);
+    border-color: var(--color-purple);
+    color: var(--color-card);
+  }
+
+  .cat {
+    margin-bottom: 52px;
+  }
+
+  .cat-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .cat-head h2 {
+    font-family: var(--font-slab);
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .cat-head span {
+    font-size: 13px;
+    color: var(--color-soft);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .rcard {
+    position: relative;
+    display: block;
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    padding: 22px 24px 18px;
+    text-decoration: none;
+    color: var(--color-ink);
+    overflow: hidden;
+    transition:
+      transform 0.15s,
+      box-shadow 0.15s,
+      border-color 0.15s;
+  }
+
+  .rcard:hover {
+    transform: translateY(-3px) rotate(-0.3deg);
+    border-color: var(--color-purple);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Orange index-card spine — annotation accent */
+  .rcard::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--color-orange);
+    opacity: 0.85;
+  }
+
+  .cat-tag {
+    font-size: var(--text-label);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-purple);
+  }
+
+  .rcard h3 {
+    font-family: var(--font-slab);
+    font-size: 21px;
+    font-weight: 700;
+    margin: 6px 0 4px;
+  }
+
+  .rcard > p {
+    font-family: var(--font-slab);
+    font-style: italic;
+    font-size: 14.5px;
+    color: var(--color-soft);
+    min-height: 44px;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 14px;
+    font-size: var(--text-meta);
+    color: var(--color-soft);
+    flex-wrap: wrap;
+  }
+
+  .meta b {
+    color: var(--color-purple);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .rtag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--color-orange);
+    background: var(--color-orange-tag);
+    border-radius: var(--radius-tag);
+    padding: 3px 8px;
+  }
+
+  .empty-note {
+    text-align: center;
+    color: var(--color-soft);
+    font-size: 14px;
+    padding: 8px 0 24px;
+    font-family: var(--font-slab);
+    font-style: italic;
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding: 52px 0 32px;
+    }
+  }
+</style>
+
+<script>
+  const chips = [...document.querySelectorAll<HTMLButtonElement>('.chip')]
+  const cards = [...document.querySelectorAll<HTMLElement>('.rcard')]
+  const cats = [...document.querySelectorAll<HTMLElement>('.cat')]
+  const counts = [...document.querySelectorAll<HTMLElement>('.cat-head span')]
+  const note = document.querySelector<HTMLElement>('.empty-note')!
+
+  for (const chip of chips)
+    chip.addEventListener('click', () => {
+      const tag = chip.dataset.tag
+      for (const c of chips) {
+        c.classList.toggle('on', c === chip)
+        c.setAttribute('aria-pressed', String(c === chip))
+      }
+      for (const card of cards) card.hidden = Boolean(tag) && !(card.dataset.tags || '').split('|').includes(tag!)
+      for (const cat of cats) cat.hidden = !cat.querySelector('.rcard:not([hidden])')
+      for (const count of counts) count.hidden = Boolean(tag) // counts describe the full category, not the filtered view
+      note.hidden = cards.some((card) => !card.hidden)
+    })
+</script>
