@@ -232,7 +232,7 @@ const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
   }
 
   .rcard:hover {
-    transform: translateY(-3px) rotate(-0.3deg);
+    transform: var(--card-lift);
     border-color: var(--color-purple);
     box-shadow: var(--shadow-hover);
   }
