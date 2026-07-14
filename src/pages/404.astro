@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout title="Page not found — Brian Kintz" description="This page doesn't exist.">
+  <main class="wrap">
+    <div class="hero">
+      <p class="code">404 —</p>
+      <h1>This page got <span class="hl">torn out</span>.</h1>
+      <p>Whatever used to be here isn't in the notebook anymore — or never was. The homepage has everything that is.</p>
+      <a class="btn primary" href="/">Back to the homepage</a>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 96px 0 72px;
+  }
+
+  .code {
+    font-family: var(--font-slab);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--color-purple);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: var(--font-slab);
+    font-size: var(--text-h1);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    max-width: 20ch;
+  }
+
+  .hero > p:not(.code) {
+    margin-top: 22px;
+    font-size: 17.5px;
+    color: var(--color-soft);
+    max-width: 54ch;
+  }
+
+  .btn {
+    margin-top: 30px;
+  }
+
+  @media (max-width: 760px) {
+    .hero {
+      padding: 60px 0 48px;
+    }
+  }
+</style>

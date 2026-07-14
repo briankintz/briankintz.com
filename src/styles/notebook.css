@@ -1,0 +1,90 @@
+/*
+ * briankintz.com — "Notebook" global base styles.
+ * Shared chrome for every page on the new system; everything derives from tokens.css.
+ * Values translated 1:1 from the shared CSS in handoff/mockups/.
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  background-image: var(--pattern-dotgrid);
+  background-size: var(--pattern-dotgrid-size);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+::selection {
+  background: var(--color-orange-soft);
+}
+
+/* Highlighter swipe — at most once per page, on the hero heading */
+.hl {
+  background: var(--pattern-highlight);
+  padding: 0 2px;
+}
+
+/* Buttons — purple is structural */
+.btn {
+  display: inline-block;
+  font-size: 14.5px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  transition:
+    transform 0.12s,
+    background 0.15s;
+}
+
+.btn.primary {
+  background: var(--color-purple);
+  color: var(--color-card);
+}
+
+.btn.primary:hover {
+  background: var(--color-purple-hover);
+}
+
+.btn.ghost {
+  color: var(--color-purple);
+  border: 1.5px solid var(--color-purple);
+}
+
+.btn.ghost:hover {
+  background: var(--color-purple-soft);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-purple);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

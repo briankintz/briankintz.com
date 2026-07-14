@@ -1,0 +1,42 @@
+---
+// "Notebook" base layout: dot-grid paper, self-hosted fonts, Header + Footer.
+// Pages own their <main>; the layout only provides the chrome.
+import '@fontsource/aleo/latin-500.css'
+import '@fontsource/aleo/latin-600.css'
+import '@fontsource/aleo/latin-700.css'
+import '@fontsource/aleo/latin-500-italic.css'
+import '@fontsource/aleo/latin-600-italic.css'
+import '@fontsource/lato/latin-400.css'
+import '@fontsource/lato/latin-700.css'
+import '../styles/tokens.css'
+import '../styles/notebook.css'
+
+import Header from '../components/notebook/Header.astro'
+import Footer from '../components/notebook/Footer.astro'
+
+interface Props {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,77 @@
+---
+// Identical on every page: colophon line + social icon links. No nav links.
+// Lives in components/notebook/ until the old homepage (and its Footer.astro) is retired.
+import Icon from '../Icon.astro'
+
+const sha = process.env.VERCEL_GIT_COMMIT_SHA || 'unknown'
+const shortSha = sha.substring(0, 7)
+const year = new Date().getFullYear()
+---
+
+<footer>
+  <div class="wrap foot">
+    <p>
+      Made with ♥ by Brian Kintz ·{' '}
+      <a href={`https://github.com/briankintz/briankintz.com/commit/${sha}`}>{shortSha}</a> © {year}
+    </p>
+    <div class="socials">
+      <a href="https://github.com/briankintz" aria-label="GitHub"><Icon name="github" /></a>
+      <a href="https://www.linkedin.com/in/bkintz" aria-label="LinkedIn"><Icon name="linkedin" /></a>
+      <a href="https://www.instagram.com/brian.kintz/" aria-label="Instagram"><Icon name="instagram" /></a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--color-line);
+    padding: 34px 0 56px;
+  }
+
+  .foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .foot p {
+    font-size: var(--text-meta);
+    color: var(--color-soft);
+  }
+
+  .foot p a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .foot p a:hover {
+    color: var(--color-purple);
+    text-decoration: underline;
+  }
+
+  .socials {
+    display: flex;
+    gap: 12px;
+  }
+
+  .socials a {
+    display: inline-flex;
+    padding: 8px;
+    color: var(--color-soft);
+    border: 1px solid var(--color-line);
+    border-radius: 10px;
+    background: var(--color-card);
+  }
+
+  .socials a:hover {
+    color: var(--color-purple);
+    border-color: var(--color-purple);
+  }
+
+  .socials :global(svg) {
+    width: 17px;
+    height: 17px;
+  }
+</style>
