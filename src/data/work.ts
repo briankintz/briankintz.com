@@ -108,7 +108,6 @@ export const techKeywords: string[] = [
 
 export const softSkills: string[] = [
   'Technical & strategic consulting',
-  'Leadership-level project communication',
   'Project and budget management',
   'Cultural & technical leadership',
 ]
