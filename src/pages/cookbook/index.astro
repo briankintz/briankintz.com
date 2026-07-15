@@ -106,7 +106,9 @@ const chipLabel = (tag: string) => tag[0].toUpperCase() + tag.slice(1)
     display: none !important;
   }
 
+  /* wider than the shared 1000px .wrap so the recipe card grid gets a roomier, 4-up layout */
   main {
+    max-width: 1240px;
     padding-bottom: 30px;
   }
 
