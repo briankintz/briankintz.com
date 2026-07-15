@@ -22,9 +22,17 @@ body {
   font-family: var(--font-sans);
   line-height: 1.68;
   -webkit-font-smoothing: antialiased;
+  /* sticky footer: fill the viewport so short pages don't float the footer up */
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 .wrap {
+  /* width:100% so a .wrap that's a flex/grid item fills to max-width instead of
+     shrink-wrapping to content (e.g. the cookbook auto-fill grid under body's flex column) */
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 24px;
