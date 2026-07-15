@@ -8,7 +8,7 @@ const isSideQuests = inSection('/side-quests')
 
 <header>
   <div class="wrap nav">
-    <a class="logo" href="/">Brian<span>Kintz</span></a>
+    <a class="logo" href="/">brian<span class="dot" aria-hidden="true"></span>kintz</a>
     <nav class="nav-links" aria-label="Site">
       <a href="/#work">Work</a>
       <a href="/side-quests" class:list={{ active: isSideQuests }} aria-current={isSideQuests ? 'page' : undefined}
@@ -41,13 +41,20 @@ const isSideQuests = inSection('/side-quests')
   .logo {
     font-family: var(--font-slab);
     font-weight: 700;
-    font-size: 18px;
+    font-size: 22px;
     color: var(--color-ink);
     text-decoration: none;
   }
 
-  .logo span {
-    color: var(--color-purple);
+  /* coral separator dot — a graphic, not text (hence raw --color-orange) */
+  .logo .dot {
+    display: inline-block;
+    width: 0.3em;
+    height: 0.3em;
+    border-radius: 0.1em;
+    background: var(--color-orange);
+    vertical-align: baseline;
+    margin-inline: 0.1em;
   }
 
   .nav-links {
