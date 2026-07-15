@@ -6,9 +6,21 @@ const isCookbook = inSection('/cookbook')
 const isSideQuests = inSection('/side-quests')
 ---
 
+<!-- TEMP(logo-toggle): apply the stored logo variant before paint to avoid a flash. Remove with the rest of the toggle. -->
+<script is:inline>
+  try {
+    var l = localStorage.getItem('logo')
+    if (l === 'a' || l === 'b') document.documentElement.dataset.logo = l
+  } catch (e) {}
+</script>
+
 <header>
   <div class="wrap nav">
-    <a class="logo" href="/">Brian<span>Kintz</span></a>
+    <a class="logo" href="/">
+      {/* TEMP(logo-toggle): two candidate wordmarks; CSS shows one per :root[data-logo] */}
+      <span class="logo-variant v-a">brian<span class="dot">.</span>kintz</span>
+      <span class="logo-variant v-b">brian<span class="ink-k">kintz</span></span>
+    </a>
     <nav class="nav-links" aria-label="Site">
       <a href="/#work">Work</a>
       <a href="/side-quests" class:list={{ active: isSideQuests }} aria-current={isSideQuests ? 'page' : undefined}
@@ -19,6 +31,36 @@ const isSideQuests = inSection('/side-quests')
     </nav>
   </div>
 </header>
+
+<!-- TEMP(logo-toggle): floating compare switch — delete this button, the two scripts, the .logo-variant/.dot/.ink-k/#logo-toggle styles, and restore the single <a class="logo"> wordmark once the logo is chosen. -->
+<button id="logo-toggle" type="button" aria-label="Toggle logo variant"
+  >logo <b>B</b> — brian<span class="tk">kintz</span></button
+>
+<script is:inline>
+  ;(function () {
+    var btn = document.getElementById('logo-toggle')
+    if (!btn) return
+    var root = document.documentElement
+    var cur = function () {
+      return root.dataset.logo === 'a' ? 'a' : 'b'
+    }
+    var render = function () {
+      var a = cur() === 'a'
+      btn.innerHTML = a
+        ? 'logo <b>A</b> — brian<span class="tk">.</span>kintz'
+        : 'logo <b>B</b> — brian<span class="tk">kintz</span>'
+    }
+    render()
+    btn.addEventListener('click', function () {
+      var next = cur() === 'a' ? 'b' : 'a'
+      root.dataset.logo = next
+      try {
+        localStorage.setItem('logo', next)
+      } catch (e) {}
+      render()
+    })
+  })()
+</script>
 
 <style>
   header {
@@ -46,8 +88,48 @@ const isSideQuests = inSection('/side-quests')
     text-decoration: none;
   }
 
-  .logo span {
+  /* TEMP(logo-toggle): default = B; :root[data-logo="a"] flips to A */
+  .logo-variant.v-a {
+    display: none;
+  }
+  :root[data-logo='a'] .logo-variant.v-a {
+    display: inline;
+  }
+  :root[data-logo='a'] .logo-variant.v-b {
+    display: none;
+  }
+  .logo .dot {
+    color: var(--color-orange);
+  }
+  .logo .ink-k {
     color: var(--color-purple);
+  }
+
+  /* TEMP(logo-toggle): floating compare switch */
+  #logo-toggle {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    z-index: 50;
+    font-family: var(--font-slab);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-soft);
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-tag);
+    padding: 8px 14px;
+    cursor: pointer;
+    box-shadow: var(--shadow-hover);
+  }
+  #logo-toggle b {
+    color: var(--color-ink);
+  }
+  #logo-toggle .tk {
+    color: var(--color-purple);
+  }
+  :root[data-logo='a'] #logo-toggle .tk {
+    color: var(--color-orange);
   }
 
   .nav-links {
