@@ -73,14 +73,37 @@ export const certifications: string[] = [
   'Google Professional Cloud Architect',
 ]
 
-// cv.md's nested sub-bullets are folded into their parent lines
+// Concept-level areas; the concrete tools live in techKeywords (rendered as chips)
 export const technicalSkills: string[] = [
-  'Public & hybrid cloud infrastructure & architecture',
-  'Cloud- and AI-native software engineering',
+  'Cloud infrastructure & architecture',
+  'AI-native software engineering',
   'Kubernetes & Docker',
-  'DevOps toolchains (GitHub Actions, GitLab)',
-  'Software development — TypeScript, C#, Go · React & Next.js, Svelte, Astro',
-  'Modern web infrastructure — serverless compute & databases · CDN, WAF, SEO',
+  'Full-stack software engineering',
+  'Modern web infrastructure',
+  'DevOps & CI/CD',
+]
+
+// Concrete stack from cv.md, rendered as a chip row under the skills columns
+export const techKeywords: string[] = [
+  'Azure',
+  'Google Cloud',
+  'Kubernetes',
+  'Docker',
+  'Ceph',
+  'TypeScript',
+  'C#',
+  'Go',
+  'React',
+  'Next.js',
+  'Svelte',
+  'Astro',
+  'GitHub Actions',
+  'GitLab',
+  'Serverless',
+  'CDN',
+  'WAF',
+  'DNS',
+  'SEO',
 ]
 
 export const softSkills: string[] = [

@@ -4,7 +4,16 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import Icon from '../components/Icon.astro'
 import Highlight from '../components/Highlight.astro'
 import LabelChip from '../components/LabelChip.astro'
-import { stats, roles, certifications, education, technicalSkills, softSkills, languages } from '../data/work'
+import {
+  stats,
+  roles,
+  certifications,
+  education,
+  technicalSkills,
+  softSkills,
+  languages,
+  techKeywords,
+} from '../data/work'
 import { publishedRecipes } from '../lib/recipes'
 
 const recipeCount = (await publishedRecipes()).length
@@ -101,6 +110,13 @@ const recipeCount = (await publishedRecipes()).length
               </ul>
             </div>
           </div>
+        </div>
+
+        <div class="tech">
+          <h4>Tools &amp; tech</h4>
+          <ul class="tech-chips">
+            {techKeywords.map((k) => <li>{k}</li>)}
+          </ul>
         </div>
       </section>
 
@@ -285,7 +301,8 @@ const recipeCount = (await publishedRecipes()).length
     gap: 24px;
   }
 
-  .cred h4 {
+  .cred h4,
+  .tech h4 {
     font-size: var(--text-label);
     font-weight: 700;
     letter-spacing: 0.16em;
@@ -309,7 +326,9 @@ const recipeCount = (await publishedRecipes()).length
     content: '';
     position: absolute;
     left: 0;
-    top: 10px;
+    /* padding-top + half a line-height = vertical center of the first line */
+    top: calc(3px + 0.5lh);
+    transform: translateY(-50%);
     width: 4px;
     height: 4px;
     border-radius: 50%;
@@ -327,6 +346,27 @@ const recipeCount = (await publishedRecipes()).length
     font-size: 13px;
     color: var(--color-soft);
     margin-top: 2px;
+  }
+
+  /* ---------- tech chip row ---------- */
+  .tech {
+    margin-top: 30px;
+  }
+
+  .tech-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+  }
+
+  .tech-chips li {
+    font-size: 12.5px;
+    color: var(--color-ink);
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-pill);
+    padding: 4px 12px;
   }
 
   /* ---------- teasers ---------- */
