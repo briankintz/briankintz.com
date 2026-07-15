@@ -1,0 +1,189 @@
+---
+import QuestIcon from './QuestIcon.astro'
+
+interface Props {
+  level: string
+  title: string
+  body: string
+  accent: 'purple' | 'orange'
+  icon: string
+  tier: 'hero' | 'feature' | 'normal'
+  tinted: boolean
+  cta?: string
+  href?: string
+}
+const { level, title, body, accent, icon, tier, tinted, cta, href } = Astro.props
+---
+
+<article class:list={['qcard reveal', accent, tier, { tinted }]}>
+  <QuestIcon name={icon} tier={tier} />
+  <div class="content">
+    <span class="level">{level}</span>
+    <h2>{title}</h2>
+    <p>{body}</p>
+    {
+      cta && href && (
+        <a class="cta" href={href}>
+          {cta} →
+        </a>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .qcard {
+    position: relative;
+    overflow: hidden; /* clips the watermark icon */
+    display: flex;
+    flex-direction: column;
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-block);
+    box-shadow: var(--shadow-block);
+    padding: 30px 32px;
+    transition:
+      transform 0.18s cubic-bezier(0.2, 0.7, 0.3, 1),
+      box-shadow 0.18s,
+      border-color 0.18s,
+      background 0.2s,
+      opacity 0.55s cubic-bezier(0.2, 0.7, 0.3, 1),
+      translate 0.55s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  /* ---------- mosaic tiers ---------- */
+  .qcard.hero {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    gap: 32px;
+    padding: 38px 40px;
+  }
+  .qcard.feature {
+    grid-column: span 2;
+    padding: 34px 38px;
+  }
+
+  .content {
+    position: relative; /* sits above the watermark */
+  }
+  .hero .content {
+    flex: 0 0 auto;
+    max-width: 48%;
+  }
+  .feature .content {
+    max-width: 64%;
+  }
+
+  /* ---------- accent tints (every other card, by index) ---------- */
+  .qcard.tinted.purple {
+    background: var(--color-purple-soft);
+  }
+  .qcard.tinted.orange {
+    background: var(--color-orange-tag);
+  }
+
+  /* ---------- watermark colour + opacity (set on the child QuestIcon) ---------- */
+  .qcard.purple :global(.qi) {
+    color: var(--color-purple);
+  }
+  .qcard.orange :global(.qi) {
+    color: var(--color-orange-text);
+  }
+  .qcard :global(.qi) {
+    opacity: 0.11;
+  }
+  .qcard.tinted :global(.qi) {
+    opacity: 0.2;
+  }
+
+  /* ---------- hover: lift + tilt + accent bloom + accent border ---------- */
+  /* rotation is negative for purple, positive for orange, so neighbours tilt opposite ways */
+  .qcard.purple:hover {
+    transform: translateY(-4px) rotate(-0.4deg);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--color-purple);
+  }
+  .qcard.orange:hover {
+    transform: translateY(-4px) rotate(0.4deg);
+    box-shadow: var(--shadow-hover-orange);
+    border-color: var(--color-orange-text);
+  }
+
+  /* ---------- level chip (accent tinted; flips to card bg on tinted cards) ---------- */
+  .level {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: var(--radius-tag);
+    padding: 5px 12px;
+  }
+  .purple .level {
+    color: var(--color-purple);
+    background: var(--color-purple-soft);
+  }
+  .orange .level {
+    color: var(--color-orange-text);
+    background: var(--color-orange-tag);
+  }
+  .tinted .level {
+    background: var(--color-card);
+  }
+
+  /* ---------- title / body / cta ---------- */
+  h2 {
+    font-family: var(--font-slab);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    margin: 12px 0 8px;
+  }
+  .hero h2 {
+    font-size: 38px;
+  }
+  .feature h2 {
+    font-size: 28px;
+  }
+
+  p {
+    color: var(--color-soft);
+    margin: 0;
+    max-width: 52ch;
+    font-size: 14.5px;
+  }
+  .hero p {
+    font-size: 16px;
+  }
+
+  .cta {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .purple .cta {
+    color: var(--color-purple);
+  }
+  .orange .cta {
+    color: var(--color-orange-text);
+  }
+
+  /* below ~2 columns the grid is single-column; a span-2 feature would spawn a
+     phantom narrow implicit column that dense flow backfills — so go full-width instead */
+  @media (max-width: 680px) {
+    .qcard.hero {
+      flex-direction: column;
+      gap: 0;
+    }
+    .qcard.feature {
+      grid-column: 1 / -1;
+    }
+    .hero .content,
+    .feature .content {
+      max-width: none;
+    }
+  }
+</style>

@@ -1,163 +1,219 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Highlight from '../components/Highlight.astro'
-import LabelChip from '../components/LabelChip.astro'
+import QuestCard from '../components/side-quests/QuestCard.astro'
 
-const quests = [
+type Quest = {
+  level: string
+  title: string
+  body: string
+  accent: 'purple' | 'orange'
+  icon: string
+  hero?: boolean
+  feature?: boolean
+  cta?: string
+  href?: string
+}
+
+// Source order drives the tint alternation (odd 0-based index = tinted) and the mosaic spans.
+const quests: Quest[] = [
+  {
+    level: 'Happy place',
+    title: 'Mountains',
+    accent: 'purple',
+    icon: 'mountains',
+    hero: true,
+    body: "Hiking, climbing, via ferrata, trail running — if there's elevation involved, I'm in. Most vacation plans start with a topographic map and end with sore legs and zero regrets.",
+  },
+  {
+    level: 'Air time',
+    title: 'Paragliding',
+    accent: 'orange',
+    icon: 'paraglider',
+    body: 'The newest addiction — running off a mountainside and staying up there. Nothing rewires your sense of a landscape quite like flying over it.',
+  },
   {
     level: 'Offshore miles',
     title: 'Sailing',
+    accent: 'orange',
+    icon: 'sailing',
     body: "Raced, cruised, and sailed offshore along most of eastern North America. There's no better reset than a night watch far from shore.",
   },
   {
     level: 'DSV Level B',
     title: 'Skiing',
+    accent: 'purple',
+    icon: 'snow',
     body: 'Licensed instructor — I guide club ski trips in winter and will happily talk technique long after everyone else has moved on.',
+  },
+  {
+    level: 'Out of hand',
+    title: 'Gardening',
+    accent: 'purple',
+    icon: 'plant',
+    body: 'My balcony garden gets a little more ambitious — and a little more out of hand — every single year. No regrets, mostly.',
+  },
+  {
+    level: 'Tinkering',
+    title: 'Tech toys',
+    accent: 'orange',
+    icon: 'chip',
+    feature: true,
+    body: 'Smart home that occasionally outsmarts me, a rotating pile of computers, and just enough gaming to justify the graphics card. The house is my other lab.',
   },
   {
     level: 'No concerts planned',
     title: 'Guitar',
+    accent: 'orange',
+    icon: 'note',
     body: 'A trusty Taylor for unwinding after long days. Requests accepted, quality not guaranteed.',
   },
   {
     level: 'Fear, faced',
     title: 'Dancing',
+    accent: 'purple',
+    icon: 'notes',
     body: "Took a course to get over the dread of dancing in public. Turns out it's actually fun. Who knew.",
   },
   {
     level: 'Formerly',
     title: 'Emergency medicine',
+    accent: 'orange',
+    icon: 'cross',
     body: 'Emergency Medical Technician and medical shift supervisor in a previous chapter — still handy on mountains and boats.',
   },
+  {
+    level: 'A whole section',
+    title: 'Cooking',
+    accent: 'orange',
+    icon: 'chef',
+    feature: true,
+    body: 'Big enough to earn its own corner of this site — documentation of things worth cooking twice.',
+    cta: 'Head to the cookbook',
+    href: '/cookbook',
+  },
 ]
+
+const tierOf = (q: Quest): 'hero' | 'feature' | 'normal' => (q.hero ? 'hero' : q.feature ? 'feature' : 'normal')
 ---
+
+<!-- reveal is progressive enhancement: hide only when JS is on, so no-JS keeps everything visible -->
+<script is:inline>
+  document.documentElement.classList.add('js')
+</script>
 
 <BaseLayout
   title="Side Quests — Brian Kintz"
-  description="What fills the rest of Brian Kintz's calendar: mountains, sailing, skiing, guitar, and more."
+  description="What fills the rest of Brian Kintz's calendar: mountains, paragliding, sailing, skiing, guitar, cooking, and more."
 >
   <main class="wrap">
-    <div class="hero">
+    <div class="intro reveal">
       <h1>Side <Highlight>Quests</Highlight></h1>
       <p>Work's fun, but so are lots of other things. A running list of what fills the rest of the calendar.</p>
     </div>
 
     <div class="quests">
-      <div class="quest wide">
-        <div>
-          <LabelChip color="purple">Happy place</LabelChip>
-          <h2>Mountains</h2>
-        </div>
-        <p>
-          Hiking, climbing, via ferrata, trail running — if there's elevation involved, I'm in. Most vacation plans
-          start with a topographic map and end with sore legs and zero regrets.
-        </p>
-      </div>
       {
-        quests.map((q, i) => {
-          const accent = i % 2 === 0 ? 'orange' : 'purple'
-          return (
-            <div class:list={['quest', accent]}>
-              <LabelChip color={accent}>{q.level}</LabelChip>
-              <h2>{q.title}</h2>
-              <p>{q.body}</p>
-            </div>
-          )
-        })
+        quests.map((q, i) => (
+          <QuestCard
+            level={q.level}
+            title={q.title}
+            body={q.body}
+            accent={q.accent}
+            icon={q.icon}
+            tier={tierOf(q)}
+            tinted={i % 2 === 1}
+            cta={q.cta}
+            href={q.href}
+          />
+        ))
       }
-      <div class="quest">
-        <LabelChip color="purple">See: cookbook</LabelChip>
-        <h2>Cooking</h2>
-        <p>Big enough to get its own section of this site. <a href="/cookbook">Head to the cookbook →</a></p>
-      </div>
     </div>
   </main>
 </BaseLayout>
 
-<style>
-  .hero {
-    padding: 80px 0 52px;
+<script>
+  // Scroll-reveal with two failsafes so content can never stay hidden.
+  const els = [...document.querySelectorAll<HTMLElement>('.reveal')]
+  const show = (el: HTMLElement) => {
+    el.classList.add('in')
+    // clear the stagger delay after the entrance so it doesn't also delay the hover transition
+    setTimeout(() => {
+      el.style.transitionDelay = ''
+    }, 700)
   }
 
-  h1 {
+  // 1) reveal anything already within the viewport immediately
+  els.forEach((el) => {
+    if (el.getBoundingClientRect().top < window.innerHeight) show(el)
+  })
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          show(e.target as HTMLElement)
+          io.unobserve(e.target)
+        }
+      })
+    },
+    { threshold: 0.12 },
+  )
+  els.forEach((el, i) => {
+    if (!el.classList.contains('in')) {
+      el.style.transitionDelay = `${(i % 3) * 70}ms`
+      io.observe(el)
+    }
+  })
+
+  // 2) hard failsafe — never leave content hidden
+  setTimeout(() => els.forEach(show), 500)
+</script>
+
+<style>
+  .intro {
+    padding: 80px 0 48px;
+    transition:
+      opacity 0.55s cubic-bezier(0.2, 0.7, 0.3, 1),
+      translate 0.55s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .intro h1 {
     font-family: var(--font-slab);
     font-size: clamp(36px, 5.5vw, 54px);
     font-weight: 700;
     letter-spacing: -0.01em;
+    margin: 0;
   }
-
-  .hero p {
+  .intro p {
     margin-top: 14px;
     font-size: 16.5px;
     color: var(--color-soft);
     max-width: 54ch;
   }
 
-  /* padding-bottom = mockup's 20px grid padding + 36px pre-footer gap */
+  /* dense flow lets the double-width feature cards backfill gaps and interlock */
   .quests {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
+    grid-auto-flow: dense;
+    gap: 22px;
     padding-bottom: 56px;
   }
 
-  .quest {
-    background: var(--color-card);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-block);
-    box-shadow: var(--shadow-block);
-    padding: 30px 32px;
-    transition:
-      transform 0.15s,
-      box-shadow 0.15s,
-      border-color 0.15s;
+  /* ---------- scroll reveal (global: applies to the intro here + .reveal cards in QuestCard) ---------- */
+  /* uses `translate` (not `transform`) so it never collides with the cards' hover transform */
+  :global(html.js .reveal) {
+    opacity: 0;
+    translate: 0 14px;
   }
-
-  .quest:hover {
-    transform: var(--card-lift);
-    box-shadow: var(--shadow-hover);
+  :global(html.js .reveal.in) {
+    opacity: 1;
+    translate: 0 0;
   }
-
-  .quest.orange:hover {
-    box-shadow: var(--shadow-hover-orange);
-  }
-
-  .quest h2 {
-    font-family: var(--font-slab);
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .quest p {
-    font-size: 14.5px;
-    color: var(--color-soft);
-  }
-
-  .quest p a {
-    color: var(--color-purple);
-    font-weight: 700;
-    text-decoration: none;
-  }
-
-  .quest.wide {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px 40px;
-    align-items: center;
-  }
-
-  .quest.wide p {
-    max-width: 56ch;
-  }
-
-  @media (max-width: 760px) {
-    .hero {
-      padding: 52px 0 36px;
-    }
-    .quest.wide {
-      grid-template-columns: 1fr;
+  @media (prefers-reduced-motion: reduce) {
+    :global(html.js .reveal) {
+      opacity: 1 !important;
+      translate: none !important;
     }
   }
 </style>
