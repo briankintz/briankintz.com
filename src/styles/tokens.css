@@ -40,7 +40,6 @@
   --radius-block: 16px; /* main content blocks */
   --radius-card: 12px; /* recipe index cards */
   --radius-tag: 6px; /* tag chips */
-  --radius-pill: 999px; /* buttons, filter chips */
   --shadow-block: 0 2px 0 rgba(42, 37, 48, 0.04);
   --shadow-hover: 0 10px 24px rgba(106, 58, 212, 0.12); /* purple bloom — cards with a purple accent */
   --shadow-hover-orange: 0 10px 24px rgba(242, 100, 25, 0.16); /* orange bloom — cards with an orange accent */
