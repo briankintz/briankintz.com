@@ -17,7 +17,7 @@
   --color-purple-soft: #f0eafc; /* purple tint: tag backgrounds, step numbers */
   --color-purple-hover: #5a2eb8; /* pressed/hover state for solid purple */
 
-  --color-orange: #f26419; /* SECONDARY accent, graphics only: highlighter, spines, borders, icons */
+  --color-orange: #f26419; /* SECONDARY accent, graphics only: highlighter, borders, icons */
   --color-orange-text: #b4430c; /* orange as TEXT on paper/card/tint — AA contrast (≥4.5:1); never use #f26419 for text */
   --color-orange-soft: rgba(242, 110, 28, 0.3); /* highlighter swipe */
   --color-orange-tag: rgba(242, 110, 28, 0.12); /* tag chip background */
