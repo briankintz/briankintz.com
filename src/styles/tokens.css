@@ -54,9 +54,6 @@
   /* Highlighter swipe: apply to a span, max once per page hero */
   --pattern-highlight: linear-gradient(to top, var(--color-orange-soft) 42%, transparent 42%);
 
-  /* Card spine: 4px solid orange bar on the left edge (ingredient card) */
-  --pattern-card-spine: 4px solid var(--color-orange);
-
   /* Stat tiles + recipe meta strip use dashed borders */
   --border-sketch: 1.5px dashed var(--color-line);
 }
