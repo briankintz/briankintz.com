@@ -2,15 +2,15 @@
 
 Self-contained reference for importing into Claude Design (or any design tool). Mirrors the live implementation; `src/styles/tokens.css` in the repo is the canonical token source and this document quotes it verbatim.
 
-**The metaphor:** a well-kept notebook — cool dot-grid paper, content in clean white blocks, one highlighter and two ink colors. Modern and lightweight, never skeuomorphic or twee.
+**The metaphor:** a well-kept notebook — soft dot-grid paper, content in clean white blocks, one highlighter and two ink colors. Modern and lightweight, never skeuomorphic or twee.
 
 ## Tokens
 
 ```css
 :root {
   /* ---------- Color ---------- */
-  --color-paper: #f8fafb; /* page background (cool off-white) */
-  --color-dot: #d3dbe0; /* dot-grid dots on the paper */
+  --color-paper: #fbfbf9; /* page background (soft neutral) */
+  --color-dot: #dcdbe0; /* dot-grid dots on the paper */
   --color-card: #ffffff; /* content blocks / cards */
   --color-ink: #1e2530; /* primary text */
   --color-soft: #5f6b78; /* secondary text */
@@ -62,7 +62,7 @@ Self-contained reference for importing into Claude Design (or any design tool). 
 
 ## Core rules
 
-1. **Paper + blocks.** The page background is cool off-white paper with a subtle dot grid. All content sits in white blocks/cards on top; never put long text directly on the grid.
+1. **Paper + blocks.** The page background is soft neutral paper with a subtle dot grid. All content sits in white blocks/cards on top; never put long text directly on the grid.
 2. **Two accents, distinct jobs.** Purple is _structural_: links, buttons, active nav, section labels, step numbers, focus outlines. Orange is _annotation_: the highlighter, recipe tags, margin notes, tips. Never swap their roles.
 3. **Orange text is always `--color-orange-text`** (`#b23a26`, ≥4.5:1 on paper/card/tint). The vivid `--color-orange` (coral) is for graphics only — highlighter, borders, icons, the effort-dot glyphs' decorative strikethrough. This rule exists because `#f2624a` fails WCAG AA as text (3.17:1).
 4. **The highlighter swipe** (orange gradient behind a phrase) appears **at most once per page**, on the hero heading. It's the signature; overuse kills it.

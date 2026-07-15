@@ -6,8 +6,8 @@
 
 :root {
   /* ---------- Color ---------- */
-  --color-paper: #f8fafb; /* page background (cool off-white) */
-  --color-dot: #d3dbe0; /* dot-grid dots on the paper */
+  --color-paper: #fbfbf9; /* page background (soft neutral) */
+  --color-dot: #dcdbe0; /* dot-grid dots on the paper */
   --color-card: #ffffff; /* content blocks / cards */
   --color-ink: #1e2530; /* primary text */
   --color-soft: #5f6b78; /* secondary text */
