@@ -54,13 +54,16 @@ const quests = [
         </p>
       </div>
       {
-        quests.map((q, i) => (
-          <div class="quest">
-            <LabelChip color={i % 2 === 0 ? 'orange' : 'purple'}>{q.level}</LabelChip>
-            <h2>{q.title}</h2>
-            <p>{q.body}</p>
-          </div>
-        ))
+        quests.map((q, i) => {
+          const accent = i % 2 === 0 ? 'orange' : 'purple'
+          return (
+            <div class:list={['quest', accent]}>
+              <LabelChip color={accent}>{q.level}</LabelChip>
+              <h2>{q.title}</h2>
+              <p>{q.body}</p>
+            </div>
+          )
+        })
       }
       <div class="quest">
         <LabelChip color="purple">See: cookbook</LabelChip>
@@ -113,6 +116,10 @@ const quests = [
   .quest:hover {
     transform: var(--card-lift);
     box-shadow: var(--shadow-hover);
+  }
+
+  .quest.orange:hover {
+    box-shadow: var(--shadow-hover-orange);
   }
 
   .quest h2 {
