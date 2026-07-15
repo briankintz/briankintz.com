@@ -2,29 +2,29 @@
 
 Self-contained reference for importing into Claude Design (or any design tool). Mirrors the live implementation; `src/styles/tokens.css` in the repo is the canonical token source and this document quotes it verbatim.
 
-**The metaphor:** a well-kept notebook — warm dot-grid paper, content in clean white blocks, one highlighter and two ink colors. Modern and lightweight, never skeuomorphic or twee.
+**The metaphor:** a well-kept notebook — soft dot-grid paper, content in clean white blocks, one highlighter and two ink colors. Modern and lightweight, never skeuomorphic or twee.
 
 ## Tokens
 
 ```css
 :root {
   /* ---------- Color ---------- */
-  --color-paper: #fcfbf7; /* page background (warm paper) */
-  --color-dot: #d9d4c8; /* dot-grid dots on the paper */
+  --color-paper: #fbfbf9; /* page background (soft neutral) */
+  --color-dot: #dcdbe0; /* dot-grid dots on the paper */
   --color-card: #ffffff; /* content blocks / cards */
-  --color-ink: #2a2530; /* primary text */
-  --color-soft: #6b6472; /* secondary text */
-  --color-line: #e8e4db; /* borders, dividers */
+  --color-ink: #1e2530; /* primary text */
+  --color-soft: #5f6b78; /* secondary text */
+  --color-line: #e2e8ec; /* borders, dividers */
 
-  --color-purple: #6a3ad4; /* PRIMARY accent: structure, links, buttons, active states */
-  --color-purple-soft: #f0eafc; /* purple tint: tag backgrounds, step numbers */
-  --color-purple-hover: #5a2eb8; /* pressed/hover state for solid purple */
+  --color-purple: #3f4bb8; /* PRIMARY accent (indigo): structure, links, buttons, active states */
+  --color-purple-soft: #e7e9f9; /* indigo tint: tag backgrounds, step numbers */
+  --color-purple-hover: #34409c; /* pressed/hover state for solid indigo */
 
-  --color-orange: #f26419; /* SECONDARY accent, graphics only: highlighter, borders, icons */
-  --color-orange-text: #b4430c; /* orange as TEXT on paper/card/tint — AA contrast (≥4.5:1); never use #f26419 for text */
-  --color-orange-soft: rgba(242, 110, 28, 0.3); /* highlighter swipe */
-  --color-orange-tag: rgba(242, 110, 28, 0.12); /* tag chip background */
-  --color-orange-tint: #fef1e7; /* tip/callout block background */
+  --color-orange: #f2624a; /* SECONDARY accent (coral), graphics only: highlighter, borders, icons */
+  --color-orange-text: #b23a26; /* coral as TEXT on paper/card/tint — AA contrast (≥4.5:1); never use #f2624a for text */
+  --color-orange-soft: rgba(242, 98, 74, 0.3); /* highlighter swipe */
+  --color-orange-tag: rgba(242, 98, 74, 0.12); /* tag chip background */
+  --color-orange-tint: #fdecea; /* tip/callout block background */
 
   /* ---------- Typography ---------- */
   /* Self-hosted via Fontsource in production. Aleo = headings (slab serif),
@@ -44,8 +44,8 @@ Self-contained reference for importing into Claude Design (or any design tool). 
   --radius-card: 12px; /* recipe index cards */
   --radius-tag: 6px; /* the ONLY chip/tag radius — no pills anywhere */
   --shadow-block: 0 2px 0 rgba(42, 37, 48, 0.04);
-  --shadow-hover: 0 10px 24px rgba(106, 58, 212, 0.12); /* purple bloom — cards with a purple accent */
-  --shadow-hover-orange: 0 10px 24px rgba(242, 100, 25, 0.16); /* orange bloom — cards with an orange accent */
+  --shadow-hover: 0 10px 24px rgba(63, 75, 184, 0.12); /* indigo bloom — cards with a purple accent */
+  --shadow-hover-orange: 0 10px 24px rgba(242, 98, 74, 0.16); /* coral bloom — cards with an orange accent */
   --card-lift: translateY(-3px) rotate(-0.3deg); /* hover transform shared by all cards; pairs with the bloom */
 
   /* ---------- Signature patterns ---------- */
@@ -62,9 +62,9 @@ Self-contained reference for importing into Claude Design (or any design tool). 
 
 ## Core rules
 
-1. **Paper + blocks.** The page background is warm paper with a subtle dot grid. All content sits in white blocks/cards on top; never put long text directly on the grid.
+1. **Paper + blocks.** The page background is soft neutral paper with a subtle dot grid. All content sits in white blocks/cards on top; never put long text directly on the grid.
 2. **Two accents, distinct jobs.** Purple is _structural_: links, buttons, active nav, section labels, step numbers, focus outlines. Orange is _annotation_: the highlighter, recipe tags, margin notes, tips. Never swap their roles.
-3. **Orange text is always `--color-orange-text`** (`#b4430c`, ≥4.5:1 on paper/card/tint). The vivid `--color-orange` is for graphics only — highlighter, borders, icons, the effort-dot glyphs' decorative strikethrough. This rule exists because `#f26419` fails WCAG AA as text (2.8–3.2:1).
+3. **Orange text is always `--color-orange-text`** (`#b23a26`, ≥4.5:1 on paper/card/tint). The vivid `--color-orange` (coral) is for graphics only — highlighter, borders, icons, the effort-dot glyphs' decorative strikethrough. This rule exists because `#f2624a` fails WCAG AA as text (3.17:1).
 4. **The highlighter swipe** (orange gradient behind a phrase) appears **at most once per page**, on the hero heading. It's the signature; overuse kills it.
 5. **One chip shape, two sizes.** Every chip/tag is a rounded rectangle at `--radius-tag` (6px) — pills are banned. **Clickable** size (filters): 13.5px/700, padding 7px 14px, `--color-line` border, hover purple, selected solid purple. **Slim inline** size (display): 12px/700, padding 3px 10px; variants keep role colors — orange tint (recipe tags), purple/orange tint + 11.5px uppercase letterspaced (labels, padding 5px 12px), neutral bordered 12.5px/400 (tech keywords, padding 4px 12px).
 6. **Card hover = lift + accent bloom.** All hoverable cards use `transform: var(--card-lift)` with a shadow bloom matching the card's accent: `--shadow-hover` (purple) or `--shadow-hover-orange` (orange-accented cards). Border-color on hover follows the same accent.
