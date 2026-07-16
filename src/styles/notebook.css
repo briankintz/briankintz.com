@@ -29,6 +29,16 @@ body {
   flex-direction: column;
 }
 
+/* topo paper: real Hochries contours behind the content, undistorted + fixed while scrolling.
+   opt-in per page via BaseLayout bg="topo" (index + side-quests); everything else keeps dots */
+body.bg-topo {
+  background-image: var(--pattern-topo);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 .wrap {
   /* width:100% so a .wrap that's a flex/grid item fills to max-width instead of
      shrink-wrapping to content (e.g. the cookbook auto-fill grid under body's flex column) */
