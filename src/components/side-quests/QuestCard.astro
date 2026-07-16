@@ -16,7 +16,7 @@ const { level, title, body, accent, icon, tier, tinted, cta, href } = Astro.prop
 ---
 
 <article class:list={['qcard reveal', accent, tier, { tinted }]}>
-  <QuestIcon name={icon} tier={tier} />
+  <QuestIcon icon={icon} tier={tier} />
   <div class="content">
     <span class="level">{level}</span>
     <h2>{title}</h2>
@@ -34,6 +34,7 @@ const { level, title, body, accent, icon, tier, tinted, cta, href } = Astro.prop
 <style>
   .qcard {
     position: relative;
+    isolation: isolate; /* contains the watermark's z-index: -1 */
     overflow: hidden; /* clips the watermark icon */
     display: flex;
     flex-direction: column;
@@ -63,9 +64,8 @@ const { level, title, body, accent, icon, tier, tinted, cta, href } = Astro.prop
     padding: 34px 38px;
   }
 
-  .content {
-    position: relative; /* sits above the watermark */
-  }
+  /* .content stays static so the stretched CTA link can span the whole card;
+     the watermark sits behind it via z-index: -1 on .qi */
   .hero .content {
     flex: 0 0 auto;
     max-width: 48%;
@@ -73,27 +73,23 @@ const { level, title, body, accent, icon, tier, tinted, cta, href } = Astro.prop
   .feature .content {
     max-width: 64%;
   }
+  /* body only — chips/titles sit top-left clear of the art and shouldn't wrap */
+  .normal p {
+    max-width: 70%;
+  }
 
   /* ---------- accent tints (every other card, by index) ---------- */
   .qcard.tinted.purple {
     background: var(--color-purple-soft);
   }
   .qcard.tinted.orange {
-    background: var(--color-orange-tag);
+    /* orange-tag is semi-transparent (lets the dot grid bleed through) — use its opaque equivalent */
+    background: var(--color-orange-tint);
   }
 
-  /* ---------- watermark colour + opacity (set on the child QuestIcon) ---------- */
-  .qcard.purple :global(.qi) {
-    color: var(--color-purple);
-  }
-  .qcard.orange :global(.qi) {
-    color: var(--color-orange-text);
-  }
+  /* ---------- watermark opacity (full-colour art, faint behind the copy) ---------- */
   .qcard :global(.qi) {
-    opacity: 0.11;
-  }
-  .qcard.tinted :global(.qi) {
-    opacity: 0.2;
+    opacity: 0.55;
   }
 
   /* ---------- hover: lift + tilt + accent bloom + accent border ---------- */
@@ -163,6 +159,12 @@ const { level, title, body, accent, icon, tier, tinted, cta, href } = Astro.prop
     font-size: 15px;
     font-weight: 700;
     text-decoration: none;
+  }
+  /* stretched link: makes the whole card the click target */
+  .cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
   }
   .purple .cta {
     color: var(--color-purple);
