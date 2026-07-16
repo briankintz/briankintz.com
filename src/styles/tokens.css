@@ -46,9 +46,13 @@
   --card-lift: translateY(-3px) rotate(-0.3deg); /* hover transform shared by all cards; pairs with the bloom */
 
   /* ---------- Signature patterns ---------- */
-  /* Dot-grid paper (body background) */
+  /* Dot-grid paper (default body background) */
   --pattern-dotgrid: radial-gradient(circle, var(--color-dot) 1px, transparent 1px);
   --pattern-dotgrid-size: 26px 26px;
+
+  /* Topographic paper: real Hochries contours (Copernicus EU-DEM), opt-in per page
+     via BaseLayout bg="topo" — used on index + side-quests; cookbook/recipes keep dots */
+  --pattern-topo: url('/patterns/hochries-topo.svg');
 
   /* Highlighter swipe: apply to a span, max once per page hero */
   --pattern-highlight: linear-gradient(to top, var(--color-orange-soft) 42%, transparent 42%);

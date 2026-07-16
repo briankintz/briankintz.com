@@ -14,15 +14,15 @@ import '../styles/notebook.css'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import Analytics from '@vercel/analytics/astro'
-// TEMP (issue #55): background-pattern experiment — remove with the picker component
-import BackgroundPicker from '../components/dev/BackgroundPicker.astro'
 
 interface Props {
   title: string
   description: string
+  // 'topo' swaps the dot-grid paper for the Hochries contour background (index + side-quests)
+  bg?: 'dots' | 'topo'
 }
 
-const { title, description } = Astro.props
+const { title, description, bg = 'dots' } = Astro.props
 ---
 
 <!doctype html>
@@ -40,10 +40,9 @@ const { title, description } = Astro.props
          because a static Astro build doesn't expose NODE_ENV to the client for auto-detection -->
     <Analytics mode={import.meta.env.PROD ? 'production' : 'development'} />
   </head>
-  <body>
+  <body class:list={[bg === 'topo' && 'bg-topo']}>
     <Header />
     <slot />
     <Footer />
-    <BackgroundPicker />
   </body>
 </html>

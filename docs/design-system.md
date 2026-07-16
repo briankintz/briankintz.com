@@ -51,6 +51,7 @@ Self-contained reference for importing into Claude Design (or any design tool). 
   /* ---------- Signature patterns ---------- */
   --pattern-dotgrid: radial-gradient(circle, var(--color-dot) 1px, transparent 1px);
   --pattern-dotgrid-size: 26px 26px;
+  --pattern-topo: url('/patterns/hochries-topo.svg'); /* real Hochries contours, index + side-quests only */
   --pattern-highlight: linear-gradient(
     to top,
     var(--color-orange-soft) 42%,
@@ -62,7 +63,7 @@ Self-contained reference for importing into Claude Design (or any design tool). 
 
 ## Core rules
 
-1. **Paper + blocks.** The page background is soft neutral paper with a subtle dot grid. All content sits in white blocks/cards on top; never put long text directly on the grid.
+1. **Paper + blocks.** The page background is soft neutral paper with a subtle dot grid. All content sits in white blocks/cards on top; never put long text directly on the grid. **Background variant:** the personal pages (index + side-quests) swap the dot grid for a faint real-terrain topographic map of the Hochries (`--pattern-topo`, fixed + cover), opted in via `BaseLayout bg="topo"`; the cookbook and recipe pages keep the dot grid, where the notebook metaphor reads strongest.
 2. **Two accents, distinct jobs.** Purple is _structural_: links, buttons, active nav, section labels, step numbers, focus outlines. Orange is _annotation_: the highlighter, recipe tags, margin notes, tips. Never swap their roles.
 3. **Orange text is always `--color-orange-text`** (`#b23a26`, ≥4.5:1 on paper/card/tint). The vivid `--color-orange` (coral) is for graphics only — highlighter, borders, icons, the effort-dot glyphs' decorative strikethrough. This rule exists because `#f2624a` fails WCAG AA as text (3.17:1).
 4. **The highlighter swipe** (orange gradient behind a phrase) appears **at most once per page**, on the hero heading. It's the signature; overuse kills it.
@@ -89,17 +90,17 @@ Fonts self-hosted (Fontsource): Aleo 500/600/700 + italic 500/600, Lato 400/700 
 
 ## Components (Astro, scoped styles)
 
-| Component        | Props                                                   | Notes                                                                                        |
-| ---------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `BaseLayout`     | `title`, `description` (required)                       | dot-grid body, fonts, Header/Footer, analytics; pages own their `<main>`                     |
-| `Header`         | —                                                       | sticky blurred nav; active state derived from URL path                                       |
-| `Footer`         | —                                                       | colophon + social icon links; no nav links                                                   |
-| `Icon`           | `name: github\|linkedin\|instagram\|bulb\|arrow`        | size from the consumer via `:global(svg)`; color inherits                                    |
-| `Highlight`      | slot                                                    | the once-per-page swipe span                                                                 |
-| `LabelChip`      | `color: purple\|orange`, slot                           | uppercase tinted label (slim chip size)                                                      |
-| `TagChip`        | `tag: string`                                           | orange-tint recipe tag (slim chip size, single size)                                         |
-| `LinkButton`     | `href`, `variant?: primary\|ghost`, `class` passthrough | solid purple / outlined purple / plain bordered                                              |
-| `IngredientList` | `html: string`                                          | CSS-only checkable list (`:checked` strikethrough), handles nested lists + `h3` group labels |
+| Component        | Props                                                    | Notes                                                                                               |
+| ---------------- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `BaseLayout`     | `title`, `description` (required); `bg` (`dots`\|`topo`) | dot-grid body (or topo paper when `bg="topo"`), fonts, Header/Footer, analytics; pages own `<main>` |
+| `Header`         | —                                                        | sticky blurred nav; active state derived from URL path                                              |
+| `Footer`         | —                                                        | colophon + social icon links; no nav links                                                          |
+| `Icon`           | `name: github\|linkedin\|instagram\|bulb\|arrow`         | size from the consumer via `:global(svg)`; color inherits                                           |
+| `Highlight`      | slot                                                     | the once-per-page swipe span                                                                        |
+| `LabelChip`      | `color: purple\|orange`, slot                            | uppercase tinted label (slim chip size)                                                             |
+| `TagChip`        | `tag: string`                                            | orange-tint recipe tag (slim chip size, single size)                                                |
+| `LinkButton`     | `href`, `variant?: primary\|ghost`, `class` passthrough  | solid purple / outlined purple / plain bordered                                                     |
+| `IngredientList` | `html: string`                                           | CSS-only checkable list (`:checked` strikethrough), handles nested lists + `h3` group labels        |
 
 **Page-local patterns** (scoped in their pages, not extracted): stat tile (dashed border, big slab purple number) · role entry (2-col, orange square bullets) · credential bullet lists (dot markers centered on first text line) · tech-keyword chip row · teaser card (accent border + `.go` link matches chip color) · quest card (mosaic hero/feature/normal tiers, alternating accent tints by index, full-colour watermark art, hover lift + ±0.4° tilt, stretched-link CTA) · recipe card (slab title, italic tagline, tags row, effort ●●○ + makes/serves meta) · filter chip groups (Category + Tags, single-select each, AND-combined, works without JS) · meta strip (dashed, Category → Effort → Makes/Serves) · method steps (numbered purple squares + connector line) · margin note (Aleo italic, orange-text, from blockquotes) · tip block (orange tint + bulb icon).
 
