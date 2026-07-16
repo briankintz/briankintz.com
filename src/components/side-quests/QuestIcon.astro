@@ -1,0 +1,54 @@
+---
+// Decorative full-color watermark that bleeds off the card's bottom-right corner (clipped by the
+// card's overflow:hidden). Icons are static SVGs in /public/quest-icons, named by what they depict;
+// QuestCard passes the name from the quest data. Lazy-loaded; it fades in with the card's reveal.
+interface Props {
+  icon: string
+  tier: 'hero' | 'feature' | 'normal'
+}
+const { icon, tier } = Astro.props
+const size = tier === 'hero' ? 300 : tier === 'feature' ? 232 : 172
+---
+
+<img
+  class:list={['qi', tier]}
+  src={`/quest-icons/${icon}.svg`}
+  width={size}
+  height={size}
+  alt=""
+  aria-hidden="true"
+  loading="lazy"
+  decoding="async"
+  data-icon={icon}
+/>
+
+<style>
+  .qi {
+    position: absolute;
+    z-index: -1; /* behind the card text (card has isolation: isolate) */
+    display: block;
+    pointer-events: none;
+    /* fade the art out toward the copy so it doesn't fight the text */
+    -webkit-mask-image: linear-gradient(115deg, transparent 12%, #000 55%);
+    mask-image: linear-gradient(115deg, transparent 12%, #000 55%);
+  }
+  .qi.hero {
+    right: 0;
+    bottom: -30px;
+  }
+  .qi.feature,
+  .qi.normal {
+    right: -14px;
+    bottom: -24px;
+  }
+  /* per-icon nudges for art whose subject sits off-centre in its canvas */
+  .qi[data-icon='paraglider'] {
+    bottom: -8px; /* canopy sits high — raise so it isn't just a sliver */
+  }
+  .qi[data-icon='potted-plant'] {
+    right: -35px; /* ~24% side padding — centre it in the gap between text and card edge */
+  }
+  .qi[data-icon='skis'] {
+    right: -28px; /* ~18% side padding — push right to use the outer space */
+  }
+</style>
