@@ -14,6 +14,8 @@ import '../styles/notebook.css'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import Analytics from '@vercel/analytics/astro'
+// TEMP (issue #55): background-pattern experiment — remove with the picker component
+import BackgroundPicker from '../components/dev/BackgroundPicker.astro'
 
 interface Props {
   title: string
@@ -42,5 +44,6 @@ const { title, description } = Astro.props
     <Header />
     <slot />
     <Footer />
+    <BackgroundPicker />
   </body>
 </html>
