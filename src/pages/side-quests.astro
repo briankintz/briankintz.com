@@ -133,41 +133,42 @@ const tierOf = (q: Quest): 'hero' | 'feature' | 'normal' => (q.hero ? 'hero' : q
 </BaseLayout>
 
 <script>
-  // Scroll-reveal with two failsafes so content can never stay hidden.
   const els = [...document.querySelectorAll<HTMLElement>('.reveal')]
-  const show = (el: HTMLElement) => {
+  const reveal = (el: HTMLElement, delay: number) => {
+    el.style.transitionDelay = `${delay}ms`
     el.classList.add('in')
-    // clear the stagger delay after the entrance so it doesn't also delay the hover transition
-    setTimeout(() => {
-      el.style.transitionDelay = ''
-    }, 700)
+    // drop the stagger delay once the entrance is done so it can't delay the hover transition
+    setTimeout(() => (el.style.transitionDelay = ''), delay + 600)
   }
 
-  // 1) reveal anything already within the viewport immediately
-  els.forEach((el) => {
-    if (el.getBoundingClientRect().top < window.innerHeight) show(el)
-  })
-
+  // below-fold cards animate in as they scroll into view, staggered per batch
   const io = new IntersectionObserver(
     (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          show(e.target as HTMLElement)
-          io.unobserve(e.target)
-        }
-      })
+      let i = 0
+      for (const e of entries) {
+        if (!e.isIntersecting) continue
+        reveal(e.target as HTMLElement, i++ * 70)
+        io.unobserve(e.target)
+      }
     },
     { threshold: 0.12 },
   )
-  els.forEach((el, i) => {
-    if (!el.classList.contains('in')) {
-      el.style.transitionDelay = `${(i % 3) * 70}ms`
-      io.observe(el)
-    }
-  })
 
-  // 2) hard failsafe — never leave content hidden
-  setTimeout(() => els.forEach(show), 500)
+  // Let the hidden (opacity:0) state paint for one frame before flipping to `in` — otherwise the
+  // browser collapses 0→1 into a single paint and the transition never runs (module scripts run
+  // before first paint). Above-fold cards then stagger in; the rest are handed to the observer.
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() => {
+      let i = 0
+      for (const el of els) {
+        if (el.getBoundingClientRect().top < window.innerHeight) reveal(el, i++ * 70)
+        else io.observe(el)
+      }
+    }),
+  )
+
+  // hard failsafe — never leave content hidden if rAF/IO never fire (e.g. backgrounded tab)
+  setTimeout(() => els.forEach((el) => el.classList.add('in')), 1500)
 </script>
 
 <style>
