@@ -1,14 +1,14 @@
 ---
-// Watermark that bleeds off the card's bottom-right corner (clipped by the card's overflow:hidden).
-// PLACEHOLDER GLYPH — the real per-quest line icons are TBD; only the mechanism is final here
-// (size/position/opacity/accent + non-scaling hairline stroke). To finish: give each `name` its own
-// paths — see the ICONS map in design_handoff_side_quests. Colour + opacity are set by QuestCard.
+// Line-icon watermark that bleeds off the card's bottom-right corner (clipped by the card's
+// overflow:hidden). Colour + opacity are set by QuestCard; the glyph comes from the shared ICONS map.
+import { ICONS } from './quest-icons'
 interface Props {
   name: string
   tier: 'hero' | 'feature' | 'normal'
 }
 const { name, tier } = Astro.props
 const size = tier === 'hero' ? 300 : tier === 'feature' ? 232 : 172
+const inner = ICONS[name] ?? ''
 ---
 
 <svg
@@ -23,10 +23,8 @@ const size = tier === 'hero' ? 300 : tier === 'feature' ? 232 : 172
   stroke-linejoin="round"
   aria-hidden="true"
   data-icon={name}
->
-  <rect x="4" y="4" width="16" height="16" rx="3.5"></rect>
-  <circle cx="12" cy="12" r="3.2"></circle>
-</svg>
+  set:html={inner}
+/>
 
 <style>
   .qi {
