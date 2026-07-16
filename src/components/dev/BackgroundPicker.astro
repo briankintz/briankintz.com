@@ -123,11 +123,20 @@ const patterns = [
       13px 13px;
   }
 
-  /* topographic contours (mountain paper) */
-  html[data-bg='topo'] body,
+  /* real topographic contours of the Hochries (Chiemgau Alps), from Copernicus EU-DEM (25m).
+     fixed + cover so the terrain sits undistorted behind the content as the page scrolls */
+  html[data-bg='topo'] body {
+    background-image: url('/patterns/hochries-topo.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
   .bp-sw[data-p='topo'] {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cg fill='none' stroke='%23dcdbe0' stroke-width='1.3' stroke-linecap='round'%3E%3Cpath d='M70,25 C100,27 122,50 120,78 C118,106 96,126 68,124 C40,122 20,100 22,74 C24,48 42,23 70,25 Z'/%3E%3Cpath d='M70,45 C88,46 102,60 100,77 C98,94 85,106 68,105 C51,104 40,92 41,76 C42,60 54,44 70,45 Z'/%3E%3Cpath d='M69,64 C78,64 86,71 85,79 C84,88 77,93 69,92 C60,91 55,85 56,78 C57,70 61,64 69,64 Z'/%3E%3Cpath d='M178,140 C199,142 214,158 212,180 C210,201 193,216 175,214 C156,212 144,196 146,177 C148,158 160,138 178,140 Z'/%3E%3Cpath d='M177,162 C188,163 196,171 195,181 C194,191 186,197 176,196 C167,195 161,188 162,179 C163,169 168,161 177,162 Z'/%3E%3Cpath d='M150,30 C170,20 195,25 215,15'/%3E%3Cpath d='M15,170 C25,185 20,205 32,222'/%3E%3Cpath d='M110,228 C125,218 140,225 150,215'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: 240px 240px;
+    background-image: url('/patterns/hochries-topo.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   /* gentle waves */
